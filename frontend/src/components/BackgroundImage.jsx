@@ -6,7 +6,7 @@ function BackgroundImage(){
             <div className="BackgroundImgDiv">
                 <div class="BackgroundImg"></div>
             </div>
-          </section>
+        </section>
     );
 }
 

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import onClickOutside from "react-onclickoutside";
+import OutsideClickHandler from 'react-outside-click-handler';
 import {NavLink} from 'react-router-dom'
 function Cat() {
-    const[direction , setDirection]=useState("down");
+    const[direction , setDirection]=useState(false);
+    const[Cls , setCls]=useState("dd1");
+    const[Cls1 , setCls1]=useState("insideCatListContainer");
     const Catagery=["Houses","Bridal Dresses","Land & Plots","Comercial Shop","Cars","Bikes"];
     const subCatagery1=["Cars","Bikes","Super Cars","SuperBikes","Boats"];
     const subCatagery2=["Luxuary","Average","Economy","Apartmints"];
@@ -14,7 +16,7 @@ function Cat() {
         <div>
         <div className="singleCol">
                             <div className="catHeadingDiv">
-                                <NavLink to="/catagoryView" className="catHeadingText" style={{ textDecoration: 'none' }}>
+                                <NavLink to="/catagoryView" onClick={invert} className="catHeadingText" style={{ textDecoration: 'none' }}>
                                     <span>Vehicles</span>
                                 </NavLink>
                             </div>
@@ -59,35 +61,32 @@ function Cat() {
     function SubCat(props){
         return (
         <div className="subCatDiv">
-            <NavLink to="/catagoryView" className="subCatText" style={{ textDecoration: 'none' }}>
+            <NavLink to="/catagoryView" onClick={invert} className="subCatText" style={{ textDecoration: 'none' }}>
                 <span>{props.name}</span>
             </NavLink>
         </div>
         );
     }
-    
+
     function invert(){
-        if(direction ==="down"){
-            setDirection("up")
-            document.getElementById("a").classList.add("dd1r");
-            document.getElementById("b").classList.remove("insideCatListContainer");
-            document.getElementById("b").classList.add("insideCatListContainer1");
+        if(direction ===false){
+            setDirection(true);
+            setCls("dd1 dd1r");
+            setCls1("insideCatListContainer insideCatListContainer1");
         }
         else{
-            setDirection("down");
-            document.getElementById("a").classList.remove("dd1r");
-            document.getElementById("a").classList.add("dd1r1");
-            document.getElementById("b").classList.remove("insideCatListContainer1");
-            document.getElementById("b").classList.add("insideCatListContainer");
+            setDirection(false);
+            setCls("dd1 dd1r1");
+            setCls1("insideCatListContainer");
         }
     }
-    function dis(){
-        setDirection("down");
-            document.getElementById("a").classList.remove("dd1r");
-            document.getElementById("a").classList.add("dd1r1");
-            document.getElementById("b").classList.remove("insideCatListContainer1");
-            document.getElementById("b").classList.add("insideCatListContainer");
+    function outHanddler(){
+        if(direction ===true){
+            setCls("dd1 dd1r1");
+            setCls1("insideCatListContainer");
+        }
     }
+
   return (
     <div className="Cat_container">
       <div className="insideCat">
@@ -99,21 +98,24 @@ function Cat() {
                     </span>
                 </span>
 
-                <span className="dropdownButton">
-                    <button type="button" id="a" onClickOutside={dis} onClick={invert} class="dd1" style={{outline: 'none'}}>
+                <span className="dropdownButton">  
+                    <button type="button" onClick={invert} className={Cls} style={{outline: 'none'}}>
                         <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" >
                             <path d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
                         </svg>
-                    </button>
+                    </button>           
                 </span>
 
                 <div className="SomeCat">
                     {Catagery.map( (x) => <SingleCat name= {x}/>)}
                 </div>
                 <div className="catListContainer">
-                    <div className="insideCatListContainer" id="b">
-                        <CatBlock/>                            
+                    <OutsideClickHandler onOutsideClick={outHanddler}>
+                    <div className={Cls1}>
+                        <CatBlock/>
                     </div>
+                    </OutsideClickHandler>
+
                 </div>
             </div>
           </div>
