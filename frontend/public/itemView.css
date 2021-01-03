@@ -1,0 +1,239 @@
+.itemViewDiv2 {
+    padding: 0;
+}
+.itemViewDiv1 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.itemPicEtcDiv {
+    width: 66.6666666667%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+    padding: 5px;
+    border: 5px solid transparent;
+    float: left;
+    min-height: 1px;
+    box-sizing: border-box;
+}
+
+
+.PicAreaDiv2 {
+    width: 100%;
+    background: #000;
+    overflow: hidden;
+    border: 1px solid rgba(0,47,52,.2);
+    border-radius: 4px;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+    outline: none;
+}
+
+.insidePicArea {
+    padding: 0;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0,47,52,.36);
+}
+
+.picNo {
+    direction: ltr;
+    border-radius: 4px;
+    width: 45px;
+    color: #fff;
+    height: 20px;
+    position: absolute;
+    font-size: 10px;
+    text-align: center;
+    z-index: 3;
+    right: 3%;
+    bottom: 20px;
+}
+
+
+.PicDiv {
+    height: 480px;
+    position: relative;
+    background-color: #000;
+    box-sizing: border-box;
+    user-select: none;
+    touch-action: pan-y;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    display: block;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.insidePicDiv {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.figure_img {
+    position: relative;
+    object-fit:contain;
+    width: 100%;
+    height: 100%;
+}
+
+.Left {
+    top: calc(50% - 24px);
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.32);
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    left: 20px;
+    background-image: linear-gradient(270deg,transparent,rgba(0,0,0,.2));
+    fill: #fff; 
+}
+.Right {
+    top: calc(50% - 24px);
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.32);
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    right: 20px;
+    background-image: linear-gradient(270deg,transparent,rgba(0,0,0,.2));
+    fill: #fff; 
+}
+
+.DiscAreaDiv{
+    border-radius: 0 0 3px 3px;
+    position: relative;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.insideDiscArea {
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    border: 1px solid rgba(0,47,52,.2);
+    border-radius: 4px;
+    position: relative;
+    padding: 16px;
+}
+
+.DiscHeading {
+    margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+    color: #002f34;
+}
+
+.DiscData {
+    word-break: break-word;
+    margin: 0;
+    color: #002f34;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+
+.itemsSellerDiv {
+    width: 33.3333333333%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+    padding: 5px;
+    border: 5px solid transparent;
+    float: left;
+    min-height: 1px;
+    box-sizing: border-box;
+}
+
+
+.firstDiv {
+    width: 100%;
+    background: #fff;
+    overflow: visible;
+    border: 1px solid rgba(0,47,52,.2);
+    border-radius: 4px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+
+.firstDivContent {
+    padding-top: 16px;
+    padding: 20px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0,47,52,.36);
+}
+.firstDivContentSec {
+    display: flex;
+    flex-direction: column;
+}
+.firstDivItemPrice {
+    direction: ltr;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #002f34;
+    font-size: 34px;
+    line-height: 32px;
+}
+
+.firstDivItemTitle {
+    font-weight: 400;
+    margin: 0;
+    font-size: 16px;
+    color: rgba(0,47,52,.64);
+    line-height: 24px;
+    word-break: break-word;
+    max-width: 80%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.locationAndDate {
+    display: flex;
+    margin-top: 24px;
+    justify-content: space-between;
+    color: rgba(0,47,52,.64);
+}
+.location{
+    font-size: 12px;
+}
+.Date {
+    font-size: 12px;
+    flex: 0 0 70px;
+    text-align: right;
+}
+
+.SellerDisc {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    color: #002f34;
+    font-weight: 400;
+    padding: 0;
+}
+.AdId {
+    font-weight: 700;
+    font-size: 12px;
+    padding-top: 8px;
+    padding-bottom: 24px;
+}
