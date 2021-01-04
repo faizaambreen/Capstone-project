@@ -10,10 +10,7 @@ function PostYourAdd(props){
                     <h1 className="PostHeading">
                         <span>Post your Add</span>
                     </h1>
-                    <Switch>
-                        <Route path={props.match.url + "/AddSelection"} Component={AddSelection}/>
-                        <Route path={props.match.url + "/AddDetails"} Component={AddSelection}/>
-                    </Switch>        
+                    <AddSelection/>      
                 </div>
             </div>
         </main>

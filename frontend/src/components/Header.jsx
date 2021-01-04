@@ -1,13 +1,13 @@
 import React from 'react';
+import Login from "./Main Pages/Login"
 import {NavLink} from 'react-router-dom'
 
-function Header() {
-
+function Header(props) {
   return (
       <div className="header">
         <div className="insideHeader">
             <div className="headerContent">
-                <img src="https://www.mavericktheater.com/assets/images/RENT_logo.jpg" className="logo"></img>
+                <NavLink to="/"><img src="https://www.mavericktheater.com/assets/images/RENT_logo.jpg" className="logo" alt=""></img></NavLink>
                 
                 <div className="input-group mb-3 locationBox ">
   <input type="text" className="form-control" placeholder="Pakistan" aria-label="Text input with segmented dropdown button "/>
@@ -17,7 +17,7 @@ function Header() {
       <span className="sr-only">Toggle Dropdown</span>
     </button>
     <div className="dropdown-menu">
-      <a className="dropdown-item" href="#">Karachi</a>
+      <a className="dropdown-item" href="">Karachi</a>
       <a className="dropdown-item" href="#">Islamabad</a>
       <a className="dropdown-item" href="#">Lahore</a>
       <div role="separator" className="dropdown-divider"></div>
@@ -36,7 +36,7 @@ function Header() {
 </div>
 
 <div className="loginAndRent">
-<button type="button" class="btn btn-info login">Login</button>
+<button type="button" onClick={props.onChecked} className="btn btn-info login">Login</button>
 <NavLink to="/PostYourAdd"><button type="button" class="btn btn-info rent">Rent</button></NavLink>
 </div>
 

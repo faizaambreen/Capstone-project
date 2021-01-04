@@ -1,0 +1,33 @@
+.PopMainDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.8);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+.insidePop {
+    margin: 0 16px;
+    padding: 16px;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    background-color: #fff;
+    width: 400px;
+    overflow: hidden;
+    border-radius: 3px;
+    position: relative;
+    height: 584px;
+}
+
+.isVisible{
+    display: none;
+}
