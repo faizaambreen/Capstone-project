@@ -9,18 +9,17 @@ import PostYourAdd from './components/Main Pages/PostYourAdd'
 import AddDetails from './components/AddDetails'
 import Congo from './components/Main Pages/Congo'
 import Login from "./components/Main Pages/Login";
-import OutsideClickHandler from 'react-outside-click-handler';
 import { Route, Switch } from 'react-router-dom';
 
-
 function App() {
-  const[isClicked,setIsClicked]=useState("false");
+  const[isClicked,setIsClicked]=useState(false);
   function handdleClick(){
-    setIsClicked("true");
+    setIsClicked(true);
   }
-  function outHandle(){
-    alert("clicked");
+  function remove(){
+    setIsClicked(false);
   }
+
   return (
     <div id ="container" className="appClass">
       <Header onChecked={handdleClick}/>
@@ -32,12 +31,10 @@ function App() {
         <Route exact path="/PostYourAdd" component={PostYourAdd} />
         <Route exact path="/AddDetails" component={AddDetails} />
         <Route exact path="/Congo" component={Congo} />
-        <Route/>
       </Switch>
       <Footer/>
-      <OutsideClickHandler OutsideClickHandler={outHandle}>
-      <Login cls={isClicked}/>
-      </OutsideClickHandler>
+
+      <Login cls={isClicked} onUnChecked={remove}/>
       
       
       
