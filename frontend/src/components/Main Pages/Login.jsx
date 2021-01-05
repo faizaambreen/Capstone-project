@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 
 function Login(props){
 
     return(
+
         <div className={props.cls? "PopMainDiv" : "PopMainDiv isVisible"}>
+            <OutsideClickHandler onOutsideClick={props.onUnChecked}>
             <div className="insidePop">
                 <span className="cross" onClick={props.onUnChecked}>
                     <svg width="25px" height="25px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
@@ -11,6 +14,7 @@ function Login(props){
                     </svg>
                 </span>
             </div>
+            </OutsideClickHandler>
         </div>
     );
 }
