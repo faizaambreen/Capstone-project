@@ -10,6 +10,7 @@ const findOrCreate = require('mongoose-findorcreate');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static("public"));
 
 // setting and configuring the session modules
 app.use(session({
@@ -19,7 +20,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 mongoose.connect("mongodb://localhost:27017/rentallDB",{useNewUrlParser:true,useUnifiedTopology:true});
 mongoose.set("useCreateIndex",true);
@@ -32,11 +32,24 @@ const userSchema= new mongoose.Schema({
   phone:String
 });
 
+const itemSchema = new mongoose.Schema({
+  title:String,
+  description:String,
+  price:Number,
+  images:[{
+    type:String
+  }],
+  category:String,
+  city:String,
+  state:String
+});
+
 // applying the passportLocalMongoose for the session and cookies
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
 const User = mongoose.model("user",userSchema);
+const Item = mongoose.model("item",itemSchema);
 
 //below 3 lines using to serialize and deserialize the session
 passport.use(User.createStrategy());
@@ -92,6 +105,49 @@ app.get("/auth/google/logged",
 
 app.get("/loggedIn",(req,res)=>{
   res.sendFile(__dirname+"/logged.html");
+});
+
+app.post("/post/ad",(req,res)=>{
+  console.log(req.body);
+  const item = new Item({
+    title:req.body.title,
+    description:req.body.description,
+    price:req.body.price,
+    images:["img1","img2"],
+    category:req.body.category,
+    city:req.body.city,
+    state:req.body.state
+  });
+  item.save((error)=>{
+    if (error) {
+      console.log(error);
+      res.send(error);
+    } else {
+      res.send("Successfully added new item");
+    }
+  });
+});
+
+app.get("/categories/:category",(req,res)=>{
+  console.log(req.params.category);
+  if(req.params.category!=":"){
+    Item.find({category:req.params.category},(error,foundItems)=>{
+      if(!error&&foundItems){
+        res.send(foundItems);
+      } else{
+        res.send(error);
+      }
+    });
+  } else{
+    Item.find((error,foundItems)=>{
+      if(!error&&foundItems){
+        res.send(foundItems);
+      } else{
+        res.send(error);
+      }
+    });
+  }
+
 });
 
 app.listen(5000,()=>{
