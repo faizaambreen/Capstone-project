@@ -5,7 +5,8 @@ const itemSchema = new mongoose.Schema({
   description:String,
   price:Number,
   images:[{
-    type:String
+    public_id:String,
+    secure_url:String
   }],
   category:String,
   city:String,

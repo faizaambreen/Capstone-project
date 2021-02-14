@@ -13,6 +13,7 @@ const categoryRoute = require("./routes/category");
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
+// app.use(express.json({limit:"50mb"}));
 
 // setting and configuring the session modules
 app.use(session({
@@ -23,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/rentallDB",{useNewUrlParser:true,useUnifiedTopology:true});
+mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true,useUnifiedTopology:true});
 mongoose.set("useCreateIndex",true);
 
 app.use("/auth/google",googleAuthRoute);
@@ -33,24 +34,19 @@ app.use("/post",postRoute);
 app.use("/categories",categoryRoute);
 
 app.get("/",(req,res)=>{
-  const obj = {
-    id:1,
-    name:"Adeel Babar",
-    age:21,
-    qualification:"BSCS"
-  };
-  res.sendFile(__dirname + "/index.html");
+  res.send("<h1>Home</h1>");
 });
 
 app.get("/loggedIn",(req,res)=>{
   if(req.isAuthenticated()){
-    res.sendFile(__dirname+"/logged.html");
+    res.send("<h1>Logged In</h1>");
   }
   else{
-    res.sendFile(__dirname+"/index.html");
+    res.send("<h1>Home</h1>");
   }
 });
 
-app.listen(5000,()=>{
+const port = process.env.PORT;
+app.listen(port,()=>{
   console.log("Server is started");
 });
