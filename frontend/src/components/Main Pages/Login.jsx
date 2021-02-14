@@ -3,12 +3,19 @@ import OutsideClickHandler from "react-outside-click-handler";
 import Button from "../Button";
 
 function Login(props) {
-  function googleClick() {}
+  const[pValue , setPvalue]=useState("");
+  function changeHandler(event){
+    setPvalue(event.target.value);
+  }
+  function googleClick() {
+    setPvalue("");
+  }
+ 
   return (
-
+    
     
     <div className={props.cls ? "PopMainDiv" : "PopMainDiv isVisible"}>
-      <OutsideClickHandler onOutsideClick={props.onUnChecked}>
+      <OutsideClickHandler onOutsideClick={props.onUnChecked} >
         <div className="insidePop">
           <span className="cross" onClick={props.onUnChecked}>
             <svg
@@ -26,44 +33,42 @@ function Login(props) {
             </svg>
           </span>
 
-          <div className="isVisible">
-            <div className="LoginOptions">
-              <span>Sign in Options</span>
-            </div>
-            <div className="btns">
-              <span className="btnSpan">
-                <Button
-                  name="Sign in with google"
-                  wd="100%"
-                  onChecked={googleClick}
-                />
-              </span>
-              <span className="btnSpan">
-                <Button name="Continue with Email" wd="100%" />
-              </span>
-            </div>
-          </div>
-
-          <div>
+          <div className="">
             <div className="PhoneNo">
               <span>Enter Your Phone Number</span>
             </div>
             <div className="phoneInputDiv">
               <div className="phoneCode">+92</div>
 
-              <div className="phoneInputDiv">
+              <div>
                 <input
-                  id="phone"
-                  name="phone"
-                  type="text"
-                  autocomplete="username"
+                  type="number"
                   placeholder="Phone Number"
                   className="phoneInput"
-                  value=""
+                  onChange={changeHandler}
+                  value={pValue}
                 />
               </div>
+              
             </div>
+            <p className={pValue==="" ? "PicMsg " : "PicMsg isVisible"} style={{marginLeft:"20px"}}>
+              <span>This field is mandatory*</span>
+            </p>
           </div>
+
+             
+            <div className="btns">
+              <span className="btnSpan">
+                <Button
+                  name="Sign in with google"
+                  wd="50%"
+                  onChecked={googleClick}
+                />
+              </span>
+            </div>
+            
+          
+
         </div>
       </OutsideClickHandler>
     </div>

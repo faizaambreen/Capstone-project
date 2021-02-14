@@ -2,7 +2,7 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 
 function AddSelection(){
-    const list=["Vehicals","Houses","Bridal Dresses","Property for Rent","Services","Furniture","Electronic Appliances"];
+    const list=["Bike","Cars","Trucks","Mobiles","House Maids","flats","Tablet","Houses","Bridal Dresses","Property for Rent","Plumbers","Web Devlopers","Furniture","AC on installments"];
 
     function PostLi(props){
         return(
