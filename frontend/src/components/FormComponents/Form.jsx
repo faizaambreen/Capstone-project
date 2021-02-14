@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import TextInput from './TextInput'
 import Pic from './Pic';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Form() {
     const [formData, setFormData] = useState({
@@ -9,7 +10,8 @@ export default function Form() {
         description: "",
         price: null,
         state: "",
-        city: ""
+        city: "",
+        images: []
     });
 
     function updateFormData(event) {
@@ -22,9 +24,40 @@ export default function Form() {
         });
     }
 
-    function submitForm(event) {
-        console.log("submit called");
+    function updateImages(object, name) {
+        const prevImages = formData.images.filter((image) => image.id !== object.id);
+
+        setFormData(prevValue => {
+            return {
+                ...prevValue,
+                [name]: [...prevImages, { id: object.id, image: object.image }]
+            };
+        });
+
+    }
+
+    async function submitForm(event) {
         event.preventDefault();
+        const data = new FormData();
+        data.append("title", formData.title);
+        data.append("description", formData.description);
+        data.append("price", formData.price);
+        data.append("state", formData.state);
+        data.append("city", formData.city);
+
+        for (let i = 0; i < formData.images.length; i++) {
+            data.append("images", formData.images[i].image);
+        }
+
+        const options = {
+            method: "POST",
+            body: data
+        }
+        const response = await (await fetch("/post/ad", options));
+        const result = await response.json();
+        // const status = await response.json();
+        console.log(result.status);
+
     }
 
     return (
@@ -94,6 +127,7 @@ export default function Form() {
                                         className="inputText"
                                         type="number"
                                         style={{ width: '100%' }}
+                                        value={formData.price}
                                     ></input>
                                 </div>
                             </div>
@@ -108,9 +142,14 @@ export default function Form() {
                         <div aria-disabled="false" style={{ display: 'block' }}>
                             <div className="PicDivup">
                                 <ul className="picUl"></ul>
-                                <Pic /><Pic /><Pic /><Pic />
-                                <Pic /><Pic /><Pic /><Pic />
-                                <Pic /><Pic /><Pic /><Pic />
+                                {Array(12).fill(null).map((value, index) => {
+                                    return (
+                                        <Pic
+                                            id={index}
+                                            updateImageArray={updateImages}
+                                        />
+                                    );
+                                })}
                             </div>
                             <p className="PicMsg"><span>This field is mandatory</span></p>
                         </div>
@@ -157,13 +196,13 @@ export default function Form() {
                     <div className="insideAddDetailDiv ">
                         <div className="loadDiv">
                             {/* <NavLink exact to="/Congo"> */}
-                                <button
-                                    type="submit"
-                                    className="loadBtn"
-                                    style={{ float: 'left' }}
-                                >
-                                    <span>Post Now</span>
-                                </button>
+                            <button
+                                type="submit"
+                                className="loadBtn"
+                                style={{ float: 'left' }}
+                            >
+                                <span>Post Now</span>
+                            </button>
                             {/* </NavLink> */}
                         </div>
                     </div>
