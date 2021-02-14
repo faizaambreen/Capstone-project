@@ -1,30 +1,13 @@
-const express = require('express');
+const express = require("express");
 
-// Import Models
-const Item = require("../models/Item");
+// Import Upload Controller
+const uploadAd = require("../controller/uploadController");
+
+const upload = require("../utils/multer");
 
 const router = express.Router();
 
 // Creates a new AD Post
-router.post("/ad",(req,res)=>{
-  console.log(req.body);
-  const item = new Item({
-    title:req.body.title,
-    description:req.body.description,
-    price:req.body.price,
-    images:["img1","img2"],
-    category:req.body.category,
-    city:req.body.city,
-    state:req.body.state
-  });
-  item.save((error)=>{
-    if (error) {
-      console.log(error);
-      res.send(error);
-    } else {
-      res.send("Successfully added new item");
-    }
-  });
-});
+router.post("/ad",upload.array("images",12),uploadAd);
 
 module.exports = router;
