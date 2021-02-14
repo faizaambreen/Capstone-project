@@ -9,6 +9,7 @@
     margin-bottom: 2%;
     margin-top: 2%;
 }
+
 .PostHeading {
     width: 100%;
     text-align: center;
@@ -22,11 +23,11 @@
     overflow: hidden;
     box-sizing: border-box;
     background: #fff;
-    border: 1px solid rgba(0,47,52,.2);
+    border: 1px solid rgba(0, 47, 52, .2);
     border-radius: 4px;
 }
 
-.PostCatHeading{
+.PostCatHeading {
     padding: 24px 30px 16px;
     font-size: 16px;
     line-height: 1.5;
@@ -55,7 +56,7 @@
     margin: 0;
     padding: 0;
     position: relative;
-    border: 1px solid rgba(0,47,52,.2);
+    border: 1px solid rgba(0, 47, 52, .2);
     border-left: none;
 }
 
@@ -68,12 +69,13 @@
     display: flex;
     align-items: center;
     line-height: 2;
-    color: rgba(0,47,52,.64);
-    border-top: 1px solid rgba(0,47,52,.2);
+    color: rgba(0, 47, 52, .64);
+    border-top: 1px solid rgba(0, 47, 52, .2);
 }
+
 .PostLiDiv:hover {
     color: #002f34;
-    background-color: rgba(0,47,52,.2);
+    background-color: rgba(0, 47, 52, .2);
 
 }
 
@@ -83,25 +85,27 @@
     width: 100%;
 }
 
- /********************Add Details***********************/
+/********************Add Details***********************/
 
- .AddDetailsMainDiv {
+.AddDetailsMainDiv {
     width: 100%;
     overflow: hidden;
     box-sizing: border-box;
     background: #fff;
-    border: 1px solid rgba(0,47,52,.2);
+    border: 1px solid rgba(0, 47, 52, .2);
     border-radius: 4px;
     padding: 0;
 }
+
 .AddDetailHeading {
     font-size: 20px;
     padding: 0 16px;
     text-transform: uppercase;
 }
+
 .Boarder {
     box-sizing: border-box;
-    border-bottom: 1px solid rgba(0,47,52,.2);
+    border-bottom: 1px solid rgba(0, 47, 52, .2);
     float: left;
     height: 0;
     width: 100%;
@@ -149,8 +153,9 @@
     flex-wrap: wrap;
     position: relative;
     background: #fff;
-    box-shadow: inset 0 0 0 1px rgba(0,47,52,.64);
+    box-shadow: inset 0 0 0 1px rgba(0, 47, 52, .64);
 }
+
 .insideAddTitleInputDiv {
     align-items: center;
     display: flex;
@@ -174,7 +179,7 @@
 }
 
 .inputMsg {
-    color: rgba(0,47,52,.64);
+    color: rgba(0, 47, 52, .64);
     font-size: 12px;
     flex-grow: 1;
 }
@@ -196,13 +201,13 @@
 }
 
 .priceRSDiv {
-    color: rgba(0,47,52,.36);
+    color: rgba(0, 47, 52, .36);
     height: 32px;
     line-height: 32px;
     padding-left: 12px;
     padding-right: 12px;
     white-space: nowrap;
-    border-right: 1px solid rgba(0,47,52,.36);
+    border-right: 1px solid rgba(0, 47, 52, .36);
     border-left: none;
     direction: ltr;
 }
@@ -212,15 +217,17 @@
     direction: ltr;
     flex-grow: 1;
 }
+
 .PicDivup {
     margin-right: -10px;
     box-sizing: border-box;
     background-color: #fff;
     transition-duration: .5s;
     transition-property: height;
-    transition-timing-function: cubic-bezier(0,1,.5,1);
+    transition-timing-function: cubic-bezier(0, 1, .5, 1);
     height: 100%;
 }
+
 .picUl {
     display: initial;
     height: 100%;
@@ -252,6 +259,7 @@
     margin: 0 6px 6px 0;
     width: 104px;
 }
+
 .insidePic {
     align-items: center;
     cursor: pointer;
@@ -262,6 +270,7 @@
     justify-content: center;
     width: 100%;
 }
+
 .picButton {
     display: inline-flex;
     justify-content: center;
@@ -278,6 +287,7 @@
     height: 40px;
     padding: 0;
 }
+
 .PicMsg {
     color: #ff2800;
     margin-bottom: 0;
@@ -299,4 +309,13 @@
     padding-left: 12px;
     width: 100%;
     padding-right: 80px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.label {
+    color: black;
+    size: 50px;
 }

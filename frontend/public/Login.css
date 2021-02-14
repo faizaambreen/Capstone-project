@@ -25,7 +25,7 @@
     overflow: hidden;
     border-radius: 3px;
     position: relative;
-    height: 584px;
+    height: 350px;
 }
 
 .isVisible{
@@ -40,4 +40,69 @@
     top: 12px;
     cursor: pointer;
     position: absolute;
+}
+
+.btns{
+    margin-top: 5%;
+}
+.LoginOptions{
+    margin-top: 10%;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center
+}
+
+.PhoneNo{
+    margin-top: 10%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 10%
+}
+
+
+.phoneInputDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    border-radius: 4px;
+    border-style: none;
+    margin: 4px 0;
+    flex-wrap: wrap;
+    position: relative;
+    box-shadow: inset 0 0 0 1px rgba(0,47,52,.64);
+    margin-left: 12px
+}
+
+.phoneCode {
+    color: rgba(0,47,52,.36);
+    height: 32px;
+    line-height: 32px;
+    padding-left: 12px;
+    padding-right: 12px;
+    white-space: nowrap;
+    border-right: 1px solid rgba(0,47,52,.36);
+
+}
+
+.phoneInputDiv {
+    flex-grow: 1;
+    border-left: none;
+}
+
+
+.phoneInput {
+    appearance: none;
+    background: none;
+    border: none;
+    color: #002f34;
+    display: block;
+    font-size: 16px;
+    height: 48px;
+    box-sizing: border-box;
+    outline: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 100%;
+    
 }
