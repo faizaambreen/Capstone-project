@@ -5,8 +5,9 @@ function AddSelection(){
     const list=["Bike","Busses","Rikshaw","Boats","Tractors","Generators","Ups","Freezer","Washing Machines & dryers","Lawns","Offices","Hotels","Books","Sofas","Beds","Chairs","tables","Mirrors","Carpets","Paintings","Curtains","Musical Instruments","Sports Equipments","Cars","Trucks","Mobiles","House Maids","flats","Tablet","Houses","Bridal Dresses","Property for Rent","Plumbers","Web Devlopers","Furniture","AC on installments"];
 
     function PostLi(props){
+        const pa="/AddDetails/"+props.name;
         return(
-            <NavLink exact to="/AddDetails" style={{textDecoration:'none'}}>
+            <NavLink exact to={pa} style={{textDecoration:'none'}}>
                 <li className="PostLiDiv" >
                     <span className="PostLiContent">{props.name}</span>
                 </li>
