@@ -29,7 +29,7 @@ function App() {
         <Route exact path="/itemView" component={ItemView}/>
         <Route exact path="/catagoryView" component={CatagoryView}/>
         <Route exact path="/PostYourAdd" component={PostYourAdd} />
-        <Route exact path="/AddDetails" component={AddDetails} />
+        <Route exact path="/AddDetails/:cat" component={AddDetails} />
         <Route exact path="/Congo" component={Congo} />
       </Switch>
       <Footer/>

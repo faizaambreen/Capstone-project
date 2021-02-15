@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom';
 import TextInput from './TextInput'
 import Pic from './Pic';
 
-export default function Form() {
+export default function Form(props) {
+    const Catageory=props.cate;
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -72,7 +73,7 @@ export default function Form() {
         <form onSubmit={submitForm}>
             <div className="AddDetailsMainDiv">
                 <h2 className="AddDetailHeading">
-                    <span>SELECTED CATEGORY</span>
+                    <span>SELECTED CATEGORY </span>
                 </h2>
                 <div className="Boarder"></div>
                 <div className="AddDetailDiv">
