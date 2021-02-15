@@ -3,12 +3,12 @@ const Item = require("../models/Item");
 
 // Import cloudinary
 const cloudinary = require("../utils/cloudinary");
-let imagesArray = [];
 
 const uploadAd = async (req, res) => {
 
   console.log(req.files);  
   let status = (req.files.length > 0);
+  let imagesArray = [];
 
   // uploading all files to the cloudinary client_uploads folder
   for (const file of req.files) {
