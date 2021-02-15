@@ -3,21 +3,36 @@ import OutsideClickHandler from "react-outside-click-handler";
 import Button from "../Button";
 
 function Login(props) {
-  const[pValue , setPvalue]=useState("");
-  function changeHandler(event){
-    setPvalue(event.target.value);
+  const [phone, setPhone] = useState("");
+
+  function updatePhone(event) {
+    setPhone(event.target.value);
   }
-  function googleClick() {
-    setPvalue("");
+
+  async function handleClick() {
+    const data = new FormData();
+    data.append("phone", phone);
+    
+    // const response = await fetch("/auth/google", {
+    //   method: "POST",
+    //   body: data
+    // });
+    const response = await fetch("/auth/google/login");
+    const status = await response.json();
+    console.log(status);
+
   }
- 
+
+  function clearPopup() {
+    setPhone("");
+    props.onUnChecked();
+  }
+
   return (
-    
-    
     <div className={props.cls ? "PopMainDiv" : "PopMainDiv isVisible"}>
-      <OutsideClickHandler onOutsideClick={props.onUnChecked} >
+      <OutsideClickHandler onOutsideClick={clearPopup} >
         <div className="insidePop">
-          <span className="cross" onClick={props.onUnChecked}>
+          <span className="cross" onClick={clearPopup}>
             <svg
               width="25px"
               height="25px"
@@ -45,29 +60,32 @@ function Login(props) {
                   type="number"
                   placeholder="Phone Number"
                   className="phoneInput"
-                  onChange={changeHandler}
-                  value={pValue}
+                  onChange={updatePhone}
+                  value={phone}
                 />
               </div>
-              
+
             </div>
-            <p className={pValue==="" ? "PicMsg " : "PicMsg isVisible"} style={{marginLeft:"20px"}}>
+            <p
+              className={phone === "" ? "PicMsg " : "PicMsg isVisible"}
+              style={{ marginLeft: "20px" }}
+            >
               <span>This field is mandatory*</span>
             </p>
           </div>
 
-             
-            <div className="btns">
+          {
+            (phone !== "") && (<div className="btns">
               <span className="btnSpan">
                 <Button
                   name="Sign in with google"
                   wd="50%"
-                  onChecked={googleClick}
+                  buttonClicked={handleClick}
                 />
               </span>
-            </div>
-            
-          
+            </div>)
+          }
+
 
         </div>
       </OutsideClickHandler>

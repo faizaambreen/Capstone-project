@@ -4,13 +4,16 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
 
 // Import Routes
 const googleAuthRoute = require("./routes/googleAuthentication");
 const postRoute = require("./routes/post");
 const categoryRoute = require("./routes/category");
 
-const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 // app.use(express.json({limit:"50mb"}));
