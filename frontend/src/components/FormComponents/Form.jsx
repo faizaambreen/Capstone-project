@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import TextInput from './TextInput'
 import Pic from './Pic';
-import { v4 as uuidv4 } from 'uuid';
 
 export default function Form() {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
-        price: null,
+        price: "",
         state: "",
         city: "",
         images: []
     });
+    const [haveImages, setHaveImages] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
     function updateFormData(event) {
         const { name, value } = event.target;
@@ -26,38 +27,44 @@ export default function Form() {
 
     function updateImages(object, name) {
         const prevImages = formData.images.filter((image) => image.id !== object.id);
-
+        setHaveImages(false);
         setFormData(prevValue => {
             return {
                 ...prevValue,
                 [name]: [...prevImages, { id: object.id, image: object.image }]
             };
         });
-
     }
 
     async function submitForm(event) {
         event.preventDefault();
-        const data = new FormData();
-        data.append("title", formData.title);
-        data.append("description", formData.description);
-        data.append("price", formData.price);
-        data.append("state", formData.state);
-        data.append("city", formData.city);
+        if (formData.images.length === 0) {
+            setHaveImages(true);
+        } else {
+            const data = new FormData();
+            data.append("title", formData.title);
+            data.append("description", formData.description);
+            data.append("price", formData.price);
+            data.append("state", formData.state);
+            data.append("city", formData.city);
 
-        for (let i = 0; i < formData.images.length; i++) {
-            data.append("images", formData.images[i].image);
+            for (let i = 0; i < formData.images.length; i++) {
+                data.append("images", formData.images[i].image);
+            }
+
+            const options = {
+                method: "POST",
+                body: data
+            }
+            const response = await (await fetch("/post/ad", options));
+            const result = await response.json();
+            console.log(result.status);
+            if (result.status === 200) {
+                setSubmitted(true);
+            } else {
+                alert("Error Occurred! TRY Again !");
+            }
         }
-
-        const options = {
-            method: "POST",
-            body: data
-        }
-        const response = await (await fetch("/post/ad", options));
-        const result = await response.json();
-        // const status = await response.json();
-        console.log(result.status);
-
     }
 
     return (
@@ -100,6 +107,7 @@ export default function Form() {
                                     className="DescInput"
                                     maxLength="4096"
                                     style={{ height: '96px', resize: 'none' }}
+                                    required
                                 >
                                 </textarea>
                             </div>
@@ -128,6 +136,7 @@ export default function Form() {
                                         type="number"
                                         style={{ width: '100%' }}
                                         value={formData.price}
+                                        required
                                     ></input>
                                 </div>
                             </div>
@@ -151,7 +160,10 @@ export default function Form() {
                                     );
                                 })}
                             </div>
-                            <p className="PicMsg"><span>This field is mandatory</span></p>
+                            <span className="inputMsg">Allowed Formats (JPG, JPEG, PNG)</span>
+                            {
+                                haveImages && <p className="PicMsg"><span>This field is mandatory</span></p>
+                            }
                         </div>
                     </div>
                 </div>
@@ -166,13 +178,13 @@ export default function Form() {
                             <div className="AddTitleInputDiv">
                                 <div className="RemainingRsDiv">
                                     <div className="inputText">
-                                        <select onChange={updateFormData} name="state" className="Sele">
-                                            <option></option>
-                                            <option>Punjab</option>
-                                            <option>Sindh</option>
-                                            <option>Balochistan</option>
-                                            <option>Kashmir</option>
-                                            <option>KPK</option>
+                                        <select required onChange={updateFormData} name="state" className="Sele">
+                                            <option value="">-State-</option>
+                                            <option value="Punjab">Punjab</option>
+                                            <option value="Sindh">Sindh</option>
+                                            <option value="Balochistan">Balochistan</option>
+                                            <option value="Kashmir">Kashmir</option>
+                                            <option value="KPK">KPK</option>
                                         </select>
                                     </div>
                                 </div>
@@ -184,9 +196,7 @@ export default function Form() {
                                 updateText={updateFormData}
                                 value={formData.city}
                             />
-
                         </div>
-                        <p className="PicMsg"><span>This field is mandatory</span></p>
                     </div>
                 </div>
 
@@ -195,7 +205,6 @@ export default function Form() {
                 <div className="AddDetailDiv">
                     <div className="insideAddDetailDiv ">
                         <div className="loadDiv">
-                            {/* <NavLink exact to="/Congo"> */}
                             <button
                                 type="submit"
                                 className="loadBtn"
@@ -203,10 +212,13 @@ export default function Form() {
                             >
                                 <span>Post Now</span>
                             </button>
-                            {/* </NavLink> */}
                         </div>
                     </div>
                 </div>
+                {/* Redirects to Congratulations Page on successful Submission */}
+                {
+                    submitted && <Redirect push to="/Congo" />
+                }
             </div>
         </form>
     );

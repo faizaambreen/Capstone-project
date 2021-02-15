@@ -12,6 +12,7 @@ export default function TextInput(props) {
                         name={props.name}
                         onChange={props.updateText}
                         value={props.value}
+                        required
                     ></input>
                 </div>
             </div>
