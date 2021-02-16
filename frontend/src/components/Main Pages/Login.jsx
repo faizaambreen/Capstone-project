@@ -1,43 +1,12 @@
 import React, { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
-import Button from "../Button";
 import GoogleLogin from 'react-google-login';
-import axios from 'axios';
-// import dotenv from 'dotenv';
-// dotenv.config();
 
 function Login(props) {
   const [phone, setPhone] = useState("");
 
   function updatePhone(event) {
     setPhone(event.target.value);
-  }
-
-  async function handleClick() {
-    const data = new FormData();
-
-    data.append("title", "hello");
-    data.append("phone", phone);
-
-    // const result = await axios({
-    //   method:"POST",
-    //   url:"/auth/google/login",
-    //   data:{
-    //     // tokenId:response.tokenId,
-    //     title:"hello",
-    //     phone:phone
-    //   }
-    // });
-
-    const options = {
-      method: "POST",
-      body: data
-    }
-    const response = await fetch("/auth/google/login", options);
-    console.log("Server result", response);
-
-    // console.log(status);
-
   }
 
   async function responseSuccessGoogle(response) {
@@ -115,7 +84,6 @@ function Login(props) {
               <span>This field is mandatory*</span>
             </p>
           </div>
-
           {
             (phone !== "") && (
               <div className="btns">
@@ -131,18 +99,6 @@ function Login(props) {
               </div>
             )
           }
-
-          {/* <div className="btns">
-            <span className="btnSpan">
-              <Button
-                name="Sign in with google"
-                wd="50%"
-                buttonClicked={handleClick}
-              />
-            </span>
-          </div> */}
-
-
         </div>
       </OutsideClickHandler>
     </div>
