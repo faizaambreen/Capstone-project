@@ -12,7 +12,7 @@ function AddDetails() {
                     <h1 className="PostHeading">
                         <span>Post your Add</span>
                     </h1>
-                    <Form cate={cat}/>
+                    <Form category={cat}/>
                 </div>
             </div>
         </main>

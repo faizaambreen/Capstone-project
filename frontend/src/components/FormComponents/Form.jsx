@@ -4,7 +4,7 @@ import TextInput from './TextInput'
 import Pic from './Pic';
 
 export default function Form(props) {
-    const Catageory=props.cate;
+    const category = props.category;
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -48,6 +48,7 @@ export default function Form(props) {
             data.append("price", formData.price);
             data.append("state", formData.state);
             data.append("city", formData.city);
+            data.append("category",category);            
 
             for (let i = 0; i < formData.images.length; i++) {
                 data.append("images", formData.images[i].image);
@@ -57,7 +58,7 @@ export default function Form(props) {
                 method: "POST",
                 body: data
             }
-            const response = await (await fetch("/post/ad", options));
+            const response = await fetch("/post/ad", options);
             const result = await response.json();
             console.log(result.status);
             if (result.status === 200) {

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import Button from "../Button";
+import GoogleLogin from 'react-google-login';
+import axios from 'axios';
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 function Login(props) {
   const [phone, setPhone] = useState("");
@@ -11,16 +15,54 @@ function Login(props) {
 
   async function handleClick() {
     const data = new FormData();
-    data.append("phone", phone);
-    
-    // const response = await fetch("/auth/google", {
-    //   method: "POST",
-    //   body: data
-    // });
-    const response = await fetch("/auth/google/login");
-    const status = await response.json();
-    console.log(status);
 
+    data.append("title", "hello");
+    data.append("phone", phone);
+
+    // const result = await axios({
+    //   method:"POST",
+    //   url:"/auth/google/login",
+    //   data:{
+    //     // tokenId:response.tokenId,
+    //     title:"hello",
+    //     phone:phone
+    //   }
+    // });
+
+    const options = {
+      method: "POST",
+      body: data
+    }
+    const response = await fetch("/auth/google/login", options);
+    console.log("Server result", response);
+
+    // console.log(status);
+
+  }
+
+  async function responseSuccessGoogle(response) {
+    const data = {
+      phone: phone,
+      tokenId: response.tokenId
+    };
+
+    const result = await fetch("/auth/google", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+    const status = await result.json();
+    if (status.code === 200) {
+      props.onUnChecked();
+    } else {
+      alert("Error Occurred! Try Again !");
+    }
+  }
+
+  function responseErrorGoogle(response) {
+    alert("Something Went Wrong. TRY Again Later!");
   }
 
   function clearPopup() {
@@ -75,16 +117,30 @@ function Login(props) {
           </div>
 
           {
-            (phone !== "") && (<div className="btns">
-              <span className="btnSpan">
-                <Button
-                  name="Sign in with google"
-                  wd="50%"
-                  buttonClicked={handleClick}
-                />
-              </span>
-            </div>)
+            (phone !== "") && (
+              <div className="btns">
+                <span className="btnSpan">
+                  <GoogleLogin
+                    clientId="582570851600-vl8k9tsk5ssr9a7us3bcc1082s13udng.apps.googleusercontent.com"
+                    buttonText={"SignIn with Google"}
+                    onSuccess={responseSuccessGoogle}
+                    onFailure={responseErrorGoogle}
+                    cookiePolicy={'single_host_origin'}
+                  />
+                </span>
+              </div>
+            )
           }
+
+          {/* <div className="btns">
+            <span className="btnSpan">
+              <Button
+                name="Sign in with google"
+                wd="50%"
+                buttonClicked={handleClick}
+              />
+            </span>
+          </div> */}
 
 
         </div>

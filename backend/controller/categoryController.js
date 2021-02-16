@@ -3,6 +3,7 @@ const Item = require("../models/Item");
 
 const getItems = (req,res)=>{
   console.log(req.params.category);
+  
   if(req.params.category!==":"){
     Item.find({category:req.params.category},(error,foundItems)=>{
       if(!error&&foundItems){
