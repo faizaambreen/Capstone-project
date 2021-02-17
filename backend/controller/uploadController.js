@@ -8,7 +8,7 @@ const uploadAd = async (req, res) => {
 
   console.log(req.files);
   console.log(req.body);
-  
+
   let status = (req.files.length > 0);
   let imagesArray = [];
 
@@ -38,7 +38,8 @@ const uploadAd = async (req, res) => {
     images: imagesArray,
     category: req.body.category,
     city: req.body.city,
-    state: req.body.state
+    state: req.body.state,
+    ownerID: req.body.ownerID
   });
 
   // storing the object into the item collection of database
