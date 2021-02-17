@@ -56,9 +56,13 @@ const performLogin = async (req, res) => {
             phone: phone
         }, function (err, user) {
             if (user) {
-                res.send({ code: 200 });
+                res.send({
+                    id:user._id,
+                    name:user.name,
+                    email:user.email
+                });
             } else {
-                res.send({ code: 400 });
+                res.send(null);
             }
         });
     }

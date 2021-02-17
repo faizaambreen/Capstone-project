@@ -10,35 +10,41 @@ import AddDetails from './components/AddDetails'
 import Congo from './components/Main Pages/Congo'
 import Login from "./components/Main Pages/Login";
 import { Route, Switch } from 'react-router-dom';
+import LoginContext from './Context/LoginContext';
 
 function App() {
-  const[isClicked,setIsClicked]=useState(false);
-  function handdleClick(){
+  const [isClicked, setIsClicked] = useState(false);
+  const login = useState({
+    isLoggedIn: false,
+    id: "",
+    name: "",
+    email: ""
+  });
+
+  function handdleClick() {
     setIsClicked(true);
   }
-  function remove(){
+  function remove() {
     setIsClicked(false);
   }
 
   return (
-    <div id ="container" className="appClass">
-      <Header onChecked={handdleClick}/>
-      <Cat/>
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/itemView" component={ItemView}/>
-        <Route exact path="/catagoryView" component={CatagoryView}/>
-        <Route exact path="/PostYourAdd" component={PostYourAdd} />
-        <Route exact path="/AddDetails/:cat" component={AddDetails} />
-        <Route exact path="/Congo" component={Congo} />
-      </Switch>
-      <Footer/>
-
-      <Login cls={isClicked} onUnChecked={remove}/>
-      
-      
-      
-     </div>
+    <div id="container" className="appClass">
+      <LoginContext.Provider value={login}>
+        <Header onChecked={handdleClick} />
+        <Login cls={isClicked} onUnChecked={remove} />
+        <Cat />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/itemView" component={ItemView} />
+          <Route exact path="/catagoryView" component={CatagoryView} />
+          <Route exact path="/PostYourAdd" component={PostYourAdd} />
+          <Route exact path="/AddDetails/:cat" component={AddDetails} />
+          <Route exact path="/Congo" component={Congo} />
+        </Switch>
+        <Footer />
+      </LoginContext.Provider>
+    </div>
   );
 }
 

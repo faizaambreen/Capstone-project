@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import GoogleLogin from 'react-google-login';
+import LoginContext from '../../Context/LoginContext';
 
 function Login(props) {
+  const [login, setLogin] = useContext(LoginContext);
   const [phone, setPhone] = useState("");
 
   function updatePhone(event) {
@@ -23,7 +25,11 @@ function Login(props) {
       body: JSON.stringify(data)
     });
     const status = await result.json();
-    if (status.code === 200) {
+    if (status) {
+      setLogin({
+        ...status,
+        isLoggedIn:true
+      });
       props.onUnChecked();
     } else {
       alert("Error Occurred! Try Again !");

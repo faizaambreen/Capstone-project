@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import TextInput from './TextInput'
 import Pic from './Pic';
+import LoginContext from '../../Context/LoginContext';
 
 export default function Form(props) {
+    const [login, setLogin] = useContext(LoginContext);
     const category = props.category;
     const [formData, setFormData] = useState({
         title: "",
@@ -48,7 +50,8 @@ export default function Form(props) {
             data.append("price", formData.price);
             data.append("state", formData.state);
             data.append("city", formData.city);
-            data.append("category",category);            
+            data.append("category", category);
+            data.append("ownerID", login.id);
 
             for (let i = 0; i < formData.images.length; i++) {
                 data.append("images", formData.images[i].image);
@@ -66,7 +69,7 @@ export default function Form(props) {
             } else {
                 alert("Error Occurred! TRY Again !");
             }
-            
+
         }
     }
 
