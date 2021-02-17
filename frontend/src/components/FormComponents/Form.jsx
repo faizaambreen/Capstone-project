@@ -143,6 +143,21 @@ export default function Form(props) {
                                     ></input>
                                 </div>
                             </div>
+                            <label>Price criteria*</label>
+                            <div className="AddTitleInputDiv">
+                                <div className="RemainingRsDiv">
+                                <div className="inputText">
+                                        <select required onChange={updateFormData} name="" className="Sele">
+                                            <option value="">-Select-</option>
+                                            <option value="Punjab">PER MONTH</option>
+                                            <option value="Sindh">PER HOUR</option>
+                                            <option value="Balochistan">PER DAY</option>
+                                            <option value="Kashmir">PER WEEK</option>
+                                            <option value="KPK">INSTALLMENT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -182,7 +197,7 @@ export default function Form(props) {
                                 <div className="RemainingRsDiv">
                                     <div className="inputText">
                                         <select required onChange={updateFormData} name="state" className="Sele">
-                                            <option value="">-State-</option>
+                                            <option value="">-Select-</option>
                                             <option value="Punjab">Punjab</option>
                                             <option value="Sindh">Sindh</option>
                                             <option value="Balochistan">Balochistan</option>
@@ -199,6 +214,24 @@ export default function Form(props) {
                                 updateText={updateFormData}
                                 value={formData.city}
                             />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="Boarder"></div>
+
+                <div className="AddDetailDiv" style={{paddingBottom:'5%'}}>
+                    <div className="insideAddDetailDiv ">
+                        <h2><span className="AddDetailFont">Enter your Phone Number</span></h2>
+                        <div className="phoneInputDiv">
+                            <div className="phoneCode">+92</div>
+                                <div>
+                                    <input
+                                        type="number"
+                                        placeholder="Phone Number"
+                                        className="phoneInput"
+                                    />
+                                </div>
                         </div>
                     </div>
                 </div>

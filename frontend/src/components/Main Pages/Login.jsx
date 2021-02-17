@@ -87,10 +87,15 @@ function Login(props) {
           {
             (phone !== "") && (
               <div className="btns">
-                <span className="btnSpan">
+                <span className="loadDiv">
                   <GoogleLogin
+                    render={renderProps => (
+                      <button onClick={renderProps.onClick} className="loadBtn">
+                        <img style={{marginRight:'10px'}} src="https://img.icons8.com/color/30/000000/google-logo.png"/>
+                          SignIn with Google
+                      </button>
+                      )}
                     clientId="582570851600-vl8k9tsk5ssr9a7us3bcc1082s13udng.apps.googleusercontent.com"
-                    buttonText={"SignIn with Google"}
                     onSuccess={responseSuccessGoogle}
                     onFailure={responseErrorGoogle}
                     cookiePolicy={'single_host_origin'}

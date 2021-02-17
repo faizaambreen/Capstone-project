@@ -1,7 +1,7 @@
 import React from "react"
 
-
 function ItemView(props){
+
   function Disc(){
     return (
       <section className="DiscAreaDiv">

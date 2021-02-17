@@ -3,19 +3,20 @@ import {NavLink} from 'react-router-dom'
 
 
 function Item(props){
+    const item=props;
     return(
             <div className={props.cl}>
                         <li className="a1 ">
                             <NavLink to="/itemView" style={{textDecoration:'none'}} >
                                 <figure className="figure" >
-                                <img className="itemImage" src="https://apollo-singapore.akamaized.net/v1/files/pwilpgen58zs3-PK/image;s=1080x1080"/>
+                                <img className="itemImage" src={props.imgSrc}/>
                                 </figure>
                                 
                                 <div className="itemDis">
-                                    <span className="itemPrice" >Rs 11,000,000</span>
-                                    <span className="itemDetails">something something</span>
-                                    <span className="itemTitle">Hello Kello </span>
-                                    <span className="itemLocation">officer colony</span>
+                                    <span className="itemPrice" >{props.price}</span>
+                                    <span className="itemDetails">{props.details}</span>
+                                    <span className="itemTitle">{props.title} </span>
+                                    <span className="itemLocation">{props.location}</span>
                                 </div>
                             </NavLink>
                         </li>

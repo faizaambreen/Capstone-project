@@ -1,6 +1,6 @@
 import React from 'react';
 import Item from './Item'
-function FreshRec(){
+function FreshRec(props){
     return (
         <div className="FreshOuterDiv">
             <div className="FreshInnerDiv1 FreshInnerDiv2">
@@ -10,23 +10,15 @@ function FreshRec(){
 
                 <div>
                     <ul className="ul1 ul2 row"> 
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
-                        <Item cl="col-lg-3 col-md-4 col-sm-6"/>
+                        <Item 
+                            cl="col-lg-3 col-md-4 col-sm-6"
+                            imgSrc="https://apollo-singapore.akamaized.net/v1/files/pwilpgen58zs3-PK/image;s=1080x1080"
+                            price="Rs 11,000,000"
+                            title="something something"
+                            details="Hello Kello"
+                            location="officer colony"
+                        />
+                        
                     </ul>
                 </div>
                 <div className="loadDiv">
