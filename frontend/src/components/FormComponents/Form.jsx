@@ -11,8 +11,10 @@ export default function Form(props) {
         title: "",
         description: "",
         price: "",
+        priceType: "",
         state: "",
         city: "",
+        phone: "",
         images: []
     });
     const [haveImages, setHaveImages] = useState(false);
@@ -48,9 +50,11 @@ export default function Form(props) {
             data.append("title", formData.title);
             data.append("description", formData.description);
             data.append("price", formData.price);
+            data.append("priceType", formData.priceType);
             data.append("state", formData.state);
             data.append("city", formData.city);
             data.append("category", category);
+            data.append("phone", formData.phone);
             data.append("ownerID", login.id);
 
             for (let i = 0; i < formData.images.length; i++) {
@@ -149,14 +153,13 @@ export default function Form(props) {
                             <label>Price criteria*</label>
                             <div className="AddTitleInputDiv">
                                 <div className="RemainingRsDiv">
-                                <div className="inputText">
-                                        <select required onChange={updateFormData} name="" className="Sele">
-                                            <option value="">-Select-</option>
-                                            <option value="Punjab">PER MONTH</option>
-                                            <option value="Sindh">PER HOUR</option>
-                                            <option value="Balochistan">PER DAY</option>
-                                            <option value="Kashmir">PER WEEK</option>
-                                            <option value="KPK">INSTALLMENT</option>
+                                    <div className="inputText">
+                                        <select required onChange={updateFormData} name="priceType" className="Sele">
+                                            <option value="">--Select--</option>
+                                            <option value="month">PER MONTH</option>
+                                            <option value="week">PER WEEK</option>
+                                            <option value="day">PER DAY</option>
+                                            <option value="hour">PER HOUR</option>
                                         </select>
                                     </div>
                                 </div>
@@ -164,6 +167,7 @@ export default function Form(props) {
                         </div>
                     </div>
                 </div>
+
                 <div className="Boarder"></div>
 
                 <div className="AddDetailDiv">
@@ -200,7 +204,7 @@ export default function Form(props) {
                                 <div className="RemainingRsDiv">
                                     <div className="inputText">
                                         <select required onChange={updateFormData} name="state" className="Sele">
-                                            <option value="">-Select-</option>
+                                            <option value="">--Select--</option>
                                             <option value="Punjab">Punjab</option>
                                             <option value="Sindh">Sindh</option>
                                             <option value="Balochistan">Balochistan</option>
@@ -223,18 +227,22 @@ export default function Form(props) {
 
                 <div className="Boarder"></div>
 
-                <div className="AddDetailDiv" style={{paddingBottom:'5%'}}>
+                <div className="AddDetailDiv" style={{ paddingBottom: '5%' }}>
                     <div className="insideAddDetailDiv ">
                         <h2><span className="AddDetailFont">Enter your Phone Number</span></h2>
                         <div className="phoneInputDiv">
                             <div className="phoneCode">+92</div>
-                                <div>
-                                    <input
-                                        type="number"
-                                        placeholder="Phone Number"
-                                        className="phoneInput"
-                                    />
-                                </div>
+                            <div>
+                                <input
+                                    onChange={updateFormData}
+                                    value={formData.phone}
+                                    name="phone"
+                                    type="number"
+                                    placeholder="Phone Number"
+                                    className="phoneInput"
+                                    required
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -5,15 +5,9 @@ import LoginContext from '../../Context/LoginContext';
 
 function Login(props) {
   const [login, setLogin] = useContext(LoginContext);
-  const [phone, setPhone] = useState("");
-
-  function updatePhone(event) {
-    setPhone(event.target.value);
-  }
 
   async function responseSuccessGoogle(response) {
     const data = {
-      phone: phone,
       tokenId: response.tokenId
     };
 
@@ -28,7 +22,7 @@ function Login(props) {
     if (status) {
       setLogin({
         ...status,
-        isLoggedIn:true
+        isLoggedIn: true
       });
       props.onUnChecked();
     } else {
@@ -41,7 +35,6 @@ function Login(props) {
   }
 
   function clearPopup() {
-    setPhone("");
     props.onUnChecked();
   }
 
@@ -65,51 +58,22 @@ function Login(props) {
             </svg>
           </span>
 
-          <div className="">
-            <div className="PhoneNo">
-              <span>Enter Your Phone Number</span>
-            </div>
-            <div className="phoneInputDiv">
-              <div className="phoneCode">+92</div>
-
-              <div>
-                <input
-                  type="number"
-                  placeholder="Phone Number"
-                  className="phoneInput"
-                  onChange={updatePhone}
-                  value={phone}
-                />
-              </div>
-
-            </div>
-            <p
-              className={phone === "" ? "PicMsg " : "PicMsg isVisible"}
-              style={{ marginLeft: "20px" }}
-            >
-              <span>This field is mandatory*</span>
-            </p>
-          </div>
-          {
-            (phone !== "") && (
-              <div className="btns">
-                <span className="loadDiv">
-                  <GoogleLogin
-                    render={renderProps => (
-                      <button onClick={renderProps.onClick} className="loadBtn">
-                        <img style={{marginRight:'10px'}} src="https://img.icons8.com/color/30/000000/google-logo.png"/>
+          <div className="btns">
+            <span className="loadDiv">
+              <GoogleLogin
+                render={renderProps => (
+                  <button onClick={renderProps.onClick} className="loadBtn">
+                    <img style={{ marginRight: '10px' }} src="https://img.icons8.com/color/30/000000/google-logo.png" />
                           SignIn with Google
-                      </button>
-                      )}
-                    clientId="582570851600-vl8k9tsk5ssr9a7us3bcc1082s13udng.apps.googleusercontent.com"
-                    onSuccess={responseSuccessGoogle}
-                    onFailure={responseErrorGoogle}
-                    cookiePolicy={'single_host_origin'}
-                  />
-                </span>
-              </div>
-            )
-          }
+                  </button>
+                )}
+                clientId="582570851600-vl8k9tsk5ssr9a7us3bcc1082s13udng.apps.googleusercontent.com"
+                onSuccess={responseSuccessGoogle}
+                onFailure={responseErrorGoogle}
+                cookiePolicy={'single_host_origin'}
+              />
+            </span>
+          </div>
         </div>
       </OutsideClickHandler>
     </div>

@@ -35,11 +35,13 @@ const uploadAd = async (req, res) => {
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,
+    priceType: req.body.priceType,
     images: imagesArray,
     category: req.body.category,
     city: req.body.city,
     state: req.body.state,
-    ownerID: req.body.ownerID
+    ownerID: req.body.ownerID,
+    phone: "+92"+req.body.phone,
   });
 
   // storing the object into the item collection of database

@@ -43,7 +43,7 @@ const User = require("../models/User");
 // ));
 
 const performLogin = async (req, res) => {
-    const { phone, tokenId } = req.body;
+    const { tokenId } = req.body;
     const response = await client.verifyIdToken({
         idToken: tokenId,
         audience: process.env.CLIENT_ID
@@ -53,7 +53,6 @@ const performLogin = async (req, res) => {
         User.findOrCreate({ email: email }, {
             username: email,
             name: name,
-            phone: phone
         }, function (err, user) {
             if (user) {
                 res.send({

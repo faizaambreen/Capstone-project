@@ -4,6 +4,7 @@ const itemSchema = new mongoose.Schema({
   title: String,
   description: String,
   price: Number,
+  priceType: String,
   images: [{
     public_id: String,
     secure_url: String
@@ -11,7 +12,8 @@ const itemSchema = new mongoose.Schema({
   category: String,
   city: String,
   state: String,
-  ownerID: String
+  ownerID: String,
+  phone: String
 });
 
 module.exports = mongoose.model("item", itemSchema);
