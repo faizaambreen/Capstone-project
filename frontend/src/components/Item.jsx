@@ -14,10 +14,11 @@ function Item(props) {
 
                     <div className="itemDis">
                         <span className="itemPrice" >{price}</span>
-                        <span className="itemDetails">{title}</span>
-                        <span className="itemTitle"></span>
-                        <span className="itemLocation">{city}</span>
-                        <span>{createdAt}</span>
+                        <span className="itemDetails"></span>
+                        <span className="itemTitle">{title}</span>
+                        <span className="itemLocation">{city}
+                            <span className= "itemDate">{createdAt}</span>
+                        </span>
                     </div>
                 </NavLink>
             </li>

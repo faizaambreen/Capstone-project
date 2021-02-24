@@ -7,6 +7,7 @@ body {
   background-color: #fff;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 p {
   display: block;
   margin-block-start: 1em;
@@ -14,6 +15,7 @@ p {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
+
 h3 {
   display: block;
   font-size: 1.17em;
@@ -23,9 +25,11 @@ h3 {
   margin-inline-end: 0px;
   font-weight: bold;
 }
+
 label {
   cursor: default;
 }
+
 option {
   font-weight: normal;
   display: block;
@@ -33,6 +37,7 @@ option {
   min-height: 1.2em;
   padding: 0px 2px 1px;
 }
+
 select {
   -webkit-writing-mode: horizontal-tb !important;
   text-rendering: auto;
@@ -59,11 +64,13 @@ select {
   border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
   border-image: initial;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input {
   -webkit-writing-mode: horizontal-tb !important;
   text-rendering: auto;
@@ -88,6 +95,7 @@ input {
   border-image: initial;
   border-radius: 2px;
 }
+
 v textarea {
   text-rendering: auto;
   color: -internal-light-dark(black, white);
@@ -115,6 +123,7 @@ v textarea {
   padding: 2px;
   border-radius: 2px;
 }
+
 ul {
   display: block;
   list-style-type: disc;
@@ -124,6 +133,7 @@ ul {
   margin-inline-end: 0px;
   padding-inline-start: 40px;
 }
+
 #container {
   margin: 0;
   display: flex;
@@ -136,6 +146,7 @@ ul {
   touch-action: manipulation;
   color: #002f34;
 }
+
 h1 {
   display: block;
   font-size: 2em;
@@ -145,6 +156,7 @@ h1 {
   margin-inline-end: 0px;
   font-weight: bold;
 }
+
 h2 {
   display: block;
   font-size: 1.5em;
@@ -154,6 +166,7 @@ h2 {
   margin-inline-end: 0px;
   font-weight: bold;
 }
+
 .BetweenHeaderAndFooter {
   flex: 1;
   padding-bottom: 0;
@@ -170,6 +183,7 @@ h2 {
   margin: 0 auto;
   max-width: 1280px;
 }
+
 /**********************Header**************************/
 .header {
   z-index: 10;
@@ -179,6 +193,7 @@ h2 {
   box-sizing: border-box;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
 }
+
 .insideHeader {
   padding-top: 10px;
   padding-bottom: 0;
@@ -186,6 +201,7 @@ h2 {
   padding-right: 10px;
   background-color: #fff;
 }
+
 .headerContent {
   display: flex;
   margin-left: auto;
@@ -193,10 +209,12 @@ h2 {
   max-width: 1280px;
   position: relative;
 }
+
 .logo {
   height: 48px;
   z-index: 1;
 }
+
 .locationBox {
   width: 20%;
   padding-left: 10px;
@@ -204,6 +222,7 @@ h2 {
   margin-left: 10px;
   display: flex;
 }
+
 .searchBar {
   width: 50%;
   padding-left: 10px;
@@ -211,6 +230,7 @@ h2 {
   margin-left: 2%;
   display: flex;
 }
+
 .loginAndRent {
   padding-top: 7px;
   float: right;
@@ -219,11 +239,13 @@ h2 {
   align-items: center;
   margin-left: 7px;
 }
+
 .login {
   margin-left: 10%;
   width: 100px;
   text-align: center;
 }
+
 .rent {
   padding-left: 10px;
   padding-top: 7px;
@@ -251,6 +273,7 @@ h2 {
   position: relative;
   height: 44px;
 }
+
 .insideCat1 {
   display: flex;
   align-items: center;
@@ -274,11 +297,13 @@ h2 {
   text-overflow: ellipsis;
   font-family: Roboto, Arial, Helvetica, sans-serif;
 }
+
 .dropdownButton {
   text-align: center;
   transition: transform 0.5s;
   margin-left: 4px;
 }
+
 .dd1 {
   display: inline-flex;
   justify-content: center;
@@ -310,6 +335,7 @@ h2 {
   align-items: center;
   width: calc(100% - 152px);
 }
+
 .singleCat {
   margin: 0 8px;
   white-space: nowrap;
@@ -317,9 +343,11 @@ h2 {
   text-overflow: ellipsis;
   min-width: 32px;
 }
+
 .singleCatText:hover {
   color: #00a49f;
 }
+
 .singleCatText {
   text-transform: capitalize;
   font-weight: 450;
@@ -344,9 +372,11 @@ h2 {
   justify-content: space-between;
   padding: 16px 16px 0;
 }
+
 .insideCatListContainer1 {
   display: block;
 }
+
 .singleCol {
   display: inline-block;
   padding: 0 8px;
@@ -369,6 +399,7 @@ h2 {
 .catHeadingText:hover {
   color: #00a49f;
 }
+
 .catHeadingText {
   padding: 0;
   text-decoration: none;
@@ -381,9 +412,11 @@ h2 {
   font-weight: 550;
   font-family: "Heebo", sans-serif;
 }
+
 .subCatText:hover {
   color: #00a49f;
 }
+
 .subCatText {
   padding: 0;
   text-decoration: none;
@@ -416,6 +449,7 @@ h2 {
   z-index: 1;
   background-image: url(https://www.ivorytonplayhouse.org/wp-content/uploads/2016/03/5_rent_tmm.jpg);
 }
+
 /**********************Backgroung image ends here**************************/
 
 /**********************Fresh Recomendations**************************/
@@ -438,6 +472,7 @@ h2 {
   background-color: #ebeeef;
   border-radius: 4px;
 }
+
 .FreshInnerDiv2 {
   padding: 16px 16px 32px;
   margin: 16px 0 24px;
@@ -447,6 +482,7 @@ h2 {
   font-size: 24px;
   margin-bottom: 20px;
 }
+
 /**********************Fresh Recomendations ends here**************************/
 /**********************items here**************************/
 
@@ -465,6 +501,7 @@ h2 {
   height: 266px;
   background-color: #fff;
 }
+
 .a1 {
   position: relative;
   text-decoration: none;
@@ -475,6 +512,7 @@ h2 {
   border-radius: 4px;
   margin-bottom: 7%;
 }
+
 .figure {
   background-color: #fff;
   position: relative;
@@ -492,6 +530,7 @@ h2 {
   max-height: 100%;
   min-height: 100%;
 }
+
 .itemDis {
   display: flex;
   flex-direction: column;
@@ -500,6 +539,7 @@ h2 {
   padding: 8px 16px;
   border-left: 5px solid #ffce32;
 }
+
 .itemPrice {
   direction: ltr;
   font-weight: 700;
@@ -510,6 +550,7 @@ h2 {
   color: #002f34;
   font-size: 20px;
 }
+
 .itemDetails {
   color: #002f34;
   font-size: 14px;
@@ -518,20 +559,30 @@ h2 {
   overflow: hidden;
   white-space: nowrap;
 }
-.itemTitle {
+
+.itemLocation {
   color: rgba(0, 47, 52, 0.64);
   font-size: 14px;
   margin: 5px 0;
   position: relative;
   z-index: 2;
 }
-.itemLocation {
+
+.itemTitle {
+  font-size: 15px;
   color: rgba(0, 47, 52, 0.64);
   display: inline-block;
-  max-width: 70%;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.itemDate {
+  color: #658596;
+  font-size: small;
+  float: right;
+
 }
 
 .loadDiv {
@@ -544,11 +595,13 @@ h2 {
   border-width: 5px;
   padding: 0 7px;
 }
+
 .loadBtn:active {
   background-color: #7f9799;
   color: #fff;
   border-color: #7f9799;
 }
+
 .loadBtn {
   height: 50px;
   color: #002f34;
@@ -558,6 +611,7 @@ h2 {
   background-color: #fff;
   font-weight: 700;
 }
+
 /**********************items ends here**************************/
 
 .btninn {
@@ -660,4 +714,5 @@ h2 {
   display: flex;
   justify-content: space-between;
 }
+
 /**********************Footer ends here**************************/

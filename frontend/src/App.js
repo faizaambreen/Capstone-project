@@ -37,7 +37,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/itemView" component={ItemView} />
-          <Route exact path="/CatagoryView:c" component={CatagoryView} />
+          <Route exact path="/CatagoryView=>:c" component={CatagoryView} />
           <Route exact path="/PostYourAdd" component={PostYourAdd} />
           <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
           <Route exact path="/Congo" component={Congo} />

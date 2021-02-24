@@ -227,7 +227,7 @@ export default function Form(props) {
 
                 <div className="Boarder"></div>
 
-                <div className="AddDetailDiv" style={{ paddingBottom: '5%' }}>
+                <div className="AddDetailDiv" style={{ paddingBottom: '2%' }}>
                     <div className="insideAddDetailDiv ">
                         <h2><span className="AddDetailFont">Enter your Phone Number</span></h2>
                         <div className="phoneInputDiv">
@@ -250,12 +250,12 @@ export default function Form(props) {
                 <div className="Boarder"></div>
 
                 <div className="AddDetailDiv">
-                    <div className="insideAddDetailDiv ">
-                        <div className="loadDiv">
+                    <div className="insideAddDetailDiv " style={{ paddingBottom:'3%' }}>
+                        <div className="loadDiv" >
                             <button
                                 type="submit"
                                 className="loadBtn"
-                                style={{ float: 'left' }}
+                                style={{ float: 'left'}}
                             >
                                 <span>Post Now</span>
                             </button>

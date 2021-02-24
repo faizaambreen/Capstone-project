@@ -77,7 +77,7 @@
 }
 
 .phoneCode {
-    color: rgba(0, 0, 0, 0.36);
+    color: rgb(0, 0, 0);
     margin-top: 2%;
     height: 32px;
     line-height: 32px;
@@ -91,6 +91,9 @@
 .phoneInputDiv {
     flex-grow: 1;
     border-left: none;
+    margin-left: 0;
+    margin-top: 5%;
+    width: 100%;
 }
 
 
