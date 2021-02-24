@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react"
-import Item from '../Item'
+import React, { useState, useEffect } from "react";
+import {useParams} from "react-router-dom";
+import Item from '../Item';
 
 function CatagoryView() {
+    const {c}=useParams();
     const [isLoading, setIsLoading] = useState(true);
     const [items, setItems] = useState([]);
     const [countOfItems, setCountOfItems] = useState(13);
@@ -28,7 +30,7 @@ function CatagoryView() {
             <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
                 <div className="CatMainDiv">
                     <div className="insideCatMainDiv">
-                        <h1 className="CatHeading">Cars</h1>
+                        <h1 className="CatHeading">{c}</h1>
 
                         <div style={{ display: 'flex' }}>
                             <div className="FilterDiv">

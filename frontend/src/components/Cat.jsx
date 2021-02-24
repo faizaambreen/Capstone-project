@@ -5,7 +5,7 @@ function Cat() {
     const[direction , setDirection]=useState(false);
     const[Cls , setCls]=useState("dd1");
     const[Cls1 , setCls1]=useState("insideCatListContainer");
-    const Catagery=["Houses","Bridal Dresses","Land & Plots","Comercial Shop","Cars","Bikes"];
+    const Catagery=["Bicycles","Busses","Rikshaws","Boats","Tractors","Generators","UPS","Freezers","Washing Machines & Dryers","Lawns","Hotels"];
     const subCatagery1=["Cars","Bikes","Super Cars","SuperBikes","Boats"];
     const subCatagery2=["Luxuary","Average","Economy","Apartmints"];
     const subCatagery3=["Most Expensive","Less Expensive","Average","Below Average"];
@@ -51,9 +51,10 @@ function Cat() {
 
 
     function SingleCat(props){
+        const pa="/CatagoryView"+ props.name;
         return (
             <div className="singleCat">
-                <NavLink to="/catagoryView" className="singleCatText" style={{ textDecoration: 'none' }}><span >{props.name}</span></NavLink>
+                <NavLink to={pa} className="singleCatText" style={{ textDecoration: 'none' }}><span >{props.name}</span></NavLink>
             </div>
         );
     }

@@ -17,7 +17,7 @@ function Item(props) {
                         <span className="itemDetails">{title}</span>
                         <span className="itemTitle"></span>
                         <span className="itemLocation">{city}</span>
-                        {/* <span>{createdAt}</span> */}
+                        <span>{createdAt}</span>
                     </div>
                 </NavLink>
             </li>
