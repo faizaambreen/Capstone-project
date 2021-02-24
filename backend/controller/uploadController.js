@@ -42,6 +42,7 @@ const uploadAd = async (req, res) => {
     state: req.body.state,
     ownerID: req.body.ownerID,
     phone: "+92"+req.body.phone,
+    createdAt: new Date().toLocaleDateString()
   });
 
   // storing the object into the item collection of database

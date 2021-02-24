@@ -1,33 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Item from './Item'
-function FreshRec(props){
+function FreshRec() {
+    const [isLoading, setIsLoading] = useState(true);
+    const [items, setItems] = useState([]);
+    const [countOfItems, setCountOfItems] = useState(13);
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await fetch("/categories/:");
+            const data = await response.json();
+            setItems(data);
+            setIsLoading(false);
+        }
+        fetchData();
+    }, [isLoading]);
+
+    function onLoadClick() {
+        setCountOfItems(countOfItems+13);
+    }
+
     return (
-        <div className="FreshOuterDiv">
+        <div className="FreshOuterDiv" >
             <div className="FreshInnerDiv1 FreshInnerDiv2">
                 <div className="FreshHeadingDiv">
-                <span>Fresh recommendations</span>
+                    <span>Fresh Recommendations</span>
                 </div>
-
-                <div>
-                    <ul className="ul1 ul2 row"> 
-                        <Item 
-                            cl="col-lg-3 col-md-4 col-sm-6"
-                            imgSrc="https://apollo-singapore.akamaized.net/v1/files/pwilpgen58zs3-PK/image;s=1080x1080"
-                            price="Rs 11,000,000"
-                            title="something something"
-                            details="Hello Kello"
-                            location="officer colony"
-                        />
-                        
-                    </ul>
-                </div>
-                <div className="loadDiv">
-                    <button className="loadBtn">
-                        <span>Load More</span>
-                    </button>
-                </div>
+                {
+                    !isLoading && <div>
+                        <ul className="ul1 ul2 row">
+                            {
+                                items.slice(0,countOfItems).map((item) => (
+                                    <Item itemData={item} />
+                                ))
+                            }
+                        </ul>
+                        <div className="loadDiv">
+                            <button onClick={onLoadClick} className="loadBtn">
+                                <span>Load More</span>
+                            </button>
+                        </div>
+                    </div>
+                }
             </div>
-            
+
         </div>
     );
 }

@@ -13,7 +13,8 @@ const itemSchema = new mongoose.Schema({
   city: String,
   state: String,
   ownerID: String,
-  phone: String
+  phone: String,
+  createdAt: String
 });
 
 module.exports = mongoose.model("item", itemSchema);

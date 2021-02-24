@@ -4,7 +4,7 @@ import TextInput from './TextInput'
 import Pic from './Pic';
 import LoginContext from '../../Context/LoginContext';
 
-export default function Form(props) {
+export default function Form(props) {    
     const [login, setLogin] = useContext(LoginContext);
     const category = props.category;
     const [formData, setFormData] = useState({

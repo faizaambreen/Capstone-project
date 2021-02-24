@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 
-
 // Import Routes
 const googleAuthRoute = require("./routes/googleAuthentication");
 const postRoute = require("./routes/post");
