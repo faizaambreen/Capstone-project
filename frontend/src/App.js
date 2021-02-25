@@ -53,6 +53,7 @@ function App() {
         <Login cls={isClicked} onUnChecked={remove} />
         <Cat />
         <Switch>
+<<<<<<< Updated upstream
           <div>
             <ItemListContext.Provider value={list}>
               <Route exact path="/" component={LandingPage} />
@@ -63,6 +64,17 @@ function App() {
             <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
             <Route exact path="/Congo" component={Congo} />
           </div>
+=======
+          <ItemListContext.Provider value={list}>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/itemView=>:itemId" component={ItemView} />
+            <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
+            <Route exact path="/PostYourAdd" component={PostYourAdd} />
+            <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
+            <Route exact path="/Congo" component={Congo} />
+          </ItemListContext.Provider>
+          
+>>>>>>> Stashed changes
         </Switch>
       </LoginContext.Provider>
       <Footer />
