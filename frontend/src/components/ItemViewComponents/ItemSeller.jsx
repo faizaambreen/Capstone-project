@@ -6,7 +6,7 @@ function ItemSeller({ item }) {
             <div className="firstDiv">
                 <div className="firstDivContent">
                     <section className="firstDivContentSec">
-                        <span className="firstDivItemPrice">Rs {item.price}</span>
+                        <span className="firstDivItemPrice">Rs {item.price.toLocaleString()}</span>
                         <span style={{ "color": "black" }}>PER {item.priceType}</span>
                         <h1 className="firstDivItemTitle">
                             {item.title}

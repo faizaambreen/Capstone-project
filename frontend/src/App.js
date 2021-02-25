@@ -36,12 +36,14 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("/categories/:");
+      const response = await fetch("/categories");
       const data = await response.json();
-      setList({
-        itemList: data,
-        isLoading: false
-      });
+      if(data.status!==400){
+        setList({
+          itemList: data.items,
+          isLoading: false
+        });
+      }
     }
     fetchData();
   }, [1]);
@@ -53,16 +55,14 @@ function App() {
         <Login cls={isClicked} onUnChecked={remove} />
         <Cat />
         <Switch>
-          <div>
-            <ItemListContext.Provider value={list}>
-              <Route exact path="/" component={LandingPage} />
-              <Route exact path="/itemView=>:itemId" component={ItemView} />
-              <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
-            </ItemListContext.Provider>
+          <ItemListContext.Provider value={list}>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/itemView=>:itemId" component={ItemView} />
+            <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
             <Route exact path="/PostYourAdd" component={PostYourAdd} />
             <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
             <Route exact path="/Congo" component={Congo} />
-          </div>
+          </ItemListContext.Provider>
         </Switch>
       </LoginContext.Provider>
       <Footer />
