@@ -16,8 +16,8 @@ import ItemListContext from './Context/ItemListContext';
 function App() {
   const [isClicked, setIsClicked] = useState(false);
   const [list, setList] = useState({
-    itemList: [],
-    isLoading: true
+    itemList:[],
+    isLoading:true
   });
 
   const login = useState({
@@ -46,7 +46,7 @@ function App() {
       }
     }
     fetchData();
-  }, [1]);
+  }, [1]);  
 
   return (
     <div id="container" className="appClass">
