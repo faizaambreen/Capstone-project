@@ -1,25 +1,15 @@
-import React, { useState, useEffect } from "react";
-import {useParams} from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import Item from '../Item';
+import ItemListContext from '../../Context/ItemListContext';
 
 function CatagoryView() {
-    const {c}=useParams();
-    const [isLoading, setIsLoading] = useState(true);
-    const [items, setItems] = useState([]);
+    const { category } = useParams();
+    const { itemList, isLoading } = useContext(ItemListContext);
     const [countOfItems, setCountOfItems] = useState(13);
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch("/categories/Cars");
-            const data = await response.json();
-            setItems(data);
-            setIsLoading(false);
-        }
-        fetchData();
-    }, [isLoading]);
-
     function onLoadClick() {
-        setCountOfItems(countOfItems + 13);
+        setCountOfItems(countOfItems + 12);
     }
 
     const a = {
@@ -30,7 +20,7 @@ function CatagoryView() {
             <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
                 <div className="CatMainDiv">
                     <div className="insideCatMainDiv">
-                        <h1 className="CatHeading">{c}</h1>
+                        <h1 className="CatHeading">{category}</h1>
 
                         <div style={{ display: 'flex' }}>
                             <div className="FilterDiv">
@@ -99,9 +89,11 @@ function CatagoryView() {
                                 !isLoading && <div className="ItemsDiv">
                                     <ul className="ul1 ul2 row">
                                         {
-                                            items.slice(0, countOfItems).map((item) => (
-                                                <Item itemData={item} />
-                                            ))
+                                            itemList.filter((item) => item.category === category)
+                                                .slice(0, countOfItems)
+                                                .map((item) => (
+                                                    <Item itemData={item} />
+                                                ))
                                         }
                                     </ul>
                                     <div className="loadDiv">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header'
 import Cat from './components/Cat'
 import Footer from './components/Footer'
@@ -11,9 +11,15 @@ import Congo from './components/Main Pages/Congo'
 import Login from "./components/Main Pages/Login";
 import { Route, Switch } from 'react-router-dom';
 import LoginContext from './Context/LoginContext';
+import ItemListContext from './Context/ItemListContext';
 
 function App() {
   const [isClicked, setIsClicked] = useState(false);
+  const [list, setList] = useState({
+    itemList:[],
+    isLoading:true
+  });
+
   const login = useState({
     isLoggedIn: false,
     id: "",
@@ -28,6 +34,18 @@ function App() {
     setIsClicked(false);
   }
 
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("/categories/:");
+      const data = await response.json();
+      setList({
+        itemList:data,
+        isLoading:false
+      });
+    }
+    fetchData();
+  }, [1]);  
+
   return (
     <div id="container" className="appClass">
       <LoginContext.Provider value={login}>
@@ -35,15 +53,17 @@ function App() {
         <Login cls={isClicked} onUnChecked={remove} />
         <Cat />
         <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/itemView" component={ItemView} />
-          <Route exact path="/CatagoryView=>:c" component={CatagoryView} />
+          <ItemListContext.Provider value={list}>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/itemView=>:itemId" component={ItemView} />
+            <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
+          </ItemListContext.Provider>
           <Route exact path="/PostYourAdd" component={PostYourAdd} />
           <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
           <Route exact path="/Congo" component={Congo} />
         </Switch>
-        <Footer />
       </LoginContext.Provider>
+      <Footer />
     </div>
   );
 }

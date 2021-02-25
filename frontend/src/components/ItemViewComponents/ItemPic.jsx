@@ -1,7 +1,9 @@
 import React from 'react';
 import Description from './Description';
 
-function ItemPic() {
+function ItemPic({item}) {
+    console.log(item);
+    
     return (
         <div className="itemPicEtcDiv">
             <div className="PicAreaDiv2">
@@ -9,7 +11,7 @@ function ItemPic() {
 
                     <div className="PicDiv" >
                         <figure>
-                            <img src="https://apollo-singapore.akamaized.net/v1/files/pwilpgen58zs3-PK/image;s=1080x1080" className="figure_img" />
+                            <img src={item.images[0].secure_url} className="figure_img" />
                         </figure>
                         <div className="picNo">
                             5 / 12
@@ -29,7 +31,7 @@ function ItemPic() {
                     </div>
                 </div>
             </div>
-            <Description />
+            <Description description={item.description}/>
         </div>
     );
 }

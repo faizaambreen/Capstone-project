@@ -56,6 +56,7 @@ export default function Form(props) {
             data.append("category", category);
             data.append("phone", formData.phone);
             data.append("ownerID", login.id);
+            data.append("ownerName", login.name);
 
             for (let i = 0; i < formData.images.length; i++) {
                 data.append("images", formData.images[i].image);

@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Item from './Item'
+import ItemListContext from '../Context/ItemListContext';
+
 function FreshRec() {
-    const [isLoading, setIsLoading] = useState(true);
-    const [items, setItems] = useState([]);
+    const {itemList,isLoading} = useContext(ItemListContext);
     const [countOfItems, setCountOfItems] = useState(13);
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch("/categories/:");
-            const data = await response.json();
-            setItems(data);
-            setIsLoading(false);
-        }
-        fetchData();
-    }, [isLoading]);
-
+    
     function onLoadClick() {
-        setCountOfItems(countOfItems+13);
+        setCountOfItems(countOfItems+12);
     }
 
     return (
@@ -29,7 +20,7 @@ function FreshRec() {
                     !isLoading && <div>
                         <ul className="ul1 ul2 row">
                             {
-                                items.slice(0,countOfItems).map((item) => (
+                                itemList.slice(0,countOfItems).map((item) => (
                                     <Item itemData={item} />
                                 ))
                             }
@@ -42,7 +33,6 @@ function FreshRec() {
                     </div>
                 }
             </div>
-
         </div>
     );
 }

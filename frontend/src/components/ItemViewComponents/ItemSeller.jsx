@@ -1,18 +1,19 @@
 import React from 'react';
 
-function ItemSeller() {
+function ItemSeller({item}) {
     return (
         <div className="itemsSellerDiv">
             <div className="firstDiv">
                 <div className="firstDivContent">
                     <section className="firstDivContentSec">
-                        <span className="firstDivItemPrice">Rs 11,000,000</span>
+                        <span className="firstDivItemPrice">Rs {item.price}</span>
+                        <span style={{"color":"black"}}>PER {item.priceType}</span>
                         <h1 className="firstDivItemTitle">
-                            Car on Rent in all over Pakistan
+                        {item.title}
                     </h1>
                         <div className="locationAndDate">
-                            <span className="location">Bahria Town Rawalpindi, Rawalpindi, Punjab</span>
-                            <span className="Date">12 Dec</span>
+                            <span className="location">{item.city}, {item.state}</span>
+                            <span className="Date">{item.createdAt}</span>
                         </div>
                     </section>
                 </div>
@@ -25,13 +26,13 @@ function ItemSeller() {
                             Marsad Ghanvi form Punjab University College of Infotmation Technology
                       </h1>
                         <h1 className="firstDivItemTitle" style={{ paddingTop: '20px' }}>
-                            0304-4244748
+                            {item.phone}
                       </h1>
                     </div>
                 </div>
             </div>
             <strong className="AdId">
-                AD ID 1024690075
+                AD ID {item._id}
                 </strong>
         </div>
     );

@@ -13,6 +13,7 @@ const itemSchema = new mongoose.Schema({
   city: String,
   state: String,
   ownerID: String,
+  ownerName: String,
   phone: String,
   createdAt: String
 });
