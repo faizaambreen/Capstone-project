@@ -16,8 +16,8 @@ import ItemListContext from './Context/ItemListContext';
 function App() {
   const [isClicked, setIsClicked] = useState(false);
   const [list, setList] = useState({
-    itemList:[],
-    isLoading:true
+    itemList: [],
+    isLoading: true
   });
 
   const login = useState({
@@ -39,12 +39,12 @@ function App() {
       const response = await fetch("/categories/:");
       const data = await response.json();
       setList({
-        itemList:data,
-        isLoading:false
+        itemList: data,
+        isLoading: false
       });
     }
     fetchData();
-  }, [1]);  
+  }, [1]);
 
   return (
     <div id="container" className="appClass">
@@ -53,14 +53,16 @@ function App() {
         <Login cls={isClicked} onUnChecked={remove} />
         <Cat />
         <Switch>
-          <ItemListContext.Provider value={list}>
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/itemView=>:itemId" component={ItemView} />
-            <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
-          </ItemListContext.Provider>
-          <Route exact path="/PostYourAdd" component={PostYourAdd} />
-          <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
-          <Route exact path="/Congo" component={Congo} />
+          <div>
+            <ItemListContext.Provider value={list}>
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/itemView=>:itemId" component={ItemView} />
+              <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
+            </ItemListContext.Provider>
+            <Route exact path="/PostYourAdd" component={PostYourAdd} />
+            <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
+            <Route exact path="/Congo" component={Congo} />
+          </div>
         </Switch>
       </LoginContext.Provider>
       <Footer />
