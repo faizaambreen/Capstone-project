@@ -36,12 +36,14 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("/categories/:");
+      const response = await fetch("/categories");
       const data = await response.json();
-      setList({
-        itemList:data,
-        isLoading:false
-      });
+      if(data.status!==400){
+        setList({
+          itemList: data.items,
+          isLoading: false
+        });
+      }
     }
     fetchData();
   }, [1]);  

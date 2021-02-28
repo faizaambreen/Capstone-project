@@ -12,7 +12,7 @@ function Item(props) {
                     </figure>
 
                     <div className="itemDis">
-                        <span className="itemPrice" >{price}</span>
+                        <span className="itemPrice" >Rs {price.toLocaleString()}</span>
                         <span className="itemDetails"></span>
                         <span className="itemTitle">{title}</span>
                         <span className="itemLocation">{city}
