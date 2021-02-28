@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { useParams } from "react-router-dom";
 import Item from '../Item';
 import ItemListContext from '../../Context/ItemListContext';
@@ -86,7 +87,7 @@ function CatagoryView() {
                                 </div>
                             </div>
                             {
-                                !isLoading && <div className="ItemsDiv">
+                                !isLoading ? <div className="ItemsDiv">
                                     <ul className="ul1 ul2 row">
                                         {
                                             itemList.filter((item) => item.category === category)
@@ -102,6 +103,8 @@ function CatagoryView() {
                                         </button>
                                     </div>
                                 </div>
+                                :
+                                <CircularProgress className="catLoading"/>
                             }
                         </div>
                     </div>

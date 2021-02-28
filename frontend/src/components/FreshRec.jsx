@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Item from './Item'
 import ItemListContext from '../Context/ItemListContext';
 
@@ -17,7 +19,7 @@ function FreshRec() {
                     <span>Fresh Recommendations</span>
                 </div>
                 {
-                    !isLoading && <div>
+                    !isLoading ? <div>
                         <ul className="ul1 ul2 row">
                             {
                                 itemList.slice(0,countOfItems).map((item) => (
@@ -30,6 +32,10 @@ function FreshRec() {
                                 <span>Load More</span>
                             </button>
                         </div>
+                    </div>
+                    :
+                    <div>
+                    <CircularProgress className="loading"/>
                     </div>
                 }
             </div>
