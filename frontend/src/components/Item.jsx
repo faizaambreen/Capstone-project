@@ -6,7 +6,7 @@ function Item(props) {
     return (
         <div className="col-lg-3 col-md-4 col-sm-6">
             <li className="a1 ">
-                <NavLink to={"/itemView=>"+_id} style={{ textDecoration: 'none' }} >
+                <NavLink to={"/itemView/"+_id} style={{ textDecoration: 'none' }} >
                     <figure className="figure" >
                         <img className="itemImage" src={images[0].secure_url} />
                     </figure>

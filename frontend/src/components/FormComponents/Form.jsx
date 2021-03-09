@@ -3,9 +3,11 @@ import { Redirect } from 'react-router-dom';
 import TextInput from './TextInput'
 import Pic from './Pic';
 import LoginContext from '../../Context/LoginContext';
+import ItemListContext from '../../Context/ItemListContext';
 
 export default function Form(props) {    
     const [login, setLogin] = useContext(LoginContext);
+    const {itemList} = useContext(ItemListContext);
     const category = props.category;
     const [formData, setFormData] = useState({
         title: "",
@@ -18,7 +20,7 @@ export default function Form(props) {
         images: []
     });
     const [haveImages, setHaveImages] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
+    const [itemId, setItemId] = useState("");
 
     function updateFormData(event) {
         const { name, value } = event.target;
@@ -68,9 +70,9 @@ export default function Form(props) {
             }
             const response = await fetch("/post/ad", options);
             const result = await response.json();
-            console.log(result.status);
-            if (result.status === 200) {
-                setSubmitted(true);
+            if (result) {
+                itemList.push(result);
+                setItemId(result._id);
             } else {
                 alert("Error Occurred! TRY Again !");
             }
@@ -265,7 +267,7 @@ export default function Form(props) {
                 </div>
                 {/* Redirects to Congratulations Page on successful Submission */}
                 {
-                    submitted && <Redirect push to="/Congo" />
+                    itemId && <Redirect push to={"/Congo/"+itemId} />
                 }
             </div>
         </form>

@@ -57,11 +57,11 @@ function App() {
         <Switch>
           <ItemListContext.Provider value={list}>
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/itemView=>:itemId" component={ItemView} />
-            <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
+            <Route exact path="/itemView/:itemId" component={ItemView} />
+            <Route exact path="/CatagoryView/:category" component={CatagoryView} />
             <Route exact path="/PostYourAdd" component={PostYourAdd} />
-            <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
-            <Route exact path="/Congo" component={Congo} />
+            <Route exact path="/PostYourAdd/:cat" component={AddDetails} />
+            <Route exact path="/Congo/:itemId" component={Congo} />
           </ItemListContext.Provider>
         </Switch>
       </LoginContext.Provider>

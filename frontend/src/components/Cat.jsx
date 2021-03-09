@@ -51,7 +51,7 @@ function Cat() {
 
 
     function SingleCat(props) {
-        const pa = "/CatagoryView=>" + props.name;
+        const pa = "/CatagoryView/" + props.name;
         return (
             <div className="singleCat">
                 <NavLink to={pa} className="singleCatText" style={{ textDecoration: 'none' }}><span >{props.name}</span></NavLink>
