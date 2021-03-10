@@ -267,7 +267,7 @@ export default function Form(props) {
                 </div>
                 {/* Redirects to Congratulations Page on successful Submission */}
                 {
-                    itemId && <Redirect push to={"/Congo/"+itemId} />
+                    itemId && <Redirect push to={"/Congo=>"+itemId} />
                 }
             </div>
         </form>

@@ -6,7 +6,7 @@ function AddSelection(){
     list.sort();
 
     function PostLi(props){
-        const pa="/PostYourAdd/"+props.name;
+        const pa="/PostYourAdd=>"+props.name;
         return(
             <NavLink exact to={pa} style={{textDecoration:'none'}}>
                 <li className="PostLiDiv" >

@@ -49,6 +49,7 @@ const uploadAd = async (req, res) => {
       year: "numeric"
     })
   });
+  // String.
 
   // storing the object into the item collection of database
   try {

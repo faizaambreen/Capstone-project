@@ -15,7 +15,7 @@ function Congo(){
                             </svg>
                             <p className="CongoMsg"><span>Congratulations!</span></p>
                             <p className="CongoMsg1"><span>Your Add is Live Now...</span></p>
-                            <NavLink exact to={"/itemView/"+itemId} style={{textDecoration:'none'}}>
+                            <NavLink exact to={"/itemView=>"+itemId} style={{textDecoration:'none'}}>
                                 <button className="PreviewBtn">
                                     <span>Preview Add</span>
                                 </button>

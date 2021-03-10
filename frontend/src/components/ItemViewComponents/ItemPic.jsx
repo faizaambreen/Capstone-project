@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Description from './Description';
 
-function ItemPic({item}) {
-    console.log(item);
-    
+function ItemPic({ item }) {
+    const [index, setIndex] = useState(0);
+
+
     return (
         <div className="itemPicEtcDiv">
             <div className="PicAreaDiv2">
@@ -11,18 +12,32 @@ function ItemPic({item}) {
 
                     <div className="PicDiv" >
                         <figure>
-                            <img src={item.images[0].secure_url} className="figure_img" />
+                            <img src={item.images[index].secure_url} className="figure_img" />
                         </figure>
                         <div className="picNo">
-                            5 / 12
-                      </div>
+                            {index + 1} / {item.images.length}
+                        </div>
                         <div >
-                            <span className="Left">
+                            <span className="Left" onClick={() => {
+                                if (index - 1 === -1) {
+                                    setIndex(item.images.length - 1);
+                                }
+                                else {
+                                    setIndex(index - 1);
+                                }
+                            }}>
                                 <svg width="30px" height="30px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
                                     <path d="M684.685 85.333l-407.352 396.501v60.331l407.352 396.501h61.982v-60.331l-376.339-366.336 376.339-366.336v-60.331z"></path>
                                 </svg>
                             </span>
-                            <span className="Right">
+                            <span className="Right" onClick={() => {
+                                if (index + 1 === item.images.length) {
+                                    setIndex(0);
+                                }
+                                else {
+                                    setIndex(index + 1);
+                                }
+                            }}>
                                 <svg width="30px" height="30px" viewBox="0 0 1024 1024" data-aut-id="icon" style={{ marginLeft: '16px' }} fill-rule="evenodd">
                                     <path d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path>
                                 </svg>
@@ -31,7 +46,7 @@ function ItemPic({item}) {
                     </div>
                 </div>
             </div>
-            <Description description={item.description}/>
+            <Description description={item.description} />
         </div>
     );
 }
