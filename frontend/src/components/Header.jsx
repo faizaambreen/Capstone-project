@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Login from "./Main Pages/Login";
+import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 
@@ -15,7 +16,7 @@ function Header(props) {
           <div className="input-group mb-3 locationBox ">
             <input type="text" className="form-control" placeholder="Pakistan" aria-label="Text input with segmented dropdown button " />
             <div className="input-group-append">
-              <button type="button" className="btn btn-info btnColor">Search</button>
+              <Button variant="contained" color="primary">Search</Button>
               <button type="button" className="btn btn-outline-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span className="sr-only">Toggle Dropdown</span>
               </button>
@@ -43,22 +44,17 @@ function Header(props) {
               login.isLoggedIn ? (
                 <span>{login.name.split(" ",1)}</span>
               ) : (
-                <button
-                  type="button"
-                  onClick={props.onChecked}
-                  className="btn btn-info login">
+                <Button
+                  variant="contained" color="primary" style={{marginLeft:'10%',width:'120px'}}
+                  onClick={props.onChecked}>
                   Login
-                </button>
+                </Button>
               )
             }
             <NavLink to={login.isLoggedIn && "/PostYourAdd"}>
-              <button
-                type="button"
-                class="btn btn-info rent"
-                onClick={!login.isLoggedIn && props.onChecked}
-              >
-                Rent
-              </button>
+            <Button variant="contained" color="primary" style={{marginLeft:'20%',width:'100px'}}  onClick={!login.isLoggedIn && props.onChecked}>
+              Rent
+            </Button>
             </NavLink>
           </div>
         </div>

@@ -12,6 +12,7 @@ import Login from "./components/Main Pages/Login";
 import { Route, Switch } from 'react-router-dom';
 import LoginContext from './Context/LoginContext';
 import ItemListContext from './Context/ItemListContext';
+import MyAdds from './components/Main Pages/MyAdds';
 
 function App() {
   const [isClicked, setIsClicked] = useState(false);
@@ -46,6 +47,7 @@ function App() {
       }
     }
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [1]);  
 
   return (
@@ -61,6 +63,7 @@ function App() {
             <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
             <Route exact path="/PostYourAdd" component={PostYourAdd} />
             <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
+            <Route exact path="/myAdd" component={MyAdds} />
             <Route exact path="/Congo" component={Congo} />
           </ItemListContext.Provider>
         </Switch>

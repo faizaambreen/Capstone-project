@@ -16,6 +16,15 @@ p {
   margin-inline-end: 0px;
 }
 
+a {
+  background-color: initial;
+  -webkit-text-decoration-skip: objects;
+}
+
+a :hover {
+  color: initial;
+}
+
 h3 {
   display: block;
   font-size: 1.17em;
