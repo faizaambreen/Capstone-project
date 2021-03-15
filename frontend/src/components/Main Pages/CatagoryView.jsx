@@ -8,6 +8,9 @@ function CatagoryView() {
     const { category } = useParams();
     const { itemList, isLoading } = useContext(ItemListContext);
     const [countOfItems, setCountOfItems] = useState(13);
+    const [priceFilter, setPriceFilter] = useState(false);
+    const [minPrice, setMinPrice] = useState("");
+    const [maxPrice, setMaxPrice] = useState("");
 
     function onLoadClick() {
         setCountOfItems(countOfItems + 12);
@@ -72,10 +75,48 @@ function CatagoryView() {
 
                                             <div className="priceDiv" style={a}>
                                                 <div className="priceContentDiv">
-                                                    <input type="number" name="price|min" data-aut-id="filterTextbox" placeholder="Min" min="0" max="100000" value="" class="priceInput" />
-                                                    <input type="number" name="price|max" data-aut-id="filterTextbox" placeholder="Max" min="0" max="100000" value="" class="priceInput" />
-                                                    <a className="priceSearch" href=".">
-                                                        <svg width="16px" height="16px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
+                                                    <input
+                                                        onChange={(event) => {
+                                                            const { value } = event.target;
+                                                            setPriceFilter(false);
+                                                            setMinPrice(value);
+                                                        }}
+                                                        type="number"
+                                                        name="price|min"
+                                                        data-aut-id="filterTextbox"
+                                                        placeholder="Min"
+                                                        min="0"
+                                                        max="1000000"
+                                                        value={minPrice}
+                                                        class="priceInput"
+                                                    />
+                                                    <input
+                                                        onChange={(event) => {
+                                                            const { value } = event.target;
+                                                            setPriceFilter(false);
+                                                            setMaxPrice(value);
+                                                        }}
+                                                        type="number"
+                                                        name="price|max"
+                                                        data-aut-id="filterTextbox"
+                                                        placeholder="Max"
+                                                        min="0"
+                                                        max="1000000"
+                                                        value={maxPrice}
+                                                        class="priceInput"
+                                                    />
+                                                    <a className="priceSearch"
+                                                        onClick={() => {
+                                                            console.log(typeof(itemList[0].price));
+                                                            if (minPrice && maxPrice) {
+                                                                setPriceFilter(true);
+                                                            }
+                                                            else{
+                                                                setPriceFilter(false);
+                                                            }
+                                                        }}
+                                                    >
+                                                        <svg width="16px" height="16px" viewBox="0 0 1024 1024" data-aut-id="icon" fill-rule="evenodd">
                                                             <path class="rui-vUQO_" d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path>
                                                         </svg>
                                                     </a>
@@ -90,7 +131,13 @@ function CatagoryView() {
                                 !isLoading ? <div className="ItemsDiv">
                                     <ul className="ul1 ul2 row">
                                         {
-                                            itemList.filter((item) => item.category === category)
+                                            itemList.filter((item) => {
+                                                if (priceFilter) {
+                                                    return (item.price >= Number(minPrice) && item.price <= Number(maxPrice) && item.category === category);
+                                                } else {
+                                                    return item.category === category;
+                                                }
+                                            })
                                                 .slice(0, countOfItems)
                                                 .map((item) => (
                                                     <Item itemData={item} />
@@ -103,8 +150,8 @@ function CatagoryView() {
                                         </button>
                                     </div>
                                 </div>
-                                :
-                                <CircularProgress className="catLoading"/>
+                                    :
+                                    <CircularProgress className="catLoading" />
                             }
                         </div>
                     </div>

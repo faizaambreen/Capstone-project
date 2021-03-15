@@ -6,8 +6,8 @@ const cloudinary = require("../utils/cloudinary");
 
 const uploadAd = async (req, res) => {
 
-  console.log(req.files);
-  console.log(req.body);
+  // console.log(req.files);
+  // console.log(req.body);
 
   let status = (req.files.length > 0);
   let imagesArray = [];
@@ -49,20 +49,19 @@ const uploadAd = async (req, res) => {
       year: "numeric"
     })
   });
+  // String.
 
   // storing the object into the item collection of database
   try {
     if (status) {
       const result = await item.save();
-      if (result) {
-        res.send({ status: 200 });
-      }
+      res.send(result);
     } else {
-      res.send({ status: 400 });
+      res.send(null);
     }
   } catch (error) {
     console.log(error);
-    res.send({ status: 400 });
+    res.send(null);
   }
 };
 
