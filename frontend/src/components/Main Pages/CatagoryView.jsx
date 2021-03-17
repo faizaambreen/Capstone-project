@@ -107,11 +107,11 @@ function CatagoryView() {
                                                     />
                                                     <a className="priceSearch"
                                                         onClick={() => {
-                                                            console.log(typeof(itemList[0].price));
+                                                            console.log(typeof (itemList[0].price));
                                                             if (minPrice && maxPrice) {
                                                                 setPriceFilter(true);
                                                             }
-                                                            else{
+                                                            else {
                                                                 setPriceFilter(false);
                                                             }
                                                         }}
@@ -133,7 +133,9 @@ function CatagoryView() {
                                         {
                                             itemList.filter((item) => {
                                                 if (priceFilter) {
-                                                    return (item.price >= Number(minPrice) && item.price <= Number(maxPrice) && item.category === category);
+                                                    return (item.price >= Number(minPrice) &&
+                                                        item.price <= Number(maxPrice) &&
+                                                        item.category === category);
                                                 } else {
                                                     return item.category === category;
                                                 }
