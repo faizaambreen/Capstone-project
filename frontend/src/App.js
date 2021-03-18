@@ -64,7 +64,7 @@ function App() {
             <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
             <Route exact path="/PostYourAdd" component={PostYourAdd} />
             <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
-            <Route exact path="/MyAdds" component={MyAdds} />
+            <Route exact path="/myAdd" component={MyAdds} />
             <Route exact path="/Congo=>:itemId" component={Congo} />
           </ItemListContext.Provider>
         </Switch>
