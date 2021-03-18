@@ -9,6 +9,8 @@ const passport = require('passport');
 const googleAuthRoute = require("./routes/googleAuthentication");
 const postRoute = require("./routes/post");
 const categoryRoute = require("./routes/category");
+const getUserAds = require("./routes/getUserAds");
+const deleteAd = require("./routes/deleteAd");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,6 +35,10 @@ app.use("/auth/google", googleAuthRoute);
 app.use("/post", postRoute);
 
 app.use("/categories", categoryRoute);
+
+app.use("/userAds",getUserAds);
+
+app.use("/deleteAd",deleteAd);
 
 app.get("/", (req, res) => {
   res.send("<h1>Home</h1>");
