@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const ItemListContext = React.createContext({});
+const ItemListContext = React.createContext({
+    list:{},
+    setList:()=>{},
+});
 
 export default ItemListContext;

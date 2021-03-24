@@ -6,7 +6,7 @@ import ItemListContext from '../../Context/ItemListContext';
 
 function CatagoryView() {
     const { category } = useParams();
-    const { itemList, isLoading } = useContext(ItemListContext);
+    const {list:{ itemList, isLoading }} = useContext(ItemListContext);
     const [countOfItems, setCountOfItems] = useState(13);
     const [priceFilter, setPriceFilter] = useState(false);
     const [minPrice, setMinPrice] = useState("");

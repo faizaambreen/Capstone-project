@@ -10,6 +10,8 @@ const uploadAd = async (req, res) => {
   // console.log(req.body);
 
   let status = (req.files.length > 0);
+  console.log(status);
+  
   let imagesArray = [];
 
   // uploading all files to the cloudinary client_uploads folder
@@ -30,38 +32,41 @@ const uploadAd = async (req, res) => {
     }
   }
 
-  // making item object to be stored in database
-  const item = await new Item({
-    title: req.body.title,
-    description: req.body.description,
-    price: req.body.price,
-    priceType: req.body.priceType,
-    images: imagesArray,
-    category: req.body.category,
-    city: req.body.city,
-    state: req.body.state,
-    ownerID: req.body.ownerID,
-    ownerName: req.body.ownerName,
-    phone: "+92-" + req.body.phone,
-    createdAt: new Date().toLocaleDateString(undefined, {
-      day: "numeric",
-      month: "short",
-      year: "numeric"
-    })
-  });
   // String.
 
   // storing the object into the item collection of database
   try {
     if (status) {
+      // making item object to be stored in database
+      const item = await new Item({
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+        priceType: req.body.priceType,
+        images: imagesArray,
+        category: req.body.category,
+        city: req.body.city,
+        state: req.body.state,
+        ownerID: req.body.ownerID,
+        ownerName: req.body.ownerName,
+        phone: "+92-" + req.body.phone,
+        createdAt: new Date().toLocaleDateString(undefined, {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        })
+      });
       const result = await item.save();
-      res.send(result);
+      res.send({
+        status:200,
+        item:result,
+      });
     } else {
-      res.send(null);
+      res.send({status:400});
     }
   } catch (error) {
     console.log(error);
-    res.send(null);
+    res.send({status:400});
   }
 };
 

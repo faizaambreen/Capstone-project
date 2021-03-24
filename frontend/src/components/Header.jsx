@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 
 function Header(props) {
-  const [login, setLogin] = useContext(LoginContext);
+  const [login, setLogin] = useContext(LoginContext);  
 
   return (
     <div className="header">

@@ -1,8 +1,13 @@
-import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom';
+import React, { Component, useContext } from 'react'
+import { Route, Switch, Redirect } from 'react-router-dom';
 import AddSelection from '../AddSelection'
+import LoginContext from '../../Context/LoginContext';
 
-function PostYourAdd(props){
+function PostYourAdd(){
+    const [{isLoggedIn}] = useContext(LoginContext);
+    if(!isLoggedIn){
+        return <Redirect to="/" />
+    }
     return(
         <main className="BetweenHeaderAndFooter">
             <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
