@@ -4,11 +4,11 @@ import TextInput from './TextInput'
 import Pic from './Pic';
 import LoginContext from '../../Context/LoginContext';
 import ItemListContext from '../../Context/ItemListContext';
+import { CircularProgress } from '@material-ui/core';
 
-export default function Form(props) {    
-    const [login, setLogin] = useContext(LoginContext);
-    const {itemList} = useContext(ItemListContext);
-    const category = props.category;
+export default function Form({category}) {
+    const [login] = useContext(LoginContext);
+    const {list:{itemList}} = useContext(ItemListContext);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -21,6 +21,7 @@ export default function Form(props) {
     });
     const [haveImages, setHaveImages] = useState(false);
     const [itemId, setItemId] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     function updateFormData(event) {
         const { name, value } = event.target;
@@ -44,7 +45,9 @@ export default function Form(props) {
     }
 
     async function submitForm(event) {
+        console.log("clicked");
         event.preventDefault();
+        setIsLoading(true);
         if (formData.images.length === 0) {
             setHaveImages(true);
         } else {
@@ -69,10 +72,11 @@ export default function Form(props) {
                 body: data
             }
             const response = await fetch("/post/ad", options);
-            const result = await response.json();
-            if (result) {
-                itemList.push(result);
-                setItemId(result._id);
+            const result = await response.json();            
+            setIsLoading(false);
+            if (result.status===200) {
+                itemList.push(result.item);
+                setItemId(result.item._id);
             } else {
                 alert("Error Occurred! TRY Again !");
             }
@@ -84,7 +88,7 @@ export default function Form(props) {
         <form onSubmit={submitForm}>
             <div className="AddDetailsMainDiv">
                 <h2 className="AddDetailHeading">
-                    <span>SELECTED CATEGORY </span>
+                    <span>{category}</span>
                 </h2>
                 <div className="Boarder"></div>
                 <div className="AddDetailDiv">
@@ -253,21 +257,23 @@ export default function Form(props) {
                 <div className="Boarder"></div>
 
                 <div className="AddDetailDiv">
-                    <div className="insideAddDetailDiv " style={{ paddingBottom:'3%' }}>
+                    <div className="insideAddDetailDiv " style={{ paddingBottom: '3%' }}>
                         <div className="loadDiv" >
                             <button
                                 type="submit"
                                 className="loadBtn"
-                                style={{ float: 'left'}}
+                                style={{ float: 'left' }}
+                                disabled={isLoading}
                             >
                                 <span>Post Now</span>
                             </button>
+                            {isLoading && <CircularProgress />}
                         </div>
                     </div>
                 </div>
                 {/* Redirects to Congratulations Page on successful Submission */}
                 {
-                    itemId && <Redirect push to={"/Congo=>"+itemId} />
+                    itemId && <Redirect push to={"/Congo=>" + itemId} />
                 }
             </div>
         </form>

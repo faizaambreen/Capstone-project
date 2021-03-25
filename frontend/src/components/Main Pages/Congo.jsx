@@ -1,7 +1,13 @@
-import React from 'react';
-import {NavLink, useParams} from 'react-router-dom'
+import React, { useContext } from 'react';
+import {NavLink, useParams, Redirect} from 'react-router-dom'
+import LoginContext from '../../Context/LoginContext';
 function Congo(){
+    const [{isLoggedIn}] = useContext(LoginContext);
     const {itemId} = useParams();
+
+    if(!isLoggedIn){
+        return <Redirect to="/" />;
+    }
 
     return (
       <main className="BetweenHeaderAndFooter">

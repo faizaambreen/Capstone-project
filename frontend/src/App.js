@@ -16,7 +16,7 @@ import MyAdds from './components/Main Pages/MyAdds';
 
 function App() {
   const [isClicked, setIsClicked] = useState(false);
-  const [list, setList] = useState({
+  const [list,setList] = useState({
     itemList:[],
     isLoading:true
   });
@@ -58,12 +58,12 @@ function App() {
         <Login cls={isClicked} onUnChecked={remove} />
         <Cat />
         <Switch>
-          <ItemListContext.Provider value={list}>
+          <ItemListContext.Provider value={{list,setList}}>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/itemView=>:itemId" component={ItemView} />
             <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
             <Route exact path="/PostYourAdd" component={PostYourAdd} />
-            <Route exact path="/PostYourAdd=>:cat" component={AddDetails} />
+            <Route exact path="/PostYourAdd=>:category" component={AddDetails} />
             <Route exact path="/myAdd" component={MyAdds} />
             <Route exact path="/Congo=>:itemId" component={Congo} />
           </ItemListContext.Provider>
