@@ -12,12 +12,31 @@ function CatagoryView() {
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
 
+    const [loc, setLoc]=useState("collapsedContent toVisible");
+    const [sloc,setSloc]=useState("unCollaspedContent isVisible");
+    const [locV,setLocV]=useState("Pakistan");
+    const [ro,setRo]=useState("");
     function onLoadClick() {
         setCountOfItems(countOfItems + 12);
     }
 
     const a = {
         display: 'block'
+    }
+    function drop(){
+        if(loc==="collapsedContent toVisible"&&sloc==="unCollaspedContent isVisible"){
+            setLoc("collapsedContent");
+            setSloc("unCollaspedContent");
+            setRo("ro");
+        }else{
+            setLoc("collapsedContent toVisible");
+            setSloc("unCollaspedContent isVisible");
+            setRo("");
+        }
+    }
+    function locationValue(e){
+        setLocV(e.currentTarget.innerText);
+        drop();
     }
     return (
         <main className="BetweenHeaderAndFooter">
@@ -34,29 +53,31 @@ function CatagoryView() {
                                         <div className="LocationDiv">
                                             <div className="LocationHeading">
                                                 <span className="LocationText">Locations</span>
-                                                <svg width="18px" height="18px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
-                                                    <path class="rui-77aaa" d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
-                                                </svg>
+                                                <div className={ro}>
+                                                    <svg width="18px" onClick={drop} className="ro" height="18px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
+                                                        <path class="rui-77aaa" d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
+                                                    </svg>
+                                                </div>
                                             </div>
-                                            <div id="c" className="collapsedContent toVisible">Pakistan</div>
-                                            <div id="unc" className=" unCollaspedContent">
+                                            <div className={loc}>{locV}</div>
+                                            <div className={sloc}>
                                                 <ul className="unCollaspedContentUl">
                                                     <li>
-                                                        <span className="unCollaspedContentHeading">Pakistan</span>
+                                                        <span className="unCollaspedContentHeading">{locV}</span>
                                                         <ul className="unCollaspedDropdownDiv">
-                                                            <li>
+                                                            <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Punjab</span>
                                                             </li>
-                                                            <li>
+                                                            <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Sindh</span>
                                                             </li>
-                                                            <li>
+                                                            <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Balochistan</span>
                                                             </li>
-                                                            <li>
+                                                            <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Kpk</span>
                                                             </li>
-                                                            <li>
+                                                            <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Gilgit</span>
                                                             </li>
                                                         </ul>

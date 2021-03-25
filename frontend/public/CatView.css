@@ -1,4 +1,4 @@
-.CatMainDiv{
+.CatMainDiv {
     margin-left: 1.5%;
     margin-right: auto;
     margin-bottom: 20px;
@@ -34,6 +34,7 @@
     position: relative;
     height: 100%;
 }
+
 .FilterHeading {
     padding: 16px 0 16px 16px;
     font-size: 16px;
@@ -41,11 +42,12 @@
 }
 
 .LocationDiv {
-    border-top: 1px solid rgba(0,47,52,.2);
+    border-top: 1px solid rgba(0, 47, 52, .2);
     padding: 16px;
     width: 100%;
     box-sizing: border-box;
 }
+
 .LocationHeading {
     display: flex;
     align-items: center;
@@ -53,6 +55,7 @@
     text-transform: uppercase;
     justify-content: space-between;
 }
+
 .LocationText {
     color: #002f34;
     font-weight: 700;
@@ -63,16 +66,16 @@
 .collapsedContent {
     display: none;
     font-size: 15px;
-    color: rgba(0,47,52,.64);
+    color: rgba(0, 47, 52, .64);
     padding: 8px 0 0;
 }
-.toVisible{
+
+.toVisible {
     display: block;
 }
 
 
-.unCollaspedContent{
-    display: none;
+.unCollaspedContent {
     padding: 16px 0 0;
 }
 
@@ -82,7 +85,7 @@
     list-style: none;
 }
 
-.unCollaspedContentHeading{
+.unCollaspedContentHeading {
     color: #002f34;
     font-weight: 700;
     display: block;
@@ -98,6 +101,7 @@
     list-style: none;
     margin: 0 0 0 16px;
 }
+
 .unCollaspedDropdownItem {
     display: block;
     margin: 0 0 16px;
@@ -105,32 +109,35 @@
     cursor: pointer;
     font-size: 14px;
     color: #002f34;
-    color: rgba(0,47,52,.64);
+    color: rgba(0, 47, 52, .64);
 }
 
 
 .priceDiv {
     display: block;
     padding: 16px 0 0;
-    
+
 }
+
 .priceContentDiv {
     display: flex;
 }
+
 .priceInput {
     background: #ebeeef;
     outline: none;
     height: 40px;
     width: 112px;
     border: none;
-    border-bottom: 1px solid rgba(0,47,52,.64);
+    border-bottom: 1px solid rgba(0, 47, 52, .64);
     box-sizing: border-box;
     padding: 0 16px;
     margin: 0 8px 0 0;
     font-size: 14px;
 }
+
 .priceSearch {
-    background-color: rgba(0,47,52,.36);
+    background-color: rgba(0, 47, 52, .36);
     position: relative;
     cursor: pointer;
     height: 40px;
@@ -139,11 +146,16 @@
     align-items: center;
     text-decoration: none;
     display: flex;
-    border: 1px solid rgba(0,47,52,.36);
+    border: 1px solid rgba(0, 47, 52, .36);
     box-sizing: border-box;
     background-clip: content-box;
 }
+
 .ItemsDiv {
     margin-top: 8px;
     width: calc(100% - 300px);
+}
+
+.ro {
+    transform: rotate(180deg);
 }

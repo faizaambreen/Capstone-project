@@ -11,7 +11,7 @@ function Header(props) {
     <div className="header">
       <div className="insideHeader">
         <div className="headerContent">
-          <NavLink to="/"><img src="https://www.mavericktheater.com/assets/images/RENT_logo.jpg" className="logo" alt=""></img></NavLink>
+          <NavLink to="/"><img src="https://th.bing.com/th/id/Re78a38d7debb977c80f701323bf6c1da?rik=6U8BD4U3wkZkgg&riu=http%3a%2f%2fwww.mavericktheater.com%2fassets%2fimages%2fRENT_logo.jpg&ehk=%2boH1%2bFQQToYs2oegFkxlgydxzcPztVL7emH3SCq%2fMc8%3d&risl=&pid=ImgRaw" className="logo" alt=""></img></NavLink>
 
           <div className="input-group mb-3 locationBox ">
             <input type="text" className="form-control" placeholder="Pakistan" aria-label="Text input with segmented dropdown button " />

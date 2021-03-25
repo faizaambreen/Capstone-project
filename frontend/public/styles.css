@@ -405,10 +405,6 @@ h2 {
   font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
-.catHeadingText:hover {
-  color: #00a49f;
-}
-
 .catHeadingText {
   padding: 0;
   text-decoration: none;

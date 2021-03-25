@@ -6,46 +6,38 @@ function Cat() {
     const [Cls, setCls] = useState("dd1");
     const [Cls1, setCls1] = useState("insideCatListContainer");
     const Catagery = ["Bicycles", "Busses", "Rikshaws", "Boats", "Tractors", "Generators", "UPS", "Freezers", "Washing Machines & Dryers", "Lawns", "Hotels"];
-    const subCatagery1 = ["Cars", "Bikes", "Super Cars", "SuperBikes", "Boats"];
-    const subCatagery2 = ["Luxuary", "Average", "Economy", "Apartmints"];
-    const subCatagery3 = ["Most Expensive", "Less Expensive", "Average", "Below Average"];
-    const subCatagery4 = ["Houses Maid", "Plumber", "Gardner", "Electriction"];
+    
+    let arr = new Array(6); 
+    for (var i = 0; i < 6; i++) {
+        arr[i] = []; 
+    }
+
+    arr[0] = [ "Vehicles","Cars", "Bikes", "Rikshaws", "Tractors", "Boats", "Busses"];
+    arr[1] = [ "Mobiles & Tablates","Mobiles", "Tablates", "iPads"];
+    arr[2] = [ "Electrical Aplyances","Generators", "UPS", "Freezers", "Washing Machines & Dryers"];
+    arr[3] = ["Property","Hotels","Flats","Houses","Property for Rent"];
+    arr[4] = [ "Home Aplyances","Furniture","Carpets","Paintings","Curtains","Musical Instruments","Sports Equipment","Cars","Bridal Dresses"];
+    arr[5] = [ "Services","House Maids","Web devloper","Plumbers","internet"];
+    
+
+    
 
     function CatBlock() {
         return (
             <div>
-                <div className="singleCol">
-                    <div className="catHeadingDiv">
-                        <NavLink to="/catagoryView" onClick={invert} className="catHeadingText" style={{ textDecoration: 'none' }}>
-                            <span>Vehicles</span>
-                        </NavLink>
-                    </div>
-                    {subCatagery1.map((x) => <SubCat name={x} />)}
-                </div>
-                <div className="singleCol">
-                    <div className="catHeadingDiv">
-                        <NavLink to="/catagoryView" className="catHeadingText" style={{ textDecoration: 'none' }}>
-                            <span>Houses</span>
-                        </NavLink>
-                    </div>
-                    {subCatagery2.map((x) => <SubCat name={x} />)}
-                </div>
-                <div className="singleCol">
-                    <div className="catHeadingDiv">
-                        <NavLink to="/catagoryView" className="catHeadingText" style={{ textDecoration: 'none' }}>
-                            <span>Bridal Dresses</span>
-                        </NavLink>
-                    </div>
-                    {subCatagery3.map((x) => <SubCat name={x} />)}
-                </div>
-                <div className="singleCol">
-                    <div className="catHeadingDiv">
-                        <NavLink to="/catagoryView" className="catHeadingText" style={{ textDecoration: 'none' }}>
-                            <span>Services</span>
-                        </NavLink>
-                    </div>
-                    {subCatagery4.map((x) => <SubCat name={x} />)}
-                </div>
+                {arr.map((x)=>{
+                    return (
+                        <div className="singleCol">
+                            <div className="catHeadingDiv">
+                                <div to="/catagoryView" className="catHeadingText" style={{ textDecoration: 'none' }}>
+                                    <span>{x[0]}</span>
+                                </div>
+                            </div>
+                            {x.filter((y,index) => {return index!==0}).map(a => <SubCat name={a}/>)}
+                        </div>
+                    );
+                })}
+            
             </div>);
     }
 
@@ -60,9 +52,10 @@ function Cat() {
     }
 
     function SubCat(props) {
+        const pa = "/CatagoryView=>" + props.name;
         return (
             <div className="subCatDiv">
-                <NavLink to="/catagoryView" onClick={invert} className="subCatText" style={{ textDecoration: 'none' }}>
+                <NavLink to={pa} onClick={invert} className="subCatText" style={{ textDecoration: 'none' }}>
                     <span>{props.name}</span>
                 </NavLink>
             </div>
