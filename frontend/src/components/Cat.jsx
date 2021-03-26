@@ -5,35 +5,34 @@ function Cat() {
     const [direction, setDirection] = useState(false);
     const [Cls, setCls] = useState("dd1");
     const [Cls1, setCls1] = useState("insideCatListContainer");
-    const Catagery = ["Bicycles", "Busses", "Rikshaws", "Boats", "Tractors", "Generators", "UPS", "Freezers", "Washing Machines & Dryers", "Lawns", "Hotels"];
+    const Catagery = ["Cars", "Bikes", "Busses", "Rikshaws", "Boats", "Tractors", "Generators", "UPS", "Freezers", "Washing Machines & Dryers", "Hotels"];
     
     let arr = new Array(6); 
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 7; i++) {
         arr[i] = []; 
     }
 
-    arr[0] = [ "Vehicles","Cars", "Bikes", "Rikshaws", "Tractors", "Boats", "Busses"];
-    arr[1] = [ "Mobiles & Tablates","Mobiles", "Tablates", "iPads"];
-    arr[2] = [ "Electrical Aplyances","Generators", "UPS", "Freezers", "Washing Machines & Dryers"];
-    arr[3] = ["Property","Hotels","Flats","Houses","Property for Rent"];
-    arr[4] = [ "Home Aplyances","Furniture","Carpets","Paintings","Curtains","Musical Instruments","Sports Equipment","Cars","Bridal Dresses"];
-    arr[5] = [ "Services","House Maids","Web devloper","Plumbers","internet"];
+    arr[0] = ["Vehicles","Mobiles & Tablates","Electrical Aplyances","Property","Home Aplyances","Services"];
+    arr[1] = ["Cars", "Bikes", "Bicycles", "Rikshaws", "Tractors", "Boats", "Busses"].sort();
+    arr[2] = ["Mobiles", "Tablates", "IPads"].sort();
+    arr[3] = ["Generators", "UPS", "Freezers", "Washing Machines & Dryers"].sort();
+    arr[4] = ["Hotels","Flats","Houses","Property for Rent"].sort();
+    arr[5] = ["Furniture","Carpets","Paintings","Curtains","Musical Instruments","Sports Equipment","Bridal Dresses"].sort();
+    arr[6] = ["House Maids","Web devloper","Plumbers","internet"].sort();
     
-
     
-
     function CatBlock() {
         return (
             <div>
-                {arr.map((x)=>{
+                {arr[0].map((heading,index)=>{
                     return (
                         <div className="singleCol">
                             <div className="catHeadingDiv">
                                 <div to="/catagoryView" className="catHeadingText" style={{ textDecoration: 'none' }}>
-                                    <span>{x[0]}</span>
+                                    <span>{heading}</span>
                                 </div>
                             </div>
-                            {x.filter((y,index) => {return index!==0}).map(a => <SubCat name={a}/>)}
+                            {arr[index+1].map((category) => <SubCat name={category}/>)}
                         </div>
                     );
                 })}

@@ -6,7 +6,14 @@ import ItemListContext from '../../Context/ItemListContext';
 
 function CatagoryView() {
     const { category } = useParams();
-    const {list:{ itemList, isLoading }} = useContext(ItemListContext);
+    const {list:{ itemList, isLoading}} = useContext(ItemListContext);
+    const [currentCategory, setCurrentCategory] = useState("");    
+    const [categoryList, setCategoryList] = useState([]);
+    
+    if(!isLoading && currentCategory!==category){        
+        setCurrentCategory(category);
+        setCategoryList(itemList.filter((item)=>item.category===category));
+    }
     const [countOfItems, setCountOfItems] = useState(13);
     const [priceFilter, setPriceFilter] = useState(false);
     const [minPrice, setMinPrice] = useState("");
@@ -152,15 +159,10 @@ function CatagoryView() {
                                 !isLoading ? <div className="ItemsDiv">
                                     <ul className="ul1 ul2 row">
                                         {
-                                            itemList.filter((item) => {
-                                                if (priceFilter) {
-                                                    return (item.price >= Number(minPrice) &&
-                                                        item.price <= Number(maxPrice) &&
-                                                        item.category === category);
-                                                } else {
-                                                    return item.category === category;
-                                                }
-                                            })
+                                            (priceFilter ? categoryList.filter((item)=>(
+                                                item.price >= Number(minPrice) &&
+                                                item.price <= Number(maxPrice))
+                                            ) : categoryList)
                                                 .slice(0, countOfItems)
                                                 .map((item) => (
                                                     <Item itemData={item} />

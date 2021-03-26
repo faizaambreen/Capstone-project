@@ -42,7 +42,9 @@ function Header(props) {
           <div className="loginAndRent">
             {
               login.isLoggedIn ? (
-                <span>{login.name.split(" ",1)}</span>
+                <span>
+                  <img src={`https://img.icons8.com/fluent-systems-filled/40/1ABC9C/circled-${login.name[0].toLowerCase()}.png`} />
+                </span>
               ) : (
                 <Button
                   variant="contained" color="primary" style={{marginLeft:'10%',width:'120px'}}
@@ -64,7 +66,3 @@ function Header(props) {
 }
 
 export default Header;
-
-// <img src="https://img.icons8.com/fluent-systems-filled/40/1ABC9C/circled-a.png"/>
-// let letter="a";
-// let url = "https://img.icons8.com/fluent-systems-filled/40/1ABC9C/circled-" + letter+ ".png";
