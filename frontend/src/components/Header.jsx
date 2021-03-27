@@ -116,9 +116,6 @@ function Header(props) {
   );
 }
 
-<<<<<<< Updated upstream
-export default Header;
-=======
 export default Header;
 
 // <img src="https://img.icons8.com/fluent-systems-filled/40/1ABC9C/circled-a.png"/>
@@ -130,4 +127,3 @@ export default Header;
                 //   onClick={props.onChecked}>
                 //   Login
                 // </Button> 
->>>>>>> Stashed changes
