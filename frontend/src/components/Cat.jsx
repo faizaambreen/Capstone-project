@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 function Cat() {
     const [direction, setDirection] = useState(false);
     const [Cls, setCls] = useState("dd1");
-    const [Cls1, setCls1] = useState("insideCatListContainer");
+    const [Cls1, setCls1] = useState("insideCatListContainer isVisible");
     const Catagery = ["Cars", "Bikes", "Busses", "Rikshaws", "Boats", "Tractors", "Generators", "UPS", "Freezers", "Washing Machines & Dryers", "Hotels"];
     
     let arr = new Array(6); 
@@ -61,22 +61,26 @@ function Cat() {
         );
     }
 
-    function invert() {
+    function invert(e) {
         if (direction === false) {
             setDirection(true);
             setCls("dd1 dd1r");
-            setCls1("insideCatListContainer insideCatListContainer1");
+            setCls1("insideCatListContainer");
         }
         else {
             setDirection(false);
             setCls("dd1 dd1r1");
-            setCls1("insideCatListContainer");
+            setCls1("insideCatListContainer isVisible");
         }
     }
-    function outHanddler() {
-        if (direction === true) {
+
+    function outHanddler(e) {
+        if (direction === true && e.target.id ==="b" ) {
+        }   
+        else {
+            setDirection(false);
             setCls("dd1 dd1r1");
-            setCls1("insideCatListContainer");
+            setCls1("insideCatListContainer isVisible");
         }
     }
 
@@ -93,7 +97,7 @@ function Cat() {
 
                         <span className="dropdownButton">
                             <button type="button" onClick={invert} className={Cls} style={{ outline: 'none' }}>
-                                <svg width="24px" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" >
+                                <svg width="24px" id ="b" height="24px" viewBox="0 0 1024 1024" data-aut-id="icon" >
                                     <path d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
                                 </svg>
                             </button>
