@@ -58,10 +58,10 @@ function CatagoryView() {
                                     <div>
                                         <div className="FilterHeading"><span>Filters</span></div>
                                         <div className="LocationDiv">
-                                            <div className="LocationHeading">
+                                            <div className="LocationHeading" onClick={drop}>
                                                 <span className="LocationText">Locations</span>
                                                 <div className={ro}>
-                                                    <svg width="18px" onClick={drop} className="ro" height="18px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
+                                                    <svg width="18px" className="ro" height="18px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
                                                         <path class="rui-77aaa" d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
                                                     </svg>
                                                 </div>
@@ -72,6 +72,9 @@ function CatagoryView() {
                                                     <li>
                                                         <span className="unCollaspedContentHeading">{locV}</span>
                                                         <ul className="unCollaspedDropdownDiv">
+                                                            <li onClick={locationValue}>
+                                                                <span className="unCollaspedDropdownItem">Pakistan</span>
+                                                            </li>
                                                             <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Punjab</span>
                                                             </li>
@@ -96,9 +99,7 @@ function CatagoryView() {
                                         <div className="LocationDiv">
                                             <div className="LocationHeading">
                                                 <span className="LocationText">Price</span>
-                                                <svg width="18px" height="18px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
-                                                    <path class="rui-77aaa" d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
-                                                </svg>
+                                                
                                             </div>
 
                                             <div className="priceDiv" style={a}>

@@ -22,7 +22,7 @@ a {
 }
 
 a :hover {
-  color: initial;
+  color: #000;
 }
 
 h3 {
@@ -208,7 +208,7 @@ h2 {
   padding-bottom: 0;
   padding-left: 5px;
   padding-right: 10px;
-  background-color: #fff;
+  background-color: rgba(0, 47, 52, .03);
 }
 
 .headerContent {
@@ -732,3 +732,90 @@ h2 {
 }
 
 /**********************Footer ends here**************************/
+.pro {
+  width: 40px;
+  height: 40px;
+  background-image: url(https://img.icons8.com/fluent-systems-filled/40/1ABC9C/circled-a.png);
+  margin-left: 20%;
+}
+
+.loginOptionsDiv {
+  right: 12%;
+  top: 100%;
+  width: 288px;
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / 12%), 0 6px 6px 0 rgb(0 0 0 / 24%);
+  border-radius: 4px;
+}
+
+.loginOptionsDiv:after {
+  bottom: 100%;
+  right: 16px;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border: 12px solid transparent;
+  border-bottom-color: #fff;
+}
+
+.loginProfileDiv {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding: 20px 16px;
+  box-sizing: border-box;
+}
+
+.myAdsDiv {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  text-decoration: none;
+  color: #002f34;
+  height: 48px;
+  font-size: 16px;
+}
+
+.myAdsDiv:hover {
+  color: #002f34;
+  background-color: #c8f8f6;
+}
+
+.profileImg {
+  width: 56px;
+  height: 56px;
+  background-image: url(https://img.icons8.com/fluent-systems-filled/40/1ABC9C/circled-a.png);
+  flex: 0 0 56px;
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 50%;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.profileName {
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 0 0 0 12px
+}
+
+.profileMsg {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  margin: 0;
+  color: rgba(0, 47, 52, .64)
+}
+
+.profileName {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: #002f34;
+}
