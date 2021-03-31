@@ -107,7 +107,7 @@ function CatagoryView() {
                                                     <input
                                                         onChange={(event) => {
                                                             const { value } = event.target;
-                                                            // setPriceFilter(false);
+                                                            setPriceFilter(false);
                                                             setMinPrice(value);
                                                         }}
                                                         type="number"
@@ -122,7 +122,7 @@ function CatagoryView() {
                                                     <input
                                                         onChange={(event) => {
                                                             const { value } = event.target;
-                                                            // setPriceFilter(false);
+                                                            setPriceFilter(false);
                                                             setMaxPrice(value);
                                                         }}
                                                         type="number"
