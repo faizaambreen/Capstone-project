@@ -6,7 +6,7 @@ import ItemListContext from '../../Context/ItemListContext';
 
 function ItemView() {
   const {itemId} = useParams();
-  const {list:{itemList}} = useContext(ItemListContext);
+  const [{itemList}] = useContext(ItemListContext);
   const item = itemList.find(({_id})=>_id===itemId);
   
   return (

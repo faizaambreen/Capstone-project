@@ -5,7 +5,7 @@ import Item from './Item'
 import ItemListContext from '../Context/ItemListContext';
 
 function FreshRec() {
-    const {list:{itemList,isLoading}} = useContext(ItemListContext);
+    const [{itemList,isLoading}] = useContext(ItemListContext);
     const [countOfItems, setCountOfItems] = useState(13);
     
     function onLoadClick() {

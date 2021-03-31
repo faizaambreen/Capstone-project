@@ -6,7 +6,7 @@ import ItemListContext from '../../Context/ItemListContext';
 
 function CatagoryView() {
     const { category } = useParams();
-    const {list:{ itemList, isLoading}} = useContext(ItemListContext);
+    const [{ itemList, isLoading}] = useContext(ItemListContext);
     const [currentCategory, setCurrentCategory] = useState("");    
     const [categoryList, setCategoryList] = useState([]);
     
@@ -21,7 +21,7 @@ function CatagoryView() {
 
     const [loc, setLoc]=useState("collapsedContent toVisible");
     const [sloc,setSloc]=useState("unCollaspedContent isVisible");
-    const [locV,setLocV]=useState("Pakistan");
+    const [location,setLocation]=useState("Pakistan");
     const [ro,setRo]=useState("");
     function onLoadClick() {
         setCountOfItems(countOfItems + 12);
@@ -42,7 +42,7 @@ function CatagoryView() {
         }
     }
     function locationValue(e){
-        setLocV(e.currentTarget.innerText);
+        setLocation(e.currentTarget.innerText);
         drop();
     }
     return (
@@ -66,11 +66,11 @@ function CatagoryView() {
                                                     </svg>
                                                 </div>
                                             </div>
-                                            <div className={loc}>{locV}</div>
+                                            <div className={loc}>{location}</div>
                                             <div className={sloc}>
                                                 <ul className="unCollaspedContentUl">
                                                     <li>
-                                                        <span className="unCollaspedContentHeading">{locV}</span>
+                                                        <span className="unCollaspedContentHeading">{location}</span>
                                                         <ul className="unCollaspedDropdownDiv">
                                                             <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Pakistan</span>
@@ -85,7 +85,7 @@ function CatagoryView() {
                                                                 <span className="unCollaspedDropdownItem">Balochistan</span>
                                                             </li>
                                                             <li onClick={locationValue}>
-                                                                <span className="unCollaspedDropdownItem">Kpk</span>
+                                                                <span className="unCollaspedDropdownItem">KPK</span>
                                                             </li>
                                                             <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Gilgit</span>
@@ -107,7 +107,7 @@ function CatagoryView() {
                                                     <input
                                                         onChange={(event) => {
                                                             const { value } = event.target;
-                                                            setPriceFilter(false);
+                                                            // setPriceFilter(false);
                                                             setMinPrice(value);
                                                         }}
                                                         type="number"
@@ -122,7 +122,7 @@ function CatagoryView() {
                                                     <input
                                                         onChange={(event) => {
                                                             const { value } = event.target;
-                                                            setPriceFilter(false);
+                                                            // setPriceFilter(false);
                                                             setMaxPrice(value);
                                                         }}
                                                         type="number"
@@ -136,13 +136,13 @@ function CatagoryView() {
                                                     />
                                                     <a className="priceSearch"
                                                         onClick={() => {
-                                                            console.log(typeof (itemList[0].price));
                                                             if (minPrice && maxPrice) {
                                                                 setPriceFilter(true);
                                                             }
                                                             else {
                                                                 setPriceFilter(false);
                                                             }
+                                                            console.log(priceFilter);
                                                         }}
                                                     >
                                                         <svg width="16px" height="16px" viewBox="0 0 1024 1024" data-aut-id="icon" fill-rule="evenodd">
@@ -160,9 +160,15 @@ function CatagoryView() {
                                 !isLoading ? <div className="ItemsDiv">
                                     <ul className="ul1 ul2 row">
                                         {
-                                            (priceFilter ? categoryList.filter((item)=>(
+                                            ( (priceFilter && location!=="Pakistan") ? categoryList.filter((item)=>(
+                                                item.price >= Number(minPrice) &&
+                                                item.price <= Number(maxPrice) &&
+                                                item.state === location)
+                                            ) : priceFilter ? categoryList.filter((item)=>(
                                                 item.price >= Number(minPrice) &&
                                                 item.price <= Number(maxPrice))
+                                            ) : location!=="Pakistan" ? categoryList.filter((item)=>(
+                                                item.state === location)
                                             ) : categoryList)
                                                 .slice(0, countOfItems)
                                                 .map((item) => (

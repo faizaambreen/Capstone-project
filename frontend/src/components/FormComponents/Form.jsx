@@ -8,7 +8,7 @@ import { CircularProgress } from '@material-ui/core';
 
 export default function Form({category}) {
     const [login] = useContext(LoginContext);
-    const {list:{itemList}} = useContext(ItemListContext);
+    const [{itemList}] = useContext(ItemListContext);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -215,8 +215,8 @@ export default function Form({category}) {
                                             <option value="Punjab">Punjab</option>
                                             <option value="Sindh">Sindh</option>
                                             <option value="Balochistan">Balochistan</option>
-                                            <option value="Kashmir">Kashmir</option>
                                             <option value="KPK">KPK</option>
+                                            <option value="Gilgit">Gilgit</option>
                                         </select>
                                     </div>
                                 </div>
