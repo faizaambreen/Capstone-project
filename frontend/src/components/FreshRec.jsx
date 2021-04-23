@@ -27,11 +27,11 @@ function FreshRec() {
                                 ))
                             }
                         </ul>
-                        <div className="loadDiv">
+                        {itemList.length>countOfItems && <div className="loadDiv">
                             <button onClick={onLoadClick} className="loadBtn">
                                 <span>Load More</span>
                             </button>
-                        </div>
+                        </div>}
                     </div>
                     :
                     <div>

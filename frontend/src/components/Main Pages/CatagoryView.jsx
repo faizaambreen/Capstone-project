@@ -98,7 +98,13 @@ function CatagoryView() {
 
                                         <div className="LocationDiv">
                                             <div className="LocationHeading">
-                                                <span className="LocationText">Price</span>
+                                                <span className="LocationText">Price 
+                                                    <span style={{
+                                                        textTransform:"none",
+                                                        fontSize:"14px"
+                                                        }}>   (Rs.)
+                                                    </span>
+                                                </span>
                                                 
                                             </div>
 
@@ -176,11 +182,11 @@ function CatagoryView() {
                                                 ))
                                         }
                                     </ul>
-                                    <div className="loadDiv">
+                                    { categoryList.length>countOfItems && <div className="loadDiv">
                                         <button onClick={onLoadClick} className="loadBtn">
                                             <span>Load More</span>
                                         </button>
-                                    </div>
+                                    </div>}
                                 </div>
                                     :
                                     <CircularProgress className="catLoading" />

@@ -9,10 +9,11 @@ import PostYourAdd from './components/Main Pages/PostYourAdd'
 import AddDetails from './components/AddDetails'
 import Congo from './components/Main Pages/Congo'
 import Login from "./components/Main Pages/Login";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginContext from './Context/LoginContext';
 import ItemListContext from './Context/ItemListContext';
 import MyAdds from './components/Main Pages/MyAdds';
+import { PageNotFound } from './components/Main Pages/PageNotFound';
 
 function App() {
   const [isClicked, setIsClicked] = useState(false);
@@ -67,6 +68,8 @@ function App() {
             <Route exact path="/PostYourAdd=>:category" component={AddDetails} />
             <Route exact path="/myAdd" component={MyAdds} />
             <Route exact path="/Congo=>:itemId" component={Congo} />
+            {/* <Redirect to="/" /> */}
+            {/* <Route path='*' onChange={handleChange} component={PageNotFound}/> */}
           </ItemListContext.Provider>
         </Switch>
       </LoginContext.Provider>

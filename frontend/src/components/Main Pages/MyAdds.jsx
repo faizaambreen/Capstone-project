@@ -10,9 +10,9 @@ function MyAdds() {
   const [{itemList,isLoading}, setList] = useContext(ItemListContext);
   const [data, setData] = useState(itemList.filter((item)=>item.ownerID==login.id));
 
-  if(!login.isLoggedIn){
-    return <Redirect to="/" />;
-  }
+  // if(!login.isLoggedIn){
+  //   return <Redirect to="/" />;
+  // }
 
   async function deleteAd(id) {
     console.log("Deleted");

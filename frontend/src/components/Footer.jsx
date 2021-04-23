@@ -31,7 +31,7 @@ function Footer(){
         <div className="bottomFooter">
           <div className="bottomFooterInner">
             <section className="topFooterSectionDiv"> 
-               <span>© 2006-2020   Rental </span>
+               <span>© 2020-2021   Rental </span>
             </section>
           </div>
         </div>

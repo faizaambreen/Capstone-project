@@ -3,6 +3,7 @@ import ItemPic from './ItemPic';
 import ItemSeller from './ItemSeller';
 import { useParams } from "react-router-dom";
 import ItemListContext from '../../Context/ItemListContext';
+import { CircularProgress } from "@material-ui/core";
 
 function ItemView() {
   const {itemId} = useParams();
@@ -12,10 +13,10 @@ function ItemView() {
   return (
     <main className="BetweenHeaderAndFooter">
       <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
-        <div className="itemViewDiv1 itemViewDiv2">
+        {item ? <div className="itemViewDiv1 itemViewDiv2">
           <ItemPic item={item}/>
           <ItemSeller item={item}/>
-        </div>
+        </div> : <CircularProgress />}
       </div>
     </main>
   );

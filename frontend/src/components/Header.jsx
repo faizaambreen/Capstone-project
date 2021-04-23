@@ -3,6 +3,8 @@ import OutsideClickHandler from "react-outside-click-handler";
 import Button from '@material-ui/core/Button';
 import { NavLink,Link } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
+//importing logo image
+import Logo from '../images/logo.jpg';
 
 function Header(props) {
   const [login, setLogin] = useContext(LoginContext);
@@ -38,8 +40,7 @@ function Header(props) {
       <div className="insideHeader">
         <div className="headerContent">
           <NavLink to="/">
-            <img src="https://th.bing.com/th/id/Re78a38d7debb977c80f701323bf6c1da?rik=6U8BD4U3wkZkgg&riu=http%3a%2f%2fwww.mavericktheater.com%2fassets%2fimages%2fRENT_logo.jpg&ehk=%2boH1%2bFQQToYs2oegFkxlgydxzcPztVL7emH3SCq%2fMc8%3d&risl=&pid=ImgRaw" className="logo" alt="">
-            </img>
+            <img src={Logo} className="logo" alt="Logo" />
           </NavLink>
 
           <div className="input-group mb-3 locationBox ">
