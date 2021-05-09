@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 import OutsideClickHandler from "react-outside-click-handler";
 import Button from '@material-ui/core/Button';
 import { NavLink,Link } from 'react-router-dom';
@@ -26,14 +26,23 @@ function Header(props) {
       setloginDrop("isVisible");
     }
   }
-  function logout() {
+  function logout(e) {
+    dropOut(e);
     setLogin({
       isLoggedIn:false,
       id:"",
       name:"",
       email:"",
     });
+    localStorage.clear();
   }
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if(loggedInUser){
+      setLogin(JSON.parse(loggedInUser));
+    }
+  }, []);
 
   return (
     <div className="header">
@@ -110,19 +119,17 @@ function Header(props) {
                   </div>
                 </div>
                 <div style={{ borderTop: '1px solid rgba(0, 47, 52, .2)' }}>
-                  <Link to={"/myAdd"} className="myAdsDiv" style={{ textDecoration: 'none' }}>
+                  <Link onClick={dropOut} to={"/myAdd"} className="myAdsDiv" style={{ textDecoration: 'none' }}>
                     <div style={{ padding: '2px 16px 0 0' }}>
                       <svg width="23px" height="23px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd"><path class="rui-77aaa" d="M349.46 85.333h487.619l40.635 40.635v609.524l-40.635 40.635h-487.619l-40.635-40.635v-609.524l40.635-40.635zM390.095 694.857h406.35v-528.254h-406.35v528.254zM146.286 247.873l40.635-40.635 40.635 40.635v609.524h528.254l40.635 40.635-40.635 40.635h-568.889l-40.635-40.635v-650.159zM512 329.143h162.54l40.635 40.635-40.635 40.635h-162.54l-40.635-40.635 40.635-40.635zM512 491.683h81.27l40.635 40.635-40.635 40.635h-81.27l-40.635-40.635 40.635-40.635z"></path></svg>
-                      <span onClick={drop} style={{ paddingLeft: '15px' }} >My Ads</span>
+                      <span style={{ paddingLeft: '15px' }} >My Ads</span>
                     </div>
-
                   </Link>
                   <Link onClick={logout} to={"/"} className="myAdsDiv" style={{ textDecoration: 'none', borderTop: '1px solid rgba(0, 47, 52, .2)' }}>
                     <div style={{ padding: '2px 16px 0 0' }}>
                       <svg width="23px" height="23px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd"><path class="rui-77aaa" d="M128 85.333l-42.667 42.667v768l42.667 42.667h768l42.667-42.667v-213.333l-42.667-42.667-42.667 42.667v170.667h-682.667v-682.667h682.667v170.667l42.667 42.667 42.667-42.667v-213.333l-42.667-42.667h-768zM494.336 298.667l-183.168 183.168v60.331l183.168 183.168h60.331v-60.331l-110.336-110.336h323.669l42.667-42.667-42.667-42.667h-323.669l110.336-110.336v-60.331h-60.331z"></path></svg>
-                      <span onClick={drop} style={{ paddingLeft: '15px' }}>Logout</span>
+                      <span style={{ paddingLeft: '15px' }}>Logout</span>
                     </div>
-
                   </Link>
                 </div>
               </div>

@@ -29,6 +29,7 @@ function App() {
     name: "",
     email: ""
   });
+  // const setLogin = login[1];
 
   function handdleClick() {
     setIsClicked(true);

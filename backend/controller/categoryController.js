@@ -14,7 +14,7 @@ const getItems = (req,res)=>{
           status:400
         });
       }
-    });
+    }).sort({_id: -1});
 
   // console.log(req.params.category);
   

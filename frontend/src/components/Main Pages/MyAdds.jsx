@@ -40,7 +40,7 @@ function MyAdds() {
   return (
     <main className="BetweenHeaderAndFooter">
       <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
-        <h1 style={{ marginLeft: "1%" }}>My Ads</h1>
+        <h1 style={{ marginLeft: "1%" }}>My ADs</h1>
         <section className="Section_myAdd">
           {data.map((item, index) => <Ads key={index} id={item._id} item={item} onChecked={deleteAd} />)}
         </section>

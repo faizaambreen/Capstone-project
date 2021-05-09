@@ -10,23 +10,29 @@ function Login(props) {
     const data = {
       tokenId: response.tokenId
     };
-
-    const result = await fetch("/auth/google", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
-    const status = await result.json();
-    if (status) {
-      setLogin({
-        ...status,
-        isLoggedIn: true
+    try {
+      const result = await fetch("/login/google", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
       });
-      props.onUnChecked();
-    } else {
-      alert("Error Occurred! Try Again !");
+      const status = await result.json();
+      if (status) {
+        const userLogin = {
+          ...status,
+          isLoggedIn: true          
+        };
+        setLogin(userLogin);
+        localStorage.setItem("user",JSON.stringify(userLogin));
+        props.onUnChecked();
+      } else {
+        alert("Error Occurred! Try Again !");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Error Occurred! Try Again !");      
     }
   }
 

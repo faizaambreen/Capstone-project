@@ -42,7 +42,7 @@ const User = require("../models/User");
 //   }
 // ));
 
-const performLogin = async (req, res) => {
+const googleLogin = async (req, res) => {
     const { tokenId } = req.body;
     const response = await client.verifyIdToken({
         idToken: tokenId,
@@ -50,7 +50,7 @@ const performLogin = async (req, res) => {
     });
     const { email, name, email_verified } = response.payload;
     if (email_verified) {
-        User.findOrCreate({ email: email }, {
+        await User.findOrCreate({ email: email }, {
             username: email,
             name: name,
         }, function (err, user) {
@@ -67,4 +67,4 @@ const performLogin = async (req, res) => {
     }
 };
 
-module.exports = performLogin;
+module.exports = googleLogin;

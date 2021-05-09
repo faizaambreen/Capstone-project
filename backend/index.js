@@ -6,7 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 
 // Import Routes
-const googleAuthRoute = require("./routes/googleAuthentication");
+const loginAndSignupRoute = require("./routes/userLogin&Signup");
 const postRoute = require("./routes/post");
 const categoryRoute = require("./routes/category");
 const getUserAds = require("./routes/getUserAds");
@@ -30,7 +30,7 @@ app.use(passport.session());
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 
-app.use("/auth/google", googleAuthRoute);
+app.use("/login", loginAndSignupRoute);
 
 app.use("/post", postRoute);
 
