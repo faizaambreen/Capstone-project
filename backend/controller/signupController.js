@@ -1,7 +1,7 @@
 // Import Models
 const User = require("../models/User");
 
-const performSignup = async (req, res) => {
+const signupController = async (req, res) => {
     const { email,name,password } = req.body;
     await User.create({email,name,password}, function (err, user) {
         if (user) {
@@ -16,4 +16,4 @@ const performSignup = async (req, res) => {
     });
 };
 
-module.exports = performSignup;
+module.exports = signupController;

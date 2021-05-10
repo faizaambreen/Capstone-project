@@ -2,9 +2,13 @@ import React, { useState, useContext } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import GoogleLogin from 'react-google-login';
 import LoginContext from '../../Context/LoginContext';
+import { SignInForm } from "../SignIn&UpForms/SignInForm";
+import { CircularProgress } from "@material-ui/core";
 
 function Login(props) {
   const [login, setLogin] = useContext(LoginContext);
+  const [localLogin, setLocalLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function responseSuccessGoogle(response) {
     const data = {
@@ -22,26 +26,33 @@ function Login(props) {
       if (status) {
         const userLogin = {
           ...status,
-          isLoggedIn: true          
+          isLoggedIn: true
         };
         setLogin(userLogin);
-        localStorage.setItem("user",JSON.stringify(userLogin));
+        localStorage.setItem("user", JSON.stringify(userLogin));
         props.onUnChecked();
       } else {
         alert("Error Occurred! Try Again !");
       }
     } catch (error) {
       console.log(error);
-      alert("Error Occurred! Try Again !");      
+      alert("Error Occurred! Try Again !");
     }
+    setIsLoading(false);
   }
 
   function responseErrorGoogle(response) {
+    setIsLoading(false);
     alert("Something Went Wrong. TRY Again Later!");
   }
 
   function clearPopup() {
+    setLocalLogin(true);
     props.onUnChecked();
+  }
+
+  function showLoginEmail() {
+    setLocalLogin(false);
   }
 
   return (
@@ -64,22 +75,43 @@ function Login(props) {
             </svg>
           </span>
 
-          <div className="btns">
-            <span className="loadDiv">
-              <GoogleLogin
-                render={renderProps => (
-                  <button onClick={renderProps.onClick} className="loadBtn">
-                    <img style={{ marginRight: '10px' }} src="https://img.icons8.com/color/30/000000/google-logo.png" />
-                          SignIn with Google
-                  </button>
-                )}
-                clientId="582570851600-vl8k9tsk5ssr9a7us3bcc1082s13udng.apps.googleusercontent.com"
-                onSuccess={responseSuccessGoogle}
-                onFailure={responseErrorGoogle}
-                cookiePolicy={'single_host_origin'}
-              />
-            </span>
-          </div>
+          {
+            localLogin ? <span>
+              <div style={{ marginTop: "20%" }}>
+                <span className="loadDiv">
+                  <GoogleLogin
+                    render={renderProps => (
+                      <button
+                        onClick={() => {
+                          setIsLoading(true);
+                          renderProps.onClick();
+                        }}
+                        className="loadBtn"
+                        disabled={isLoading}
+                      >
+                        <img style={{ marginRight: '10px' }} src="https://img.icons8.com/color/30/000000/google-logo.png" />
+                          Continue with Google
+                      </button>
+                    )}
+                    clientId="582570851600-vl8k9tsk5ssr9a7us3bcc1082s13udng.apps.googleusercontent.com"
+                    onSuccess={responseSuccessGoogle}
+                    onFailure={responseErrorGoogle}
+                    cookiePolicy={'single_host_origin'}
+                  />
+                </span>
+              </div>
+              <span className="loadDiv">
+                <button
+                  onClick={showLoginEmail}
+                  className="loadBtn"
+                  disabled={isLoading}
+                >
+                  Continue with Email
+                </button>
+              </span>
+              {isLoading && <div className="loadDiv btns"><CircularProgress /></div>}
+            </span> : <SignInForm setLogin={setLogin} onUnChecked={props.onUnChecked} />
+          }
         </div>
       </OutsideClickHandler>
     </div>

@@ -1,9 +1,9 @@
 // Import Models
 const User = require("../models/User");
 
-const performSignin = async (req, res) => {
+const signinController = async (req, res) => {    
     const { email,password } = req.body;
-    await User.find({ email,password }, function (err, user) {
+    await User.findOne({ email,password }, function (err, user) {
         if (user) {
             res.send({
                 id:user._id,
@@ -16,4 +16,4 @@ const performSignin = async (req, res) => {
     });
 };
 
-module.exports = performSignin;
+module.exports = signinController;
