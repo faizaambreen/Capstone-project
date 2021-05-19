@@ -128,6 +128,7 @@ export const SignUpForm = ({setLogin,onUnChecked}) => {
             <button
                 type="submit"
                 className="loadBtn btns"
+                style={{width:"100%"}}
                 onClick={()=>{
                     console.log(email);
                     console.log(name);

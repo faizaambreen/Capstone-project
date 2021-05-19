@@ -12,14 +12,16 @@ import Login from "./components/Main Pages/Login";
 import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginContext from './Context/LoginContext';
 import ItemListContext from './Context/ItemListContext';
+import LocationAndSearchContext from './Context/LocationAndSearchContext';
 import MyAdds from './components/Main Pages/MyAdds';
 import { PageNotFound } from './components/Main Pages/PageNotFound';
 
 function App() {
   const [isClicked, setIsClicked] = useState(false);
+  const locationAndSearch = useState({location:"Pakistan",search:""});
   const list = useState({
-    itemList:[],
-    isLoading:true
+    itemList: [],
+    isLoading: true
   });
   const setList = list[1];
 
@@ -40,10 +42,10 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      
+
       const response = await fetch("/categories");
       const data = await response.json();
-      if(data.status!==400){
+      if (data.status !== 400) {
         setList({
           itemList: data.items,
           isLoading: false
@@ -51,20 +53,26 @@ function App() {
       }
     }
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [1]);  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [1]);
 
   return (
     <div id="container" className="appClass">
       <LoginContext.Provider value={login}>
-        <Header onChecked={handdleClick} />
+        <LocationAndSearchContext.Provider value={locationAndSearch}>
+          <Header onChecked={handdleClick} />
+        </LocationAndSearchContext.Provider>
         <Login cls={isClicked} onUnChecked={remove} />
         <Cat />
         <Switch>
           <ItemListContext.Provider value={list}>
-            <Route exact path="/" component={LandingPage} />
+            <LocationAndSearchContext.Provider value={locationAndSearch}>
+              <Route exact path="/" component={LandingPage} />
+            </LocationAndSearchContext.Provider>
             <Route exact path="/itemView=>:itemId" component={ItemView} />
-            <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
+            <LocationAndSearchContext.Provider value={locationAndSearch}>
+              <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
+            </LocationAndSearchContext.Provider>
             <Route exact path="/PostYourAdd" component={PostYourAdd} />
             <Route exact path="/PostYourAdd=>:category" component={AddDetails} />
             <Route exact path="/myAdd" component={MyAdds} />

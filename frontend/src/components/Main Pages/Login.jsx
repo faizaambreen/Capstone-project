@@ -86,6 +86,7 @@ function Login(props) {
                           setIsLoading(true);
                           renderProps.onClick();
                         }}
+                        style={{width:"100%"}}
                         className="loadBtn"
                         disabled={isLoading}
                       >
@@ -104,6 +105,7 @@ function Login(props) {
                 <button
                   onClick={showLoginEmail}
                   className="loadBtn"
+                  style={{width:"100%"}}
                   disabled={isLoading}
                 >
                   Continue with Email

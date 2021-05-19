@@ -85,6 +85,7 @@ export const SignInForm = ({setLogin,onUnChecked}) => {
             <button
                 type="submit"
                 className="loadBtn btns"
+                style={{width:"100%"}}
                 disabled={isLoading}
             >
                 <span>{isLoading ? <CircularProgress /> : "Log in"}</span>

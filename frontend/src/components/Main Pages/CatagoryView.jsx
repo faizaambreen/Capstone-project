@@ -3,26 +3,41 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { useParams } from "react-router-dom";
 import Item from '../Item';
 import ItemListContext from '../../Context/ItemListContext';
+import LocationAndSearchContext from '../../Context/LocationAndSearchContext';
 
+var change = 0;
 function CatagoryView() {
     const { category } = useParams();
-    const [{ itemList, isLoading}] = useContext(ItemListContext);
-    const [currentCategory, setCurrentCategory] = useState("");    
+
+    const [{ itemList, isLoading }] = useContext(ItemListContext);
+    const [{ location, search }, setLocationAndSearch] = useContext(LocationAndSearchContext);
+    const [currentCategory, setCurrentCategory] = useState("");
     const [categoryList, setCategoryList] = useState([]);
-    
-    if(!isLoading && currentCategory!==category){        
-        setCurrentCategory(category);
-        setCategoryList(itemList.filter((item)=>item.category===category));
-    }
+    const [filteredList, setFilteredList] = useState(null);
     const [countOfItems, setCountOfItems] = useState(13);
     const [priceFilter, setPriceFilter] = useState(false);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
+    const [loc, setLoc] = useState("collapsedContent toVisible");
+    const [sloc, setSloc] = useState("unCollaspedContent isVisible");
+    const [ro, setRo] = useState("");
 
-    const [loc, setLoc]=useState("collapsedContent toVisible");
-    const [sloc,setSloc]=useState("unCollaspedContent isVisible");
-    const [location,setLocation]=useState("Pakistan");
-    const [ro,setRo]=useState("");
+    if (!isLoading && currentCategory !== category) {
+        setCurrentCategory(category);
+        if (search === category) {
+            setCategoryList(itemList.filter((item) => (
+                item.title.toLowerCase().includes(search) ||
+                item.category.toLowerCase() === search)));
+        }
+        else {
+            setLocationAndSearch({
+                location,
+                search: ""
+            });
+            setCategoryList(itemList.filter((item) => item.category === category));
+        }
+    }
+
     function onLoadClick() {
         setCountOfItems(countOfItems + 12);
     }
@@ -30,27 +45,52 @@ function CatagoryView() {
     const a = {
         display: 'block'
     }
-    function drop(){
-        if(loc==="collapsedContent toVisible"&&sloc==="unCollaspedContent isVisible"){
+    function drop() {
+        if (loc === "collapsedContent toVisible" && sloc === "unCollaspedContent isVisible") {
             setLoc("collapsedContent");
             setSloc("unCollaspedContent");
             setRo("ro");
-        }else{
+        } else {
             setLoc("collapsedContent toVisible");
             setSloc("unCollaspedContent isVisible");
             setRo("");
         }
     }
-    function locationValue(e){
-        setLocation(e.currentTarget.innerText);
+    function locationValue({ currentTarget: { innerText } }) {
+        setLocationAndSearch({
+            location: innerText,
+            search
+        });
         drop();
     }
+
+    useEffect(() => {
+        if (priceFilter && location !== "Pakistan") {
+            setFilteredList(categoryList.filter((item) => (
+                item.price >= Number(minPrice) &&
+                item.price <= Number(maxPrice) &&
+                item.state === location)));
+        }
+        else if (priceFilter) {
+            setFilteredList(categoryList.filter((item) => (
+                item.price >= Number(minPrice) &&
+                item.price <= Number(maxPrice))));
+        }
+        else if (location !== "Pakistan") {
+            setFilteredList(categoryList.filter((item) => (
+                item.state === location)));
+        }
+        else {
+            setFilteredList(null);
+        }
+    }, [priceFilter, location]);
+
     return (
         <main className="BetweenHeaderAndFooter">
             <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
                 <div className="CatMainDiv">
                     <div className="insideCatMainDiv">
-                        <h1 className="CatHeading">{category}</h1>
+                        <h1 className="CatHeading">{search === "" ? category : search}</h1>
 
                         <div style={{ display: 'flex' }}>
                             <div className="FilterDiv">
@@ -98,14 +138,14 @@ function CatagoryView() {
 
                                         <div className="LocationDiv">
                                             <div className="LocationHeading">
-                                                <span className="LocationText">Price 
+                                                <span className="LocationText">Price
                                                     <span style={{
-                                                        textTransform:"none",
-                                                        fontSize:"14px"
-                                                        }}>   (Rs.)
+                                                        textTransform: "none",
+                                                        fontSize: "14px"
+                                                    }}>   (Rs.)
                                                     </span>
                                                 </span>
-                                                
+
                                             </div>
 
                                             <div className="priceDiv" style={a}>
@@ -166,27 +206,19 @@ function CatagoryView() {
                                 !isLoading ? <div className="ItemsDiv">
                                     <ul className="ul1 ul2 row">
                                         {
-                                            ( (priceFilter && location!=="Pakistan") ? categoryList.filter((item)=>(
-                                                item.price >= Number(minPrice) &&
-                                                item.price <= Number(maxPrice) &&
-                                                item.state === location)
-                                            ) : priceFilter ? categoryList.filter((item)=>(
-                                                item.price >= Number(minPrice) &&
-                                                item.price <= Number(maxPrice))
-                                            ) : location!=="Pakistan" ? categoryList.filter((item)=>(
-                                                item.state === location)
-                                            ) : categoryList)
+                                            (filteredList ? filteredList : categoryList)
                                                 .slice(0, countOfItems)
                                                 .map((item) => (
                                                     <Item itemData={item} />
                                                 ))
                                         }
                                     </ul>
-                                    { categoryList.length>countOfItems && <div className="loadDiv">
-                                        <button onClick={onLoadClick} className="loadBtn">
-                                            <span>Load More</span>
-                                        </button>
-                                    </div>}
+                                    {(filteredList ? filteredList : categoryList).length > countOfItems
+                                        && <div className="loadDiv">
+                                            <button onClick={onLoadClick} className="loadBtn">
+                                                <span>Load More</span>
+                                            </button>
+                                        </div>}
                                 </div>
                                     :
                                     <CircularProgress className="catLoading" />
