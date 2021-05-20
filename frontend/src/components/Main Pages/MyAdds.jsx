@@ -1,18 +1,25 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Ads from './Ads';
 import data from "../../data"
 import LoginContext from '../../Context/LoginContext';
 import ItemListContext from '../../Context/ItemListContext';
 import { NavLink, Redirect } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 
 function MyAdds() {
-  const [login] = useContext(LoginContext);
+  const [{isLoggedIn,id}] = useContext(LoginContext);
   const [{itemList,isLoading}, setList] = useContext(ItemListContext);
-  const [data, setData] = useState(itemList.filter((item)=>item.ownerID==login.id));
+  const [data, setData] = useState(null);
 
-  // if(!login.isLoggedIn){
-  //   return <Redirect to="/" />;
-  // }
+  useEffect(() => {
+    if(isLoggedIn){
+      setData(itemList.filter((item)=>item.ownerID===id));
+    }
+  }, [isLoading]);
+
+  if(!isLoggedIn){
+    return <Redirect to="/" />;
+  }
 
   async function deleteAd(id) {
     console.log("Deleted");
@@ -42,7 +49,11 @@ function MyAdds() {
       <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
         <h1 style={{ marginLeft: "1%" }}>My ADs</h1>
         <section className="Section_myAdd">
-          {data.map((item, index) => <Ads key={index} id={item._id} item={item} onChecked={deleteAd} />)}
+          {
+            data ? data.map((item, index) =>(
+              <Ads key={index} id={item._id} item={item} onChecked={deleteAd} />)
+            ) : <CircularProgress />
+          }
         </section>
       </div>
     </main>

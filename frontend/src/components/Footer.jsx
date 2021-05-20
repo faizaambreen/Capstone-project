@@ -6,12 +6,11 @@ function Footer() {
     const trending = ["Bikes", "Bridal Dresses", "Freezers"];
 
     function Section({ name, list }) {
-        console.log(list);
         
         return (
             <section className="topFooterSectionDiv">
                 {name}
-                <ul style={{ listStyle: 'none' }}>
+                <ul style={{paddingLeft:"0", listStyle: 'none' }}>
                     {
                         list && list.map((item) => (
                             <li>

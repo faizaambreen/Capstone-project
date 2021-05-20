@@ -12,11 +12,11 @@ function ItemView() {
   
   return (
     <main className="BetweenHeaderAndFooter">
-      <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
+      <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">        
         {item ? <div className="itemViewDiv1 itemViewDiv2">
           <ItemPic item={item}/>
           <ItemSeller item={item}/>
-        </div> : <CircularProgress />}
+        </div> : <div style={{display: 'flex',justifyContent:"center",margin:"50px 0"}}><CircularProgress /></div>}
       </div>
     </main>
   );

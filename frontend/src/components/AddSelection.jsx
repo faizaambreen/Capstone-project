@@ -1,21 +1,24 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import {categoryList} from '../CategoryList';
 
-function AddSelection(){
-    const list=["Bikes","Others","Bicycles","Busses","Rikshaws","Boats","Tractors","Generators","UPS","Freezers","Washing Machines & Dryers","Lawns","Hotels","Books","Furniture","IPads","Carpets","Paintings","Curtains","Musical Instruments","Sports Equipment","Cars","Trucks","Mobiles","Web devloper","Internet","House Maids","Flats","Tablets","Houses","Bridal Dresses","Property for Rent","Plumbers","Air Conditioners"];
-    list.sort();
+function AddSelection() {
 
-    function PostLi(props){
-        const pa="/PostYourAdd=>"+props.name;
-        return(
-            <NavLink exact to={pa} style={{textDecoration:'none'}}>
+    function PostLi(props) {
+        const pa = "/PostYourAdd=>" + props.name;
+        return (
+            <Link
+                onClick={() => {localStorage.setItem("createPost", true);}}
+                to={pa}
+                style={{ textDecoration: 'none' }}
+            >
                 <li className="PostLiDiv" >
                     <span className="PostLiContent">{props.name}</span>
                 </li>
-            </NavLink>
+            </Link>
         );
     }
-    return(
+    return (
         <div className="PostListDiv">
             <div>
                 <h3 className="PostCatHeading">
@@ -23,7 +26,7 @@ function AddSelection(){
                 </h3>
                 <div className="ListContainerDiv">
                     <ul className="PostUlDiv">
-                        {list.map((item)=> <PostLi name={item}/>)}
+                        {categoryList.map((item) => <PostLi name={item} />)}
                     </ul>
                 </div>
             </div>

@@ -25,13 +25,14 @@ function App() {
   });
   const setList = list[1];
 
-  const login = useState({
+  const loggedInUser = localStorage.getItem("user");
+  const login = useState( loggedInUser ? JSON.parse(loggedInUser) : {
     isLoggedIn: false,
     id: "",
     name: "",
     email: ""
   });
-  // const setLogin = login[1];
+  const setLogin = login[1];
 
   function handdleClick() {
     setIsClicked(true);
@@ -42,7 +43,6 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-
       const response = await fetch("/categories");
       const data = await response.json();
       if (data.status !== 400) {
@@ -77,8 +77,7 @@ function App() {
             <Route exact path="/PostYourAdd=>:category" component={AddDetails} />
             <Route exact path="/myAdd" component={MyAdds} />
             <Route exact path="/Congo=>:itemId" component={Congo} />
-            {/* <Redirect to="/" /> */}
-            {/* <Route path='*' onChange={handleChange} component={PageNotFound}/> */}
+            <Route component={PageNotFound} />
           </ItemListContext.Provider>
         </Switch>
       </LoginContext.Provider>

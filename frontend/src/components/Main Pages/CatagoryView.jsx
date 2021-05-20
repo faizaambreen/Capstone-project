@@ -5,7 +5,6 @@ import Item from '../Item';
 import ItemListContext from '../../Context/ItemListContext';
 import LocationAndSearchContext from '../../Context/LocationAndSearchContext';
 
-var change = 0;
 function CatagoryView() {
     const { category } = useParams();
 

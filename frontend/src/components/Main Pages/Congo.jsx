@@ -4,10 +4,11 @@ import LoginContext from '../../Context/LoginContext';
 function Congo(){
     const [{isLoggedIn}] = useContext(LoginContext);
     const {itemId} = useParams();
-
-    if(!isLoggedIn){
+    const postCreated = localStorage.getItem("postCreated");
+    if(!isLoggedIn || !postCreated){
         return <Redirect to="/" />;
     }
+    localStorage.removeItem("postCreated");
 
     return (
       <main className="BetweenHeaderAndFooter">

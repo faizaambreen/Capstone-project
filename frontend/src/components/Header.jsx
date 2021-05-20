@@ -12,7 +12,8 @@ function Header(props) {
   const [{location,search},setLocationAndSearch] = useContext(LocationAndSearchContext);
   const [loginDrop, setloginDrop] = useState("isVisible");
   const [inputSearch, setInputSearch] = useState("");
-
+  console.log(login);
+  
   function drop() {
     if (loginDrop === "isVisible") {
       setloginDrop("");
@@ -37,7 +38,7 @@ function Header(props) {
       name:"",
       email:"",
     });
-    localStorage.clear();
+    localStorage.removeItem("user");
   }
 
   function updateLocation({currentTarget:{innerText}}) {
@@ -59,18 +60,18 @@ function Header(props) {
     });
   }
 
+  // useEffect(() => {
+  //   const loggedInUser = localStorage.getItem("user");
+  //   if(loggedInUser){
+  //     setLogin(JSON.parse(loggedInUser));
+  //   }
+  // }, []);
+
   useEffect(() => {
     if(search===""){
       setInputSearch("");
     }
-  }, [search])
-
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if(loggedInUser){
-      setLogin(JSON.parse(loggedInUser));
-    }
-  }, []);
+  }, [search]);
 
   return (
     <div className="header">

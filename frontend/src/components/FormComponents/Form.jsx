@@ -77,6 +77,7 @@ export default function Form({category}) {
             if (result.status===200) {
                 itemList.push(result.item);
                 setItemId(result.item._id);
+                localStorage.setItem("postCreated",true);
             } else {
                 alert("Error Occurred! TRY Again !");
             }

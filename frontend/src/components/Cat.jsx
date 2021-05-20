@@ -1,30 +1,17 @@
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { NavLink } from 'react-router-dom'
+import {headerCategoryList, mainAndSubCategories} from '../CategoryList';
+
 function Cat() {
     const [direction, setDirection] = useState(false);
     const [Cls, setCls] = useState("dd1");
     const [Cls1, setCls1] = useState("insideCatListContainer isVisible");
-    const Catagery = ["Cars", "Bikes", "Busses", "Rikshaws", "Boats", "Tractors", "Generators", "UPS", "Freezers", "Washing Machines & Dryers", "Hotels"];
-
-    let arr = new Array(6);
-    for (var i = 0; i < 7; i++) {
-        arr[i] = [];
-    }
-
-    arr[0] = ["Vehicles", "Mobiles & Tablates", "Electrical Aplyances", "Property", "Home Aplyances", "Services"];
-    arr[1] = ["Cars", "Bikes", "Bicycles", "Rikshaws", "Tractors", "Boats", "Busses"].sort();
-    arr[2] = ["Mobiles", "Tablates", "IPads"].sort();
-    arr[3] = ["Generators", "UPS", "Freezers", "Washing Machines & Dryers"].sort();
-    arr[4] = ["Hotels", "Flats", "Houses", "Property for Rent"].sort();
-    arr[5] = ["Furniture", "Carpets", "Paintings", "Curtains", "Musical Instruments", "Sports Equipment", "Bridal Dresses"].sort();
-    arr[6] = ["House Maids", "Web devloper", "Plumbers", "internet"].sort();
-
 
     function CatBlock() {
         return (
             <div>
-                {arr[0].map((heading, index) => {
+                {mainAndSubCategories[0].map((heading, index) => {
                     return (
                         <div className="singleCol">
                             <div className="catHeadingDiv">
@@ -32,7 +19,7 @@ function Cat() {
                                     <span>{heading}</span>
                                 </div>
                             </div>
-                            {arr[index + 1].map((category) => <SubCat name={category} />)}
+                            {mainAndSubCategories[index + 1].map((category) => <SubCat name={category} />)}
                         </div>
                     );
                 })}
@@ -104,7 +91,7 @@ function Cat() {
                         </span>
 
                         <div className="SomeCat">
-                            {Catagery.map((x) => <SingleCat name={x} />)}
+                            {headerCategoryList.map((x) => <SingleCat name={x} />)}
                         </div>
                         <div className="catListContainer">
                             <OutsideClickHandler onOutsideClick={outHanddler}>

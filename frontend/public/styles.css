@@ -684,7 +684,7 @@ h2 {
 .topDesktopFooter {
   display: flex;
   background: #ebeeef;
-  padding: 16px 0 32px;
+  padding: 16px 0 0;
   border-top: 1px solid rgba(0, 47, 52, 0.2);
   font-size: 14px;
   line-height: 20px;
@@ -709,7 +709,7 @@ h2 {
   text-transform: none;
   text-decoration: none;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   color: #002f34;
   color: rgba(0, 47, 52, 0.64);
 }
