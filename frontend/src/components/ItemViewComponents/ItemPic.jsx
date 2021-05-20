@@ -4,7 +4,6 @@ import Description from './Description';
 function ItemPic({ item }) {
     const [index, setIndex] = useState(0);
 
-
     return (
         <div className="itemPicEtcDiv">
             <div className="PicAreaDiv2">
@@ -49,6 +48,7 @@ function ItemPic({ item }) {
             <Description description={item.description} />
         </div>
     );
+
 }
 
 export default ItemPic;

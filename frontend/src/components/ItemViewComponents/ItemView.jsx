@@ -3,19 +3,20 @@ import ItemPic from './ItemPic';
 import ItemSeller from './ItemSeller';
 import { useParams } from "react-router-dom";
 import ItemListContext from '../../Context/ItemListContext';
+import { CircularProgress } from "@material-ui/core";
 
 function ItemView() {
   const {itemId} = useParams();
-  const {list:{itemList}} = useContext(ItemListContext);
+  const [{itemList}] = useContext(ItemListContext);
   const item = itemList.find(({_id})=>_id===itemId);
   
   return (
     <main className="BetweenHeaderAndFooter">
-      <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
-        <div className="itemViewDiv1 itemViewDiv2">
+      <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">        
+        {item ? <div className="itemViewDiv1 itemViewDiv2">
           <ItemPic item={item}/>
           <ItemSeller item={item}/>
-        </div>
+        </div> : <div style={{display: 'flex',justifyContent:"center",margin:"50px 0"}}><CircularProgress /></div>}
       </div>
     </main>
   );

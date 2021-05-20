@@ -3,26 +3,40 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { useParams } from "react-router-dom";
 import Item from '../Item';
 import ItemListContext from '../../Context/ItemListContext';
+import LocationAndSearchContext from '../../Context/LocationAndSearchContext';
 
 function CatagoryView() {
     const { category } = useParams();
-    const {list:{ itemList, isLoading}} = useContext(ItemListContext);
-    const [currentCategory, setCurrentCategory] = useState("");    
+
+    const [{ itemList, isLoading }] = useContext(ItemListContext);
+    const [{ location, search }, setLocationAndSearch] = useContext(LocationAndSearchContext);
+    const [currentCategory, setCurrentCategory] = useState("");
     const [categoryList, setCategoryList] = useState([]);
-    
-    if(!isLoading && currentCategory!==category){        
-        setCurrentCategory(category);
-        setCategoryList(itemList.filter((item)=>item.category===category));
-    }
+    const [filteredList, setFilteredList] = useState(null);
     const [countOfItems, setCountOfItems] = useState(13);
     const [priceFilter, setPriceFilter] = useState(false);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
+    const [loc, setLoc] = useState("collapsedContent toVisible");
+    const [sloc, setSloc] = useState("unCollaspedContent isVisible");
+    const [ro, setRo] = useState("");
 
-    const [loc, setLoc]=useState("collapsedContent toVisible");
-    const [sloc,setSloc]=useState("unCollaspedContent isVisible");
-    const [locV,setLocV]=useState("Pakistan");
-    const [ro,setRo]=useState("");
+    if (!isLoading && currentCategory !== category) {
+        setCurrentCategory(category);
+        if (search === category) {
+            setCategoryList(itemList.filter((item) => (
+                item.title.toLowerCase().includes(search) ||
+                item.category.toLowerCase() === search)));
+        }
+        else {
+            setLocationAndSearch({
+                location,
+                search: ""
+            });
+            setCategoryList(itemList.filter((item) => item.category === category));
+        }
+    }
+
     function onLoadClick() {
         setCountOfItems(countOfItems + 12);
     }
@@ -30,27 +44,52 @@ function CatagoryView() {
     const a = {
         display: 'block'
     }
-    function drop(){
-        if(loc==="collapsedContent toVisible"&&sloc==="unCollaspedContent isVisible"){
+    function drop() {
+        if (loc === "collapsedContent toVisible" && sloc === "unCollaspedContent isVisible") {
             setLoc("collapsedContent");
             setSloc("unCollaspedContent");
             setRo("ro");
-        }else{
+        } else {
             setLoc("collapsedContent toVisible");
             setSloc("unCollaspedContent isVisible");
             setRo("");
         }
     }
-    function locationValue(e){
-        setLocV(e.currentTarget.innerText);
+    function locationValue({ currentTarget: { innerText } }) {
+        setLocationAndSearch({
+            location: innerText,
+            search
+        });
         drop();
     }
+
+    useEffect(() => {
+        if (priceFilter && location !== "Pakistan") {
+            setFilteredList(categoryList.filter((item) => (
+                item.price >= Number(minPrice) &&
+                item.price <= Number(maxPrice) &&
+                item.state === location)));
+        }
+        else if (priceFilter) {
+            setFilteredList(categoryList.filter((item) => (
+                item.price >= Number(minPrice) &&
+                item.price <= Number(maxPrice))));
+        }
+        else if (location !== "Pakistan") {
+            setFilteredList(categoryList.filter((item) => (
+                item.state === location)));
+        }
+        else {
+            setFilteredList(null);
+        }
+    }, [priceFilter, location]);
+
     return (
         <main className="BetweenHeaderAndFooter">
             <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
                 <div className="CatMainDiv">
                     <div className="insideCatMainDiv">
-                        <h1 className="CatHeading">{category}</h1>
+                        <h1 className="CatHeading">{search === "" ? category : search}</h1>
 
                         <div style={{ display: 'flex' }}>
                             <div className="FilterDiv">
@@ -66,11 +105,11 @@ function CatagoryView() {
                                                     </svg>
                                                 </div>
                                             </div>
-                                            <div className={loc}>{locV}</div>
+                                            <div className={loc}>{location}</div>
                                             <div className={sloc}>
                                                 <ul className="unCollaspedContentUl">
                                                     <li>
-                                                        <span className="unCollaspedContentHeading">{locV}</span>
+                                                        <span className="unCollaspedContentHeading">{location}</span>
                                                         <ul className="unCollaspedDropdownDiv">
                                                             <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Pakistan</span>
@@ -85,7 +124,7 @@ function CatagoryView() {
                                                                 <span className="unCollaspedDropdownItem">Balochistan</span>
                                                             </li>
                                                             <li onClick={locationValue}>
-                                                                <span className="unCollaspedDropdownItem">Kpk</span>
+                                                                <span className="unCollaspedDropdownItem">KPK</span>
                                                             </li>
                                                             <li onClick={locationValue}>
                                                                 <span className="unCollaspedDropdownItem">Gilgit</span>
@@ -98,8 +137,14 @@ function CatagoryView() {
 
                                         <div className="LocationDiv">
                                             <div className="LocationHeading">
-                                                <span className="LocationText">Price</span>
-                                                
+                                                <span className="LocationText">Price
+                                                    <span style={{
+                                                        textTransform: "none",
+                                                        fontSize: "14px"
+                                                    }}>   (Rs.)
+                                                    </span>
+                                                </span>
+
                                             </div>
 
                                             <div className="priceDiv" style={a}>
@@ -136,13 +181,13 @@ function CatagoryView() {
                                                     />
                                                     <a className="priceSearch"
                                                         onClick={() => {
-                                                            console.log(typeof (itemList[0].price));
                                                             if (minPrice && maxPrice) {
                                                                 setPriceFilter(true);
                                                             }
                                                             else {
                                                                 setPriceFilter(false);
                                                             }
+                                                            console.log(priceFilter);
                                                         }}
                                                     >
                                                         <svg width="16px" height="16px" viewBox="0 0 1024 1024" data-aut-id="icon" fill-rule="evenodd">
@@ -160,21 +205,19 @@ function CatagoryView() {
                                 !isLoading ? <div className="ItemsDiv">
                                     <ul className="ul1 ul2 row">
                                         {
-                                            (priceFilter ? categoryList.filter((item)=>(
-                                                item.price >= Number(minPrice) &&
-                                                item.price <= Number(maxPrice))
-                                            ) : categoryList)
+                                            (filteredList ? filteredList : categoryList)
                                                 .slice(0, countOfItems)
                                                 .map((item) => (
                                                     <Item itemData={item} />
                                                 ))
                                         }
                                     </ul>
-                                    <div className="loadDiv">
-                                        <button onClick={onLoadClick} className="loadBtn">
-                                            <span>Load More</span>
-                                        </button>
-                                    </div>
+                                    {(filteredList ? filteredList : categoryList).length > countOfItems
+                                        && <div className="loadDiv">
+                                            <button onClick={onLoadClick} className="loadBtn">
+                                                <span>Load More</span>
+                                            </button>
+                                        </div>}
                                 </div>
                                     :
                                     <CircularProgress className="catLoading" />

@@ -263,6 +263,10 @@ h2 {
   width: 100px;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 /************Header classes ends here******************/
 
 /**********************Catagery**************************/
@@ -290,7 +294,6 @@ h2 {
   margin-top: 2px;
   text-transform: uppercase;
   font-weight: 700;
-  cursor: pointer;
   color: #002f34;
 }
 
@@ -448,7 +451,7 @@ h2 {
   left: 0;
   right: 50%;
   z-index: 1;
-  background-image: url(https://www.ivorytonplayhouse.org/wp-content/uploads/2016/03/5_rent_tmm.jpg);
+  /* background-image: url(https://www.ivorytonplayhouse.org/wp-content/uploads/2016/03/5_rent_tmm.jpg); */
 }
 
 /**********************Backgroung image ends here**************************/
@@ -598,7 +601,7 @@ h2 {
 }
 
 .loadDiv {
-  margin: 20px auto;
+  margin-top: 20px;
   text-align: center;
   display: block;
 }
@@ -615,7 +618,7 @@ h2 {
 }
 
 .loadBtn {
-  height: 50px;
+  height: 52px;
   color: #002f34;
   border-radius: 4px;
   border: 2px solid #002f34;
@@ -681,7 +684,7 @@ h2 {
 .topDesktopFooter {
   display: flex;
   background: #ebeeef;
-  padding: 16px 0 32px;
+  padding: 16px 0 0;
   border-top: 1px solid rgba(0, 47, 52, 0.2);
   font-size: 14px;
   line-height: 20px;
@@ -706,7 +709,7 @@ h2 {
   text-transform: none;
   text-decoration: none;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   color: #002f34;
   color: rgba(0, 47, 52, 0.64);
 }

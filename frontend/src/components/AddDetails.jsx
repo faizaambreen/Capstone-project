@@ -6,10 +6,11 @@ import LoginContext from '../Context/LoginContext';
 function AddDetails() {
     const [{isLoggedIn}] = useContext(LoginContext);
     const {category}=useParams();
-
-    if(!isLoggedIn){
+    const createPost = localStorage.getItem("createPost");
+    if(!isLoggedIn || !createPost){
         return <Redirect to="/" />;
     }
+    localStorage.removeItem("createPost");
 
     return (
         <main className="BetweenHeaderAndFooter">

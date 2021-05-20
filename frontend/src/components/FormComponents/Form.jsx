@@ -8,7 +8,7 @@ import { CircularProgress } from '@material-ui/core';
 
 export default function Form({category}) {
     const [login] = useContext(LoginContext);
-    const {list:{itemList}} = useContext(ItemListContext);
+    const [{itemList}] = useContext(ItemListContext);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -77,6 +77,7 @@ export default function Form({category}) {
             if (result.status===200) {
                 itemList.push(result.item);
                 setItemId(result.item._id);
+                localStorage.setItem("postCreated",true);
             } else {
                 alert("Error Occurred! TRY Again !");
             }
@@ -99,7 +100,7 @@ export default function Form({category}) {
                         </span>
                         </h2>
                         <div className="AddTitleDiv">
-                            <label>Add title *</label>
+                            <label>AD Title *</label>
 
                             <TextInput
                                 name="title"
@@ -115,7 +116,7 @@ export default function Form({category}) {
                         </div>
 
                         <div className="AddTitleDiv">
-                            <label>Add Description *</label>
+                            <label>AD Description *</label>
                             <div className="AddTitleInputDiv">
                                 <textarea
                                     onChange={updateFormData}
@@ -141,7 +142,7 @@ export default function Form({category}) {
 
                 <div className="AddDetailDiv">
                     <div className="insideAddDetailDiv ">
-                        <h2><span className="AddDetailFont">SET A PRICE</span></h2>
+                        <h2><span className="AddDetailFont">SET PRICE</span></h2>
                         <div className="AddTitleDiv">
                             <label>Price*</label>
                             <div className="AddTitleInputDiv">
@@ -157,7 +158,7 @@ export default function Form({category}) {
                                     ></input>
                                 </div>
                             </div>
-                            <label>Price criteria*</label>
+                            <label>Price Criteria*</label>
                             <div className="AddTitleInputDiv">
                                 <div className="RemainingRsDiv">
                                     <div className="inputText">
@@ -215,8 +216,8 @@ export default function Form({category}) {
                                             <option value="Punjab">Punjab</option>
                                             <option value="Sindh">Sindh</option>
                                             <option value="Balochistan">Balochistan</option>
-                                            <option value="Kashmir">Kashmir</option>
                                             <option value="KPK">KPK</option>
+                                            <option value="Gilgit">Gilgit</option>
                                         </select>
                                     </div>
                                 </div>
