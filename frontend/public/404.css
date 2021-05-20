@@ -1,0 +1,38 @@
+.notFoundMain {
+    color: #002f34;
+}
+
+.notFound1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    margin: 45px auto 52px;
+    max-width: 777px;
+    padding: 0 24px;
+}
+
+.notFoundPic {
+    max-height: 301px;
+    max-width: 301px;
+    min-height: 188px;
+    min-width: 188px;
+    margin: auto 0;
+}
+
+.notFoundMsg {
+    margin-right: 5%;
+    margin-top: 4px;
+    max-width: 394px;
+}
+
+.notFoundOops {
+    font-weight: 700;
+    font-size: 112px;
+    margin-bottom: 19px;
+}
+
+.notFoundOopsMsg {
+    font-size: 32px;
+    margin-bottom: 22px;
+}

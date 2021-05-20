@@ -77,7 +77,7 @@ function App() {
             <Route exact path="/PostYourAdd=>:category" component={AddDetails} />
             <Route exact path="/myAdd" component={MyAdds} />
             <Route exact path="/Congo=>:itemId" component={Congo} />
-            <Route component={PageNotFound} />
+            <Route exact path="/PageNotFound" component={PageNotFound} />
           </ItemListContext.Provider>
         </Switch>
       </LoginContext.Provider>
