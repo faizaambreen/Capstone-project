@@ -6,18 +6,18 @@ function Footer() {
     const trending = ["Bikes", "Bridal Dresses", "Freezers"];
 
     function Section({ name, list }) {
-        
+
         return (
             <section className="topFooterSectionDiv">
                 {name}
-                <ul style={{paddingLeft:"0", listStyle: 'none' }}>
+                <ul style={{ paddingLeft: "0", listStyle: 'none' }}>
                     {
                         list && list.map((item) => (
                             <li>
-                                <Link 
-                                className="topFooterSectionItem" 
-                                style={{ textDecoration: 'none' }}
-                                to={"CatagoryView=>"+item}
+                                <Link
+                                    className="topFooterSectionItem"
+                                    style={{ textDecoration: 'none' }}
+                                    to={"CatagoryView=>" + item}
                                 >{item}</Link>
                             </li>
                         ))

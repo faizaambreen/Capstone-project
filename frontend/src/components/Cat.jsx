@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { NavLink } from 'react-router-dom'
-import {headerCategoryList, mainAndSubCategories} from '../CategoryList';
+import { headerCategoryList, mainAndSubCategories } from '../CategoryList';
 
 function Cat() {
     const [direction, setDirection] = useState(false);

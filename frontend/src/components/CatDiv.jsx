@@ -1,15 +1,15 @@
 import React from 'react';
 import Cat from './Cat';
-function CatDiv(){
+function CatDiv() {
 
-    return(
+    return (
         <div className="Cat_container">
             <div className="insideCat">
                 <div className="insideCat1">
                     <div className="allCat">
                         <div className="catListContainer">
                             <div className="insideCatListContainer" id="b">
-                                <Cat/>                            
+                                <Cat />
                             </div>
                         </div>
                     </div>

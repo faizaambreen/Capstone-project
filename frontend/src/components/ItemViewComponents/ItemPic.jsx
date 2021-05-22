@@ -11,7 +11,7 @@ function ItemPic({ item }) {
 
                     <div className="PicDiv" >
                         <figure>
-                            <img src={item.images[index].secure_url} className="figure_img" />
+                            <img src={item.images[index].secure_url} className="figure_img" alt="Pictures"/>
                         </figure>
                         <div className="picNo">
                             {index + 1} / {item.images.length}

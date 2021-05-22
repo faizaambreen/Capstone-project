@@ -35,7 +35,6 @@ function Login(props) {
         alert("Error Occurred! Try Again !");
       }
     } catch (error) {
-      console.log(error);
       alert("Error Occurred! Try Again !");
     }
     setIsLoading(false);
@@ -86,11 +85,11 @@ function Login(props) {
                           setIsLoading(true);
                           renderProps.onClick();
                         }}
-                        style={{width:"100%"}}
+                        style={{ width: "100%" }}
                         className="loadBtn"
                         disabled={isLoading}
                       >
-                        <img style={{ marginRight: '10px' }} src="https://img.icons8.com/color/30/000000/google-logo.png" />
+                        <img style={{ marginRight: '10px' }} src="https://img.icons8.com/color/30/000000/google-logo.png" alt="Google Logo"/>
                           Continue with Google
                       </button>
                     )}
@@ -105,7 +104,7 @@ function Login(props) {
                 <button
                   onClick={showLoginEmail}
                   className="loadBtn"
-                  style={{width:"100%"}}
+                  style={{ width: "100%" }}
                   disabled={isLoading}
                 >
                   Continue with Email

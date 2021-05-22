@@ -9,7 +9,7 @@ import PostYourAdd from './components/Main Pages/PostYourAdd'
 import AddDetails from './components/AddDetails'
 import Congo from './components/Main Pages/Congo'
 import Login from "./components/Main Pages/Login";
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import LoginContext from './Context/LoginContext';
 import ItemListContext from './Context/ItemListContext';
 import LocationAndSearchContext from './Context/LocationAndSearchContext';
@@ -18,7 +18,7 @@ import { PageNotFound } from './components/Main Pages/PageNotFound';
 
 function App() {
   const [isClicked, setIsClicked] = useState(false);
-  const locationAndSearch = useState({location:"Pakistan",search:""});
+  const locationAndSearch = useState({ location: "Pakistan", search: "" });
   const list = useState({
     itemList: [],
     isLoading: true
@@ -26,13 +26,12 @@ function App() {
   const setList = list[1];
 
   const loggedInUser = localStorage.getItem("user");
-  const login = useState( loggedInUser ? JSON.parse(loggedInUser) : {
+  const login = useState(loggedInUser ? JSON.parse(loggedInUser) : {
     isLoggedIn: false,
     id: "",
     name: "",
     email: ""
   });
-  const setLogin = login[1];
 
   function handdleClick() {
     setIsClicked(true);
@@ -45,7 +44,7 @@ function App() {
     async function fetchData() {
       const response = await fetch("/categories");
       const data = await response.json();
-      if (data.status !== 400) {
+      if (data.status !== 400) {        
         setList({
           itemList: data.items,
           isLoading: false
@@ -64,22 +63,26 @@ function App() {
         </LocationAndSearchContext.Provider>
         <Login cls={isClicked} onUnChecked={remove} />
         <Cat />
-        <Switch>
-          <ItemListContext.Provider value={list}>
-            <LocationAndSearchContext.Provider value={locationAndSearch}>
-              <Route exact path="/" component={LandingPage} />
-            </LocationAndSearchContext.Provider>
+        <ItemListContext.Provider value={list}>
+          <Switch>
+            <Route exact path="/">
+              <LocationAndSearchContext.Provider value={locationAndSearch}>
+                <LandingPage />
+              </LocationAndSearchContext.Provider>
+            </Route>
             <Route exact path="/itemView=>:itemId" component={ItemView} />
-            <LocationAndSearchContext.Provider value={locationAndSearch}>
-              <Route exact path="/CatagoryView=>:category" component={CatagoryView} />
-            </LocationAndSearchContext.Provider>
+            <Route exact path="/CatagoryView=>:category">
+              <LocationAndSearchContext.Provider value={locationAndSearch}>
+                <CatagoryView />
+              </LocationAndSearchContext.Provider>
+            </Route>
             <Route exact path="/PostYourAdd" component={PostYourAdd} />
             <Route exact path="/PostYourAdd=>:category" component={AddDetails} />
             <Route exact path="/myAdd" component={MyAdds} />
             <Route exact path="/Congo=>:itemId" component={Congo} />
-            <Route exact path="/PageNotFound" component={PageNotFound} />
-          </ItemListContext.Provider>
-        </Switch>
+            <Route component={PageNotFound} />
+          </Switch>
+        </ItemListContext.Provider>
       </LoginContext.Provider>
       <Footer />
     </div>

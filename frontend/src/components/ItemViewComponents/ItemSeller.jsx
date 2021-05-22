@@ -21,7 +21,7 @@ function ItemSeller({ item }) {
             <div className="firstDiv">
                 <div className="firstDivContent">
                     <div className="firstDivContentSec">
-                        <div className="SellerDisc">Seller description</div>
+                        <div className="SellerDisc">Seller Description</div>
                         <h1 className="firstDivItemTitle" style={{ paddingTop: '20px' }}>
                             {item.ownerName}
                         </h1>

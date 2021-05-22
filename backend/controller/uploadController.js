@@ -6,9 +6,6 @@ const cloudinary = require("../utils/cloudinary");
 
 const uploadAd = async (req, res) => {
 
-  // console.log(req.files);
-  // console.log(req.body);
-
   let status = (req.files.length > 0);
   console.log(status);
   
@@ -31,8 +28,6 @@ const uploadAd = async (req, res) => {
       status = false;
     }
   }
-
-  // String.
 
   // storing the object into the item collection of database
   try {

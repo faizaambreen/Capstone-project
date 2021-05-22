@@ -1,7 +1,7 @@
-import React, { useContext, useState,useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import OutsideClickHandler from "react-outside-click-handler";
 import Button from '@material-ui/core/Button';
-import { NavLink,Link, Redirect } from 'react-router-dom';
+import { NavLink, Link, Redirect } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 import LocationAndSearchContext from '../Context/LocationAndSearchContext';
 //importing logo image
@@ -9,11 +9,10 @@ import Logo from '../images/logo.jpg';
 
 function Header(props) {
   const [login, setLogin] = useContext(LoginContext);
-  const [{location,search},setLocationAndSearch] = useContext(LocationAndSearchContext);
+  const [{ location, search }, setLocationAndSearch] = useContext(LocationAndSearchContext);
   const [loginDrop, setloginDrop] = useState("isVisible");
   const [inputSearch, setInputSearch] = useState("");
-  console.log(login);
-  
+
   function drop() {
     if (loginDrop === "isVisible") {
       setloginDrop("");
@@ -33,22 +32,22 @@ function Header(props) {
   function logout(e) {
     dropOut(e);
     setLogin({
-      isLoggedIn:false,
-      id:"",
-      name:"",
-      email:"",
+      isLoggedIn: false,
+      id: "",
+      name: "",
+      email: "",
     });
     localStorage.removeItem("user");
   }
 
-  function updateLocation({currentTarget:{innerText}}) {
+  function updateLocation({ currentTarget: { innerText } }) {
     setLocationAndSearch({
-      location:innerText,
+      location: innerText,
       search
     });
   }
 
-  function updateText({target:{value}}) {
+  function updateText({ target: { value } }) {
     setInputSearch(value);
   }
 
@@ -56,21 +55,12 @@ function Header(props) {
     event.preventDefault();
     setLocationAndSearch({
       location,
-      search:inputSearch.toLowerCase()
+      search: inputSearch.toLowerCase()
     });
   }
 
-  // useEffect(() => {
-  //   const loggedInUser = localStorage.getItem("user");
-  //   if(loggedInUser){
-  //     setLogin(JSON.parse(loggedInUser));
-  //   }
-  // }, []);
-
   useEffect(() => {
-    if(search===""){
-      setInputSearch("");
-    }
+    setInputSearch(search);
   }, [search]);
 
   return (
@@ -82,7 +72,7 @@ function Header(props) {
           </NavLink>
 
           <div className="input-group mb-3 locationBox ">
-            <input type="text" className="form-control" value={location} aria-label="Text input with segmented dropdown button " disabled/>
+            <input type="text" className="form-control" value={location} aria-label="Text input with segmented dropdown button " disabled />
             <div className="input-group-append">
               <button type="button" className="btn btn-outline-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span className="sr-only">Toggle Dropdown</span>
@@ -114,9 +104,10 @@ function Header(props) {
                 <span style={{ marginLeft: '25px', width: '90px' }}>
                   <img
                     id="1"
-                    onClick={ drop }
-                    style={{ cursor:"pointer", marginLeft:"15%"}}
+                    onClick={drop}
+                    style={{ cursor: "pointer", marginLeft: "15%" }}
                     src={`https://img.icons8.com/fluent-systems-filled/40/1ABC9C/circled-${login.name[0].toLowerCase()}.png`}
+                    alt="Avatar"
                   />
                 </span>
               ) : (
@@ -176,19 +167,9 @@ function Header(props) {
 
         </div>
       </div>
-      {search!=="" && <Redirect to={"/CatagoryView=>"+search} />}
+      {search !== "" && <Redirect to={"/CatagoryView=>" + search} />}
     </div>
   );
 }
 
 export default Header;
-
-// <img src="https://img.icons8.com/fluent-systems-filled/40/1ABC9C/circled-a.png"/>
-// let letter="a";
-// let url = "https://img.icons8.com/fluent-systems-filled/40/1ABC9C/circled-" + letter+ ".png";
-
-                // <Button
-                //   variant="contained" color="primary" style={{marginLeft:'10%',width:'120px'}}
-                //   onClick={props.onChecked}>
-                //   Login
-                // </Button> 

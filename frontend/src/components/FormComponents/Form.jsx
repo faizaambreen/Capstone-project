@@ -45,7 +45,6 @@ export default function Form({category}) {
     }
 
     async function submitForm(event) {
-        console.log("clicked");
         event.preventDefault();
         setIsLoading(true);
         if (formData.images.length === 0) {
