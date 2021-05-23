@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import OutsideClickHandler from "react-outside-click-handler";
 import Button from '@material-ui/core/Button';
-import { NavLink, Link, Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 import LocationAndSearchContext from '../Context/LocationAndSearchContext';
 //importing logo image
@@ -67,9 +67,9 @@ function Header(props) {
     <div className="header">
       <div className="insideHeader">
         <div className="headerContent">
-          <NavLink to="/">
+          <Link to="/">
             <img src={Logo} className="logo" alt="Logo" />
-          </NavLink>
+          </Link>
 
           <div className="input-group mb-3 locationBox ">
             <input type="text" className="form-control" value={location} aria-label="Text input with segmented dropdown button " disabled />
@@ -140,7 +140,7 @@ function Header(props) {
                   </div>
                 </div>
                 <div style={{ borderTop: '1px solid rgba(0, 47, 52, .2)' }}>
-                  <Link onClick={dropOut} to={"/myAdd"} className="myAdsDiv" style={{ textDecoration: 'none' }}>
+                  <Link onClick={dropOut} to={"/myad"} className="myAdsDiv" style={{ textDecoration: 'none' }}>
                     <div style={{ padding: '2px 16px 0 0' }}>
                       <svg width="23px" height="23px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd"><path class="rui-77aaa" d="M349.46 85.333h487.619l40.635 40.635v609.524l-40.635 40.635h-487.619l-40.635-40.635v-609.524l40.635-40.635zM390.095 694.857h406.35v-528.254h-406.35v528.254zM146.286 247.873l40.635-40.635 40.635 40.635v609.524h528.254l40.635 40.635-40.635 40.635h-568.889l-40.635-40.635v-650.159zM512 329.143h162.54l40.635 40.635-40.635 40.635h-162.54l-40.635-40.635 40.635-40.635zM512 491.683h81.27l40.635 40.635-40.635 40.635h-81.27l-40.635-40.635 40.635-40.635z"></path></svg>
                       <span style={{ paddingLeft: '15px' }} >My Ads</span>
@@ -158,16 +158,16 @@ function Header(props) {
           </div>
 
           <div className="loginAndRent" style={{ position: 'relative' }}>
-            <NavLink to={login.isLoggedIn && "/PostYourAdd"} style={{ width: '90px' }}>
+            <Link to={login.isLoggedIn && "/postyourad"} style={{ width: '90px' }}>
               <Button variant="contained" color="primary" onClick={!login.isLoggedIn && props.onChecked} style={{ marginTop: '0', width: '100%' }}>
                 Rent
             </Button>
-            </NavLink>
+            </Link>
           </div>
 
         </div>
       </div>
-      {search !== "" && <Redirect to={"/CatagoryView=>" + search} />}
+      {search !== "" && <Redirect to={"/categoryview=>" + search} />}
     </div>
   );
 }

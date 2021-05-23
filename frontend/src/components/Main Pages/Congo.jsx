@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import {NavLink, useParams, Redirect} from 'react-router-dom'
+import {Link, useParams, Redirect} from 'react-router-dom'
 import LoginContext from '../../Context/LoginContext';
 function Congo(){
     const [{isLoggedIn}] = useContext(LoginContext);
     const {itemId} = useParams();
     const postCreated = localStorage.getItem("postCreated");
+    console.log(postCreated);
+    
     if(!isLoggedIn || !postCreated){
         return <Redirect to="/" />;
     }
@@ -22,11 +24,11 @@ function Congo(){
                             </svg>
                             <p className="CongoMsg"><span>Congratulations!</span></p>
                             <p className="CongoMsg1"><span>Your Add is Live Now...</span></p>
-                            <NavLink exact to={"/itemView=>"+itemId} style={{textDecoration:'none'}}>
+                            <Link exact to={"/itemview=>"+itemId} style={{textDecoration:'none'}}>
                                 <button className="PreviewBtn">
                                     <span>Preview Add</span>
                                 </button>
-                            </NavLink>
+                            </Link>
                         </div>     
                     </div>
                 </div>

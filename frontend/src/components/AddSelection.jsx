@@ -5,7 +5,7 @@ import { categoryList } from '../CategoryList';
 function AddSelection() {
 
     function PostLi({ name }) {
-        const pa = "/PostYourAdd=>" + name;
+        const pa = "/postyourad=>" + name;
         return (
             <Link
                 onClick={() => { localStorage.setItem("createPost", true); }}

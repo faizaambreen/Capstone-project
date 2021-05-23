@@ -70,16 +70,16 @@ function App() {
                 <LandingPage />
               </LocationAndSearchContext.Provider>
             </Route>
-            <Route exact path="/itemView=>:itemId" component={ItemView} />
-            <Route exact path="/CatagoryView=>:category">
+            <Route exact path="/itemview=>:itemId" component={ItemView} />
+            <Route exact path="/categoryview=>:category">
               <LocationAndSearchContext.Provider value={locationAndSearch}>
                 <CatagoryView />
               </LocationAndSearchContext.Provider>
             </Route>
-            <Route exact path="/PostYourAdd" component={PostYourAdd} />
-            <Route exact path="/PostYourAdd=>:category" component={AddDetails} />
-            <Route exact path="/myAdd" component={MyAdds} />
-            <Route exact path="/Congo=>:itemId" component={Congo} />
+            <Route exact path="/postyourad" component={PostYourAdd} />
+            <Route exact path="/postyourad=>:category" component={AddDetails} />
+            <Route exact path="/myad" component={MyAdds} />
+            <Route exact path="/congo=>:itemId" component={Congo} />
             <Route component={PageNotFound} />
           </Switch>
         </ItemListContext.Provider>

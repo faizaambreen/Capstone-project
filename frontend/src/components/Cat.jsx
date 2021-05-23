@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { headerCategoryList, mainAndSubCategories } from '../CategoryList';
 
 function Cat() {
@@ -13,13 +13,13 @@ function Cat() {
             <div>
                 {mainAndSubCategories[0].map((heading, index) => {
                     return (
-                        <div className="singleCol">
+                        <div key={index} className="singleCol">
                             <div className="catHeadingDiv">
                                 <div to="/catagoryView" className="catHeadingText" style={{ textDecoration: 'none' }}>
                                     <span>{heading}</span>
                                 </div>
                             </div>
-                            {mainAndSubCategories[index + 1].map((category) => <SubCat name={category} />)}
+                            {mainAndSubCategories[index + 1].map((category,index) => <SubCat key={index} name={category} />)}
                         </div>
                     );
                 })}
@@ -29,21 +29,21 @@ function Cat() {
 
 
     function SingleCat(props) {
-        const pa = "/CatagoryView=>" + props.name;
+        const pa = "/categoryview=>" + props.name;
         return (
             <div className="singleCat">
-                <NavLink to={pa} className="singleCatText" style={{ textDecoration: 'none' }}><span >{props.name}</span></NavLink>
+                <Link to={pa} className="singleCatText" style={{ textDecoration: 'none' }}><span >{props.name}</span></Link>
             </div>
         );
     }
 
     function SubCat(props) {
-        const pa = "/CatagoryView=>" + props.name;
+        const pa = "/categoryview=>" + props.name;
         return (
             <div className="subCatDiv">
-                <NavLink to={pa} onClick={invert} className="subCatText" style={{ textDecoration: 'none' }}>
+                <Link to={pa} onClick={invert} className="subCatText" style={{ textDecoration: 'none' }}>
                     <span>{props.name}</span>
-                </NavLink>
+                </Link>
             </div>
         );
     }
@@ -91,7 +91,7 @@ function Cat() {
                         </span>
 
                         <div className="SomeCat">
-                            {headerCategoryList.map((x) => <SingleCat name={x} />)}
+                            {headerCategoryList.map((x,index) => <SingleCat key={index} name={x} />)}
                         </div>
                         <div className="catListContainer">
                             <OutsideClickHandler onOutsideClick={outHanddler}>

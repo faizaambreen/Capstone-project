@@ -75,8 +75,8 @@ export default function Form({category}) {
             setIsLoading(false);
             if (result.status===200) {
                 itemList.push(result.item);
-                setItemId(result.item._id);
                 localStorage.setItem("postCreated",true);
+                setItemId(result.item._id);
             } else {
                 alert("Error Occurred! TRY Again !");
             }
@@ -273,7 +273,7 @@ export default function Form({category}) {
                 </div>
                 {/* Redirects to Congratulations Page on successful Submission */}
                 {
-                    itemId && <Redirect push to={"/Congo=>" + itemId} />
+                    itemId && <Redirect push to={"/congo=>" + itemId} />
                 }
             </div>
         </form>

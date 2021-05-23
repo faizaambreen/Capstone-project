@@ -51,12 +51,10 @@ function MyAdds() {
         <h1 style={{ marginLeft: "1%" }}>My ADs</h1>
         <section className="Section_myAdd">
           {
-            deleting && <CircularProgress className="loading" />
-          }
-          {
-            data ? data.map((item, index) => (
-              <Ads key={index} id={item._id} item={item} onChecked={deleteAd} />)
-            ) : <CircularProgress className="loading" />
+            deleting ? <CircularProgress className="loading" /> :
+              data ? data.map((item, index) => (
+                <Ads key={index} id={item._id} item={item} onChecked={deleteAd} />)
+              ) : <CircularProgress className="loading" />
           }
         </section>
       </div>

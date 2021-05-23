@@ -40,10 +40,10 @@ function FreshRec() {
                             {
                                 location !== "Pakistan" ? filteredList.length === 0 ?
                                     <PageNotFound flag={true} /> :
-                                    filteredList.slice(0, countOfItems).map((item) => (
-                                        <Item itemData={item} />
-                                    )) : itemList.slice(0, countOfItems).map((item) => (
-                                        <Item itemData={item} />
+                                    filteredList.slice(0, countOfItems).map((item,index) => (
+                                        <Item key={index} itemData={item} />
+                                    )) : itemList.slice(0, countOfItems).map((item,index) => (
+                                        <Item key={index} itemData={item} />
                                     ))
                             }
                         </ul>

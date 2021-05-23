@@ -33,7 +33,7 @@ function Ads({ item, id, onChecked }) {
 
               <div className="addDiv">
                 <div className="addDiv_1">
-                  <Link to={`itemView=>${item._id}`} style={{ color: "black", textDecoration: "none" }} className="addDiv_2">
+                  <Link to={`itemview=>${item._id}`} style={{ color: "black", textDecoration: "none" }} className="addDiv_2">
                     <div className="addDiv_2_1">
                       <figure className="addDiv_2_1_fig">
                         <img src={item.images[0].secure_url} alt="" className="fig_img" />

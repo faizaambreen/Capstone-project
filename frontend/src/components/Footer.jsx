@@ -12,12 +12,12 @@ function Footer() {
                 {name}
                 <ul style={{ paddingLeft: "0", listStyle: 'none' }}>
                     {
-                        list && list.map((item) => (
-                            <li>
+                        list && list.map((item,index) => (
+                            <li key={index}>
                                 <Link
                                     className="topFooterSectionItem"
                                     style={{ textDecoration: 'none' }}
-                                    to={"CatagoryView=>" + item}
+                                    to={"categoryview=>" + item}
                                 >{item}</Link>
                             </li>
                         ))
