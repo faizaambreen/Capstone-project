@@ -42,7 +42,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("/categories");
+      const response = await fetch("https://rentall-project.herokuapp.com/categories");
       const data = await response.json();
       if (data.status !== 400) {        
         setList({

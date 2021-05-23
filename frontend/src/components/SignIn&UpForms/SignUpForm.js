@@ -40,7 +40,7 @@ export const SignUpForm = ({ setLogin, onUnChecked }) => {
                 password
             };
             try {
-                const result = await fetch("/login/createAccount", {
+                const result = await fetch("https://rentall-project.herokuapp.com/login/createAccount", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

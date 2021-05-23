@@ -15,7 +15,7 @@ function Login(props) {
       tokenId: response.tokenId
     };
     try {
-      const result = await fetch("/login/google", {
+      const result = await fetch("https://rentall-project.herokuapp.com/login/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -42,7 +42,6 @@ function Login(props) {
 
   function responseErrorGoogle(response) {
     setIsLoading(false);
-    alert("Something Went Wrong. TRY Again Later!");
   }
 
   function clearPopup() {

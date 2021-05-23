@@ -70,7 +70,7 @@ export default function Form({category}) {
                 method: "POST",
                 body: data
             }
-            const response = await fetch("/post/ad", options);
+            const response = await fetch("https://rentall-project.herokuapp.com/post/ad", options);
             const result = await response.json();            
             setIsLoading(false);
             if (result.status===200) {

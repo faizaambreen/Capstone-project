@@ -30,7 +30,7 @@ function MyAdds() {
       },
       body: JSON.stringify({ id }),
     }
-    const response = await fetch("/deleteAd", options);
+    const response = await fetch("https://rentall-project.herokuapp.com/deleteAd", options);
     const resultCode = await response.json();
     if (resultCode.status === 200) {
       setData(data.filter((item) => item._id !== id));
