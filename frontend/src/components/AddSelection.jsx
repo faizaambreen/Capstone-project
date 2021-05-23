@@ -29,7 +29,7 @@ function AddSelection() {
                 </h3>
                 <div className="ListContainerDiv">
                     <ul className="PostUlDiv">
-                        {categoryList.map((item) => <PostLi name={item} />)}
+                        {categoryList.map((item,index) => <PostLi key={index} name={item} />)}
                     </ul>
                 </div>
             </div>

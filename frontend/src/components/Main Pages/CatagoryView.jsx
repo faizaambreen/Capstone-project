@@ -105,8 +105,8 @@ function CatagoryView() {
                                             <div className="LocationHeading" onClick={drop}>
                                                 <span className="LocationText">Locations</span>
                                                 <div className={ro}>
-                                                    <svg width="18px" className="ro" height="18px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
-                                                        <path class="rui-77aaa" d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
+                                                    <svg width="18px" className="ro" height="18px" viewBox="0 0 1024 1024" data-aut-id="icon" fillRule="evenodd">
+                                                        <path className="rui-77aaa" d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
                                                     </svg>
                                                 </div>
                                             </div>
@@ -167,7 +167,7 @@ function CatagoryView() {
                                                         min="0"
                                                         max="1000000"
                                                         value={minPrice}
-                                                        class="priceInput"
+                                                        className="priceInput"
                                                     />
                                                     <input
                                                         onChange={(event) => {
@@ -182,7 +182,7 @@ function CatagoryView() {
                                                         min="0"
                                                         max="1000000"
                                                         value={maxPrice}
-                                                        class="priceInput"
+                                                        className="priceInput"
                                                     />
                                                     <a className="priceSearch"
                                                         onClick={() => {
@@ -194,8 +194,8 @@ function CatagoryView() {
                                                             }
                                                         }}
                                                     >
-                                                        <svg width="16px" height="16px" viewBox="0 0 1024 1024" data-aut-id="icon" fill-rule="evenodd">
-                                                            <path class="rui-vUQO_" d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path>
+                                                        <svg width="16px" height="16px" viewBox="0 0 1024 1024" data-aut-id="icon" fillRule="evenodd">
+                                                            <path className="rui-vUQO_" d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path>
                                                         </svg>
                                                     </a>
                                                 </div>
@@ -212,8 +212,8 @@ function CatagoryView() {
                                             (filteredList ? filteredList : list).length === 0 ? <PageNotFound flag={true} />
                                                 : (filteredList ? filteredList : list)
                                                     .slice(0, countOfItems)
-                                                    .map((item) => (
-                                                        <Item itemData={item} />
+                                                    .map((item,index) => (
+                                                        <Item key={index} itemData={item} />
                                                     ))
                                         }
                                     </ul>

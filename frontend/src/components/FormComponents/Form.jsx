@@ -186,6 +186,7 @@ export default function Form({category}) {
                                 {Array(12).fill(null).map((value, index) => {
                                     return (
                                         <Pic
+                                            key={index}
                                             id={index}
                                             updateImageArray={updateImages}
                                         />

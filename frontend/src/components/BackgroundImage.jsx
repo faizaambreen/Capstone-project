@@ -5,7 +5,7 @@ function BackgroundImage() {
     return (
         <section>
             <div className="BackgroundImgDiv">
-                <div class="BackgroundImg" style={{ backgroundImage: `url(${rentImage})` }}>
+                <div className="BackgroundImg" style={{ backgroundImage: `url(${rentImage})` }}>
                 </div>
             </div>
         </section>

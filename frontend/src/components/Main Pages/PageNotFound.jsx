@@ -9,7 +9,7 @@ export const PageNotFound = ({ flag }) => {
                     <div className="notFound1">
                         <div className="notFoundPic">
                             <picture>
-                                <source type="image/webp" srcset="https://statics.olx.com.pk/external/base/img/404.webp" />
+                                <source type="image/webp" srcSet="https://statics.olx.com.pk/external/base/img/404.webp" />
                                 <img src="https://statics.olx.com.pk/external/base/img/404.png" alt=""></img>
                             </picture>
                         </div>
