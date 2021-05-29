@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import OutsideClickHandler from "react-outside-click-handler";
-import Button from '@material-ui/core/Button';
-import { Link, Redirect } from 'react-router-dom';
+import { NavLink,Link, Redirect } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 import LocationAndSearchContext from '../Context/LocationAndSearchContext';
 //importing logo image
