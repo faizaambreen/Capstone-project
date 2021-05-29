@@ -1,7 +1,7 @@
-import React, { useContext, useState,useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import OutsideClickHandler from "react-outside-click-handler";
 import Button from '@material-ui/core/Button';
-import { NavLink,Link, Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 import LocationAndSearchContext from '../Context/LocationAndSearchContext';
 //importing logo image
@@ -9,11 +9,10 @@ import Logo from '../images/logo.jpg';
 
 function Header(props) {
   const [login, setLogin] = useContext(LoginContext);
-  const [{location,search},setLocationAndSearch] = useContext(LocationAndSearchContext);
+  const [{ location, search }, setLocationAndSearch] = useContext(LocationAndSearchContext);
   const [loginDrop, setloginDrop] = useState("isVisible");
   const [inputSearch, setInputSearch] = useState("");
-  console.log(login);
-  
+
   function drop() {
     if (loginDrop === "isVisible") {
       setloginDrop("");
@@ -33,22 +32,22 @@ function Header(props) {
   function logout(e) {
     dropOut(e);
     setLogin({
-      isLoggedIn:false,
-      id:"",
-      name:"",
-      email:"",
+      isLoggedIn: false,
+      id: "",
+      name: "",
+      email: "",
     });
     localStorage.removeItem("user");
   }
 
-  function updateLocation({currentTarget:{innerText}}) {
+  function updateLocation({ currentTarget: { innerText } }) {
     setLocationAndSearch({
-      location:innerText,
+      location: innerText,
       search
     });
   }
 
-  function updateText({target:{value}}) {
+  function updateText({ target: { value } }) {
     setInputSearch(value);
   }
 
@@ -56,21 +55,12 @@ function Header(props) {
     event.preventDefault();
     setLocationAndSearch({
       location,
-      search:inputSearch.toLowerCase()
+      search: inputSearch.toLowerCase()
     });
   }
 
-  // useEffect(() => {
-  //   const loggedInUser = localStorage.getItem("user");
-  //   if(loggedInUser){
-  //     setLogin(JSON.parse(loggedInUser));
-  //   }
-  // }, []);
-
   useEffect(() => {
-    if(search===""){
-      setInputSearch("");
-    }
+    setInputSearch(search);
   }, [search]);
 
   return (

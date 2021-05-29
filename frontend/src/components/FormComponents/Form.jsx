@@ -45,7 +45,6 @@ export default function Form({category}) {
     }
 
     async function submitForm(event) {
-        console.log("clicked");
         event.preventDefault();
         setIsLoading(true);
         if (formData.images.length === 0) {
@@ -71,13 +70,13 @@ export default function Form({category}) {
                 method: "POST",
                 body: data
             }
-            const response = await fetch("/post/ad", options);
+            const response = await fetch("https://rentall-project.herokuapp.com/post/ad", options);
             const result = await response.json();            
             setIsLoading(false);
             if (result.status===200) {
                 itemList.push(result.item);
-                setItemId(result.item._id);
                 localStorage.setItem("postCreated",true);
+                setItemId(result.item._id);
             } else {
                 alert("Error Occurred! TRY Again !");
             }
@@ -187,6 +186,7 @@ export default function Form({category}) {
                                 {Array(12).fill(null).map((value, index) => {
                                     return (
                                         <Pic
+                                            key={index}
                                             id={index}
                                             updateImageArray={updateImages}
                                         />
@@ -274,7 +274,7 @@ export default function Form({category}) {
                 </div>
                 {/* Redirects to Congratulations Page on successful Submission */}
                 {
-                    itemId && <Redirect push to={"/Congo=>" + itemId} />
+                    itemId && <Redirect push to={"/congo=>" + itemId} />
                 }
             </div>
         </form>

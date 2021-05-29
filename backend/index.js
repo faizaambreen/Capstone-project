@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
+const cors = require('cors');
 
 // Import Routes
 const loginAndSignupRoute = require("./routes/userLogin&Signup");
@@ -16,7 +17,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-// app.use(express.json({limit:"50mb"}));
+app.use(cors());
 
 // setting and configuring the session modules
 app.use(session({
@@ -27,7 +28,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+const port = process.env.PORT;
+
+mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(port, () => {
+    console.log("Server is started");
+  }))
+  .catch((error) => console.log(error.message));
+
 mongoose.set("useCreateIndex", true);
 
 app.use("/login", loginAndSignupRoute);
@@ -43,18 +51,3 @@ app.use("/deleteAd", deleteAd);
 app.get("/", (req, res) => {
   res.send("<h1>Home</h1>");
 });
-
-app.get("/loggedIn", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.send("<h1>Logged In</h1>");
-  }
-  else {
-    res.send("<h1>Home</h1>");
-  }
-});
-
-const port = process.env.PORT;
-app.listen(port, () => {
-  console.log("Server is started");
-});
-

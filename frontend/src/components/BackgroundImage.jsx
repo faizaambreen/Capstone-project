@@ -1,11 +1,11 @@
 import React from 'react';
 import rentImage from "../images/rent.jpg";
 
-function BackgroundImage(){
+function BackgroundImage() {
     return (
         <section>
             <div className="BackgroundImgDiv">
-                <div class="BackgroundImg" style={{backgroundImage:`url(${rentImage})`}}>
+                <div className="BackgroundImg" style={{ backgroundImage: `url(${rentImage})` }}>
                 </div>
             </div>
         </section>

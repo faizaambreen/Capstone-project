@@ -11,7 +11,7 @@ function ItemPic({ item }) {
 
                     <div className="PicDiv" >
                         <figure>
-                            <img src={item.images[index].secure_url} className="figure_img" />
+                            <img src={item.images[index].secure_url} className="figure_img" alt="Pictures"/>
                         </figure>
                         <div className="picNo">
                             {index + 1} / {item.images.length}
@@ -25,7 +25,7 @@ function ItemPic({ item }) {
                                     setIndex(index - 1);
                                 }
                             }}>
-                                <svg width="30px" height="30px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
+                                <svg width="30px" height="30px" viewBox="0 0 1024 1024" data-aut-id="icon" fillRule="evenodd">
                                     <path d="M684.685 85.333l-407.352 396.501v60.331l407.352 396.501h61.982v-60.331l-376.339-366.336 376.339-366.336v-60.331z"></path>
                                 </svg>
                             </span>
@@ -37,7 +37,7 @@ function ItemPic({ item }) {
                                     setIndex(index + 1);
                                 }
                             }}>
-                                <svg width="30px" height="30px" viewBox="0 0 1024 1024" data-aut-id="icon" style={{ marginLeft: '16px' }} fill-rule="evenodd">
+                                <svg width="30px" height="30px" viewBox="0 0 1024 1024" data-aut-id="icon" style={{ marginLeft: '16px' }} fillRule="evenodd">
                                     <path d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path>
                                 </svg>
                             </span>

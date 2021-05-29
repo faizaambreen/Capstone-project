@@ -1,14 +1,14 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Item(props) {
-    const{_id,title,price,city,images,createdAt}=props.itemData;
+    const { _id, title, price, city, images, createdAt } = props.itemData;
     return (
         <div className="col-lg-3 col-md-4 col-sm-6">
             <li className="a1 ">
-                <NavLink to={"/itemView=>"+_id} style={{ textDecoration: 'none' }} >
+                <Link to={"/itemview=>" + _id} style={{ textDecoration: 'none' }} >
                     <figure className="figure" >
-                        <img className="itemImage" src={images[0].secure_url} />
+                        <img className="itemImage" src={images[0].secure_url} alt="Item Pic"/>
                     </figure>
 
                     <div className="itemDis">
@@ -16,10 +16,10 @@ function Item(props) {
                         <span className="itemDetails"></span>
                         <span className="itemTitle">{title}</span>
                         <span className="itemLocation">{city}
-                            <span className= "itemDate">{createdAt}</span>
+                            <span className="itemDate">{createdAt}</span>
                         </span>
                     </div>
-                </NavLink>
+                </Link>
             </li>
         </div>
     );

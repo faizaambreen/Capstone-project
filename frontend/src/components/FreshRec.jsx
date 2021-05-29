@@ -1,32 +1,32 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Item from './Item'
 import ItemListContext from '../Context/ItemListContext';
 import LocationAndSearchContext from '../Context/LocationAndSearchContext';
+import { PageNotFound } from './Main Pages/PageNotFound';
 
 function FreshRec() {
-    const [{itemList,isLoading}] = useContext(ItemListContext);
-    const [{location},setLocationAndSearch] = useContext(LocationAndSearchContext);    
+    const [{ itemList, isLoading }] = useContext(ItemListContext);
+    const [{ location }, setLocationAndSearch] = useContext(LocationAndSearchContext);
     const [filteredList, setFilteredList] = useState([]);
     const [state, setState] = useState("");
     const [countOfItems, setCountOfItems] = useState(13);
 
-    if(!isLoading && location!==state && location!=="Pakistan"){
+    if (!isLoading && location !== state && location !== "Pakistan") {
         setState(location);
-        setFilteredList(itemList.filter((item)=>item.state===location));        
+        setFilteredList(itemList.filter((item) => item.state === location));
     }
-    
+
     function onLoadClick() {
-        setCountOfItems(countOfItems+12);
+        setCountOfItems(countOfItems + 12);
     }
 
     useEffect(() => {
         setLocationAndSearch({
             location,
-            search:""
+            search: ""
         });
-    }, [1])
+    }, []);
 
     return (
         <div className="FreshOuterDiv" >
@@ -38,23 +38,26 @@ function FreshRec() {
                     !isLoading ? <div>
                         <ul className="ul1 ul2 row">
                             {
-                                (location==="Pakistan" ? itemList : filteredList)
-                                .slice(0,countOfItems).map((item) => (
-                                    <Item itemData={item} />
-                                ))
+                                location !== "Pakistan" ? filteredList.length === 0 ?
+                                    <PageNotFound flag={true} /> :
+                                    filteredList.slice(0, countOfItems).map((item,index) => (
+                                        <Item key={index} itemData={item} />
+                                    )) : itemList.slice(0, countOfItems).map((item,index) => (
+                                        <Item key={index} itemData={item} />
+                                    ))
                             }
                         </ul>
-                        {(location==="Pakistan" ? itemList : filteredList).length>countOfItems 
+                        {(location === "Pakistan" ? itemList : filteredList).length > countOfItems
                             && <div className="loadDiv">
-                            <button onClick={onLoadClick} className="loadBtn">
-                                <span>Load More</span>
-                            </button>
-                        </div>}
+                                <button onClick={onLoadClick} className="loadBtn">
+                                    <span>Load More</span>
+                                </button>
+                            </div>}
                     </div>
-                    :
-                    <div>
-                    <CircularProgress className="loading"/>
-                    </div>
+                        :
+                        <div>
+                            <CircularProgress className="loading" />
+                        </div>
                 }
             </div>
         </div>

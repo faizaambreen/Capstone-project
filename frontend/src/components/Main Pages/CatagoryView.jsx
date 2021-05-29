@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import Item from '../Item';
 import ItemListContext from '../../Context/ItemListContext';
 import LocationAndSearchContext from '../../Context/LocationAndSearchContext';
+import { PageNotFound } from "./PageNotFound";
+import { categoryList } from '../../CategoryList';
 
 function CatagoryView() {
     const { category } = useParams();
@@ -11,7 +13,7 @@ function CatagoryView() {
     const [{ itemList, isLoading }] = useContext(ItemListContext);
     const [{ location, search }, setLocationAndSearch] = useContext(LocationAndSearchContext);
     const [currentCategory, setCurrentCategory] = useState("");
-    const [categoryList, setCategoryList] = useState([]);
+    const [list, setList] = useState([]);
     const [filteredList, setFilteredList] = useState(null);
     const [countOfItems, setCountOfItems] = useState(13);
     const [priceFilter, setPriceFilter] = useState(false);
@@ -23,17 +25,21 @@ function CatagoryView() {
 
     if (!isLoading && currentCategory !== category) {
         setCurrentCategory(category);
-        if (search === category) {
-            setCategoryList(itemList.filter((item) => (
-                item.title.toLowerCase().includes(search) ||
-                item.category.toLowerCase() === search)));
-        }
-        else {
+        if (categoryList.includes(category.toLowerCase())) {
             setLocationAndSearch({
                 location,
                 search: ""
             });
-            setCategoryList(itemList.filter((item) => item.category === category));
+            setList(itemList.filter((item) => item.category === category.toLowerCase()));
+        }
+        else {
+            setLocationAndSearch({
+                location,
+                search: category
+            });
+            setList(itemList.filter((item) => (
+                item.title.toLowerCase().includes(category.toLowerCase())
+            )));
         }
     }
 
@@ -65,18 +71,18 @@ function CatagoryView() {
 
     useEffect(() => {
         if (priceFilter && location !== "Pakistan") {
-            setFilteredList(categoryList.filter((item) => (
+            setFilteredList(list.filter((item) => (
                 item.price >= Number(minPrice) &&
                 item.price <= Number(maxPrice) &&
                 item.state === location)));
         }
         else if (priceFilter) {
-            setFilteredList(categoryList.filter((item) => (
+            setFilteredList(list.filter((item) => (
                 item.price >= Number(minPrice) &&
                 item.price <= Number(maxPrice))));
         }
         else if (location !== "Pakistan") {
-            setFilteredList(categoryList.filter((item) => (
+            setFilteredList(list.filter((item) => (
                 item.state === location)));
         }
         else {
@@ -89,8 +95,7 @@ function CatagoryView() {
             <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
                 <div className="CatMainDiv">
                     <div className="insideCatMainDiv">
-                        <h1 className="CatHeading">{search === "" ? category : search}</h1>
-
+                        <h1 className="CatHeading">{category}</h1>
                         <div style={{ display: 'flex' }}>
                             <div className="FilterDiv">
                                 <div className="insideFilterDiv">
@@ -100,8 +105,8 @@ function CatagoryView() {
                                             <div className="LocationHeading" onClick={drop}>
                                                 <span className="LocationText">Locations</span>
                                                 <div className={ro}>
-                                                    <svg width="18px" className="ro" height="18px" viewBox="0 0 1024 1024" data-aut-id="icon" class="" fill-rule="evenodd">
-                                                        <path class="rui-77aaa" d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
+                                                    <svg width="18px" className="ro" height="18px" viewBox="0 0 1024 1024" data-aut-id="icon" fillRule="evenodd">
+                                                        <path className="rui-77aaa" d="M85.392 277.333h60.331l366.336 366.336 366.336-366.336h60.331v60.331l-408.981 409.003h-35.307l-409.045-409.003z"></path>
                                                     </svg>
                                                 </div>
                                             </div>
@@ -162,7 +167,7 @@ function CatagoryView() {
                                                         min="0"
                                                         max="1000000"
                                                         value={minPrice}
-                                                        class="priceInput"
+                                                        className="priceInput"
                                                     />
                                                     <input
                                                         onChange={(event) => {
@@ -177,7 +182,7 @@ function CatagoryView() {
                                                         min="0"
                                                         max="1000000"
                                                         value={maxPrice}
-                                                        class="priceInput"
+                                                        className="priceInput"
                                                     />
                                                     <a className="priceSearch"
                                                         onClick={() => {
@@ -187,11 +192,10 @@ function CatagoryView() {
                                                             else {
                                                                 setPriceFilter(false);
                                                             }
-                                                            console.log(priceFilter);
                                                         }}
                                                     >
-                                                        <svg width="16px" height="16px" viewBox="0 0 1024 1024" data-aut-id="icon" fill-rule="evenodd">
-                                                            <path class="rui-vUQO_" d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path>
+                                                        <svg width="16px" height="16px" viewBox="0 0 1024 1024" data-aut-id="icon" fillRule="evenodd">
+                                                            <path className="rui-vUQO_" d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path>
                                                         </svg>
                                                     </a>
                                                 </div>
@@ -205,14 +209,15 @@ function CatagoryView() {
                                 !isLoading ? <div className="ItemsDiv">
                                     <ul className="ul1 ul2 row">
                                         {
-                                            (filteredList ? filteredList : categoryList)
-                                                .slice(0, countOfItems)
-                                                .map((item) => (
-                                                    <Item itemData={item} />
-                                                ))
+                                            (filteredList ? filteredList : list).length === 0 ? <PageNotFound flag={true} />
+                                                : (filteredList ? filteredList : list)
+                                                    .slice(0, countOfItems)
+                                                    .map((item,index) => (
+                                                        <Item key={index} itemData={item} />
+                                                    ))
                                         }
                                     </ul>
-                                    {(filteredList ? filteredList : categoryList).length > countOfItems
+                                    {(filteredList ? filteredList : list).length > countOfItems
                                         && <div className="loadDiv">
                                             <button onClick={onLoadClick} className="loadBtn">
                                                 <span>Load More</span>
@@ -220,7 +225,7 @@ function CatagoryView() {
                                         </div>}
                                 </div>
                                     :
-                                    <CircularProgress className="catLoading" />
+                                    <CircularProgress className="loading" />
                             }
                         </div>
                     </div>

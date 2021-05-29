@@ -587,14 +587,9 @@ h2 {
 }
 
 .loading {
-  margin-top: 5%;
-  margin-left: 48%;
-  margin-bottom: 5%;
-}
-
-.catLoading {
   margin-top: 10%;
-  margin-left: 35%;
+  margin-left: 50%;
+  margin-bottom: 10%;
 }
 
 .loadDiv {
@@ -706,7 +701,7 @@ h2 {
   text-transform: none;
   text-decoration: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   color: #002f34;
   color: rgba(0, 47, 52, 0.64);
 }

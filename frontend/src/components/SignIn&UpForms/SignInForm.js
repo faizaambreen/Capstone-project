@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CircularProgress } from '@material-ui/core';
 import { SignUpForm } from './SignUpForm';
 
-export const SignInForm = ({setLogin,onUnChecked}) => {
+export const SignInForm = ({ setLogin, onUnChecked }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isSignup, setIsSignup] = useState(false);
@@ -23,33 +23,32 @@ export const SignInForm = ({setLogin,onUnChecked}) => {
     async function submitForm(event) {
         setIsLoading(true);
         event.preventDefault();
-        const data ={
+        const data = {
             email,
             password
         };
         try {
-            const result = await fetch("/login", {
+            const result = await fetch("https://rentall-project.herokuapp.com/login", {
                 method: "POST",
                 headers: {
-                  "Content-Type": "application/json"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(data)
-              });
-              const status = await result.json();
-              if (status) {
+            });
+            const status = await result.json();
+            if (status) {
                 const userLogin = {
-                  ...status,
-                  isLoggedIn: true
+                    ...status,
+                    isLoggedIn: true
                 };
                 setLogin(userLogin);
                 localStorage.setItem("user", JSON.stringify(userLogin));
                 onUnChecked();
-              } else {
+            } else {
                 alert("WRONG Email OR Password !");
-              }
+            }
         } catch (error) {
-            console.log(error);
-            alert("WRONG Email OR Password !");                  
+            alert("WRONG Email OR Password !");
         }
         setIsLoading(false);
     }
@@ -59,6 +58,7 @@ export const SignInForm = ({setLogin,onUnChecked}) => {
             <div className="AddTitleInputDiv btns">
                 <div className="RemainingRsDiv">
                     <input
+                        autoComplete="off"
                         name="email"
                         type="email"
                         className="inputText"
@@ -72,6 +72,7 @@ export const SignInForm = ({setLogin,onUnChecked}) => {
             <div className="AddTitleInputDiv">
                 <div className="RemainingRsDiv">
                     <input
+                        autoComplete="off"
                         name="password"
                         type="password"
                         className="inputText"
@@ -85,7 +86,7 @@ export const SignInForm = ({setLogin,onUnChecked}) => {
             <button
                 type="submit"
                 className="loadBtn btns"
-                style={{width:"100%"}}
+                style={{ width: "100%" }}
                 disabled={isLoading}
             >
                 <span>{isLoading ? <CircularProgress /> : "Log in"}</span>
@@ -97,6 +98,6 @@ export const SignInForm = ({setLogin,onUnChecked}) => {
                         cursor: "pointer"
                     }}>Sign up</span>
             </div>
-        </form> : <SignUpForm setLogin={setLogin} onUnChecked={onUnChecked}/>
+        </form> : <SignUpForm setLogin={setLogin} onUnChecked={onUnChecked} />
     );
 }
