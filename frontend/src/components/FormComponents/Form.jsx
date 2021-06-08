@@ -6,9 +6,9 @@ import LoginContext from '../../Context/LoginContext';
 import ItemListContext from '../../Context/ItemListContext';
 import { CircularProgress } from '@material-ui/core';
 
-export default function Form({category}) {
+export default function Form({ category }) {
     const [login] = useContext(LoginContext);
-    const [{itemList}] = useContext(ItemListContext);
+    const [{ itemList }] = useContext(ItemListContext);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -71,11 +71,11 @@ export default function Form({category}) {
                 body: data
             }
             const response = await fetch("https://rentall-project.herokuapp.com/post/ad", options);
-            const result = await response.json();            
+            const result = await response.json();
             setIsLoading(false);
-            if (result.status===200) {
+            if (result.status === 200) {
                 itemList.push(result.item);
-                localStorage.setItem("postCreated",true);
+                localStorage.setItem("postCreated", true);
                 setItemId(result.item._id);
             } else {
                 alert("Error Occurred! TRY Again !");
@@ -187,7 +187,7 @@ export default function Form({category}) {
                                     return (
                                         <Pic
                                             key={index}
-                                            id={index}
+                                            id={index + 2}
                                             updateImageArray={updateImages}
                                         />
                                     );
