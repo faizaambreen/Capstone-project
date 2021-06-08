@@ -14,7 +14,8 @@ import LoginContext from './Context/LoginContext';
 import ItemListContext from './Context/ItemListContext';
 import LocationAndSearchContext from './Context/LocationAndSearchContext';
 import MyAdds from './components/Main Pages/MyAdds';
-import { PageNotFound } from './components/Main Pages/PageNotFound';
+import  {PageNotFound}  from './components/Main Pages/PageNotFound';
+import  {About}  from './components/Main Pages/About';
 
 function App() {
   const [isClicked, setIsClicked] = useState(false);
@@ -80,7 +81,9 @@ function App() {
             <Route exact path="/postyourad=>:category" component={AddDetails} />
             <Route exact path="/myad" component={MyAdds} />
             <Route exact path="/congo=>:itemId" component={Congo} />
+            <Route exact path="/About" component={About} />
             <Route component={PageNotFound} />
+            
           </Switch>
         </ItemListContext.Provider>
       </LoginContext.Provider>

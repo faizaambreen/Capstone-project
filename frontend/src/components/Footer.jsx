@@ -32,7 +32,12 @@ function Footer() {
                 <div className="topFooterDivContent">
                     <Section name="POPULAR CATEGORIES" list={popular} />
                     <Section name="TRENDING SEARCHES" list={trending} />
-                    <Section name="ABOUT US" />
+                    <Link
+                    className="topFooterSectionDiv"
+                    style={{ textDecoration: 'none' ,color:'black'}}
+                    to='/About'>
+                        <Section name="ABOUT US (Click here)" />
+                    </Link>
                 </div>
             </div>
 
