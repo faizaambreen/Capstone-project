@@ -2,8 +2,6 @@ require("dotenv").config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const session = require('express-session');
-const passport = require('passport');
 const cors = require('cors');
 
 // Import Routes
@@ -18,15 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(cors());
-
-// setting and configuring the session modules
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
 
 const port = process.env.PORT;
 

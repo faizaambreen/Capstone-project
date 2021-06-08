@@ -5,6 +5,27 @@ import ItemListContext from '../../Context/ItemListContext';
 import { Redirect } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
 
+function NoAds() {
+  return (
+    <main className="BetweenHeaderAndFooter">
+      <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
+
+        <div className="notFoundMain">
+          <div className="notFound1">
+            <div className="notFoundMsg">
+              <div style={{ fontSize: "28px" }}>
+                <span>
+                  "Yoy have not Posted any AD."
+                    </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  )
+}
+
 function MyAdds() {
   const [{ isLoggedIn, id }] = useContext(LoginContext);
   const [{ itemList, isLoading }, setList] = useContext(ItemListContext);
@@ -49,6 +70,9 @@ function MyAdds() {
     <main className="BetweenHeaderAndFooter">
       <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
         <h1 style={{ marginLeft: "1%" }}>My ADs</h1>
+        {
+          data !== null && data.length === 0 && <NoAds />
+        }
         <section className="Section_myAdd">
           {
             deleting ? <CircularProgress className="loading" /> :

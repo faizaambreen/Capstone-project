@@ -81,7 +81,7 @@ function App() {
             <Route exact path="/postyourad=>:category" component={AddDetails} />
             <Route exact path="/myad" component={MyAdds} />
             <Route exact path="/congo=>:itemId" component={Congo} />
-            <Route exact path="/About" component={About} />
+            <Route exact path="/about" component={About} />
             <Route component={PageNotFound} />
             
           </Switch>

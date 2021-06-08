@@ -12,7 +12,7 @@ function Footer() {
                 {name}
                 <ul style={{ paddingLeft: "0", listStyle: 'none' }}>
                     {
-                        list && list.map((item,index) => (
+                        list && list.map((item, index) => (
                             <li key={index}>
                                 <Link
                                     className="topFooterSectionItem"
@@ -32,12 +32,20 @@ function Footer() {
                 <div className="topFooterDivContent">
                     <Section name="POPULAR CATEGORIES" list={popular} />
                     <Section name="TRENDING SEARCHES" list={trending} />
-                    <Link
-                    className="topFooterSectionDiv"
-                    style={{ textDecoration: 'none' ,color:'black'}}
-                    to='/About'>
-                        <Section name="ABOUT US (Click here)" />
-                    </Link>
+                    <section className="topFooterSectionDiv">
+                        ABOUT US
+                            <ul style={{ paddingLeft: "0", listStyle: 'none' }}>
+                            <li>
+                                <Link
+                                    className="topFooterSectionItem"
+                                    style={{ textDecoration: 'none' }}
+                                    to={"about"}
+                                >
+                                    About RentAll
+                                    </Link>
+                            </li>
+                        </ul>
+                    </section>
                 </div>
             </div>
 
