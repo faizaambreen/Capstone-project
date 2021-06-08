@@ -207,7 +207,7 @@ h2 {
   padding-bottom: 0;
   padding-left: 5px;
   padding-right: 10px;
-  background-color: rgba(0, 47, 52, .03);
+  background-color: rgba(0, 47, 52, 0.03);
 }
 
 .headerContent {
@@ -437,18 +437,15 @@ h2 {
   align-items: center;
 }
 
+
+/* @media only screen and (min-width: 480px) { */
 .BackgroundImg {
-  height: 41%;
+  height: 100%;
   width: 100%;
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
-  position: absolute;
-  top: 112px;
   left: 0;
-  right: 50%;
-  z-index: 1;
-  /* background-image: url(https://www.ivorytonplayhouse.org/wp-content/uploads/2016/03/5_rent_tmm.jpg); */
 }
 
 /**********************Backgroung image ends here**************************/
@@ -583,7 +580,6 @@ h2 {
   color: #658596;
   font-size: small;
   float: right;
-
 }
 
 .loading {
@@ -792,7 +788,7 @@ h2 {
   display: inline-flex;
   flex-direction: column;
   text-decoration: none;
-  padding: 0 0 0 12px
+  padding: 0 0 0 12px;
 }
 
 .profileMsg {
@@ -800,7 +796,7 @@ h2 {
   line-height: 20px;
   font-weight: 400;
   margin: 0;
-  color: rgba(0, 47, 52, .64)
+  color: rgba(0, 47, 52, 0.64);
 }
 
 .profileName {
