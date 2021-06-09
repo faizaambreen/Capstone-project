@@ -81,13 +81,13 @@ function Header(props) {
                       {location}
                     </div>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><div className="dropdown-item" onClick={updateLocation}>Pakistan</div></li>
+                      <li><div className="dropdown-item" style={{cursor:"pointer"}} onClick={updateLocation}>Pakistan</div></li>
                       <li><hr class="dropdown-divider" /></li>
-                      <li><div className="dropdown-item" onClick={updateLocation}>Punjab</div></li>
-                      <li><div className="dropdown-item" onClick={updateLocation}>Sindh</div></li>
-                      <li><div className="dropdown-item" onClick={updateLocation}>Balochistan</div></li>
-                      <li><div className="dropdown-item" onClick={updateLocation}>KPK</div></li>
-                      <li><div className="dropdown-item" onClick={updateLocation}>Gilgit</div></li>
+                      <li><div className="dropdown-item" style={{cursor:"pointer"}} onClick={updateLocation}>Punjab</div></li>
+                      <li><div className="dropdown-item" style={{cursor:"pointer"}} onClick={updateLocation}>Sindh</div></li>
+                      <li><div className="dropdown-item" style={{cursor:"pointer"}} onClick={updateLocation}>Balochistan</div></li>
+                      <li><div className="dropdown-item" style={{cursor:"pointer"}} onClick={updateLocation}>KPK</div></li>
+                      <li><div className="dropdown-item" style={{cursor:"pointer"}} onClick={updateLocation}>Gilgit</div></li>
                     </ul>
                   </li>
                   <li ClassName="nav-item" style={{ marginRight: '5%' }}>

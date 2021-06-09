@@ -25,7 +25,7 @@ function Congo(){
                             <p className="CongoMsg1"><span>Your Add is Live Now...</span></p>
                             <Link exact to={"/itemview=>"+itemId} style={{textDecoration:'none'}}>
                                 <button className="PreviewBtn">
-                                    <span>Preview Add</span>
+                                    <span>Preview AD</span>
                                 </button>
                             </Link>
                         </div>     
