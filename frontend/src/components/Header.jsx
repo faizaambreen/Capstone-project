@@ -164,7 +164,7 @@ function Header(props) {
           </nav>
         </div>
       </div>
-      {search !== "" && <Redirect to={"/catagoryview=>" + search} />}
+      {search !== "" && <Redirect to={"/categoryview=>" + search} />}
     </div>
   );
 }

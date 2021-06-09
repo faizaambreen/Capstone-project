@@ -17,7 +17,7 @@ function AddDetails() {
             <div className="BetweenHeaderAndFooterC1 BetweenHeaderAndFooterC2">
                 <div className="PostAddMainDiv">
                     <h1 className="PostHeading">
-                        <span>Post your Add</span>
+                        <span>Post your Ad</span>
                     </h1>
                     <Form category={category} />
                 </div>

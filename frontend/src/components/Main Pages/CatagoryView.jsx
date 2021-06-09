@@ -25,7 +25,8 @@ function CatagoryView() {
 
     if (!isLoading && currentCategory !== category) {
         setCurrentCategory(category);
-        if (categoryList.includes(category.toLowerCase())) {
+
+        if (categoryList.includes(category.toLowerCase())) {            
             setLocationAndSearch({
                 location,
                 search: ""
@@ -88,7 +89,7 @@ function CatagoryView() {
         else {
             setFilteredList(null);
         }
-    }, [priceFilter, location]);
+    }, [priceFilter, location,category]);
 
     return (
         <main className="BetweenHeaderAndFooter">
@@ -213,7 +214,7 @@ function CatagoryView() {
                                                 : (filteredList ? filteredList : list)
                                                     .slice(0, countOfItems)
                                                     .map((item,index) => (
-                                                        <Item key={index} itemData={item} />
+                                                        <Item itemData={item} />
                                                     ))
                                         }
                                     </ul>
